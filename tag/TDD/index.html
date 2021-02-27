@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>Author</title>
+    <title>코딩만 잘하면 되냐?</title>
     <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
 
     <!-- Mobile Meta -->
@@ -26,31 +26,31 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//author/edgar/" />
+        <link rel="canonical" href="//tag/TDD/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="코딩만 잘하면 되냐?" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Author" />
+    <meta property="og:title" content="코딩만 잘하면 되냐?" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//author/edgar/" />
-    <meta property="og:image" content="/assets/images/cover4.jpg" />
+    <meta property="og:url" content="//tag/TDD/" />
+    <meta property="og:image" content="/assets/images/cover2.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Author" />
+    <meta name="twitter:title" content="코딩만 잘하면 되냐?" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//author/edgar/" />
-    <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
+    <meta name="twitter:url" content="//tag/TDD/" />
+    <meta name="twitter:image:src" content="/assets/images/cover2.jpg" />
 
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "코딩만 잘하면 되냐?",
-    "name": "Author",
-    "url": "//author/edgar/",
-    "image": "/assets/images/cover4.jpg",
+    "name": "코딩만 잘하면 되냐?",
+    "url": "//tag/TDD/",
+    "image": "/assets/images/cover2.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
     </script>
@@ -60,7 +60,7 @@
 
 
 </head>
-<body class="author-template nav-closed">
+<body class="tag-template nav-closed">
 
     <!-- The blog navigation links -->
     <div class="nav">
@@ -75,7 +75,7 @@
         <li class="nav-speeches " role="presentation"><a href="/tag/speeches">Speeches</a></li>
         <li class="nav-fiction " role="presentation"><a href="/tag/fiction">Fiction</a></li>
         <li class="nav-author " role="presentation"><a href="/author/casper">Casper</a></li>
-        <li class="nav-author  nav-current" role="presentation"><a href="/author/edgar">Edgar</a></li>
+        <li class="nav-author " role="presentation"><a href="/author/edgar">Edgar</a></li>
         <li class="nav-author " role="presentation"><a href="/author/abraham">Abraham</a></li>
         <li class="nav-author " role="presentation"><a href="/author/martin">Martin</a></li>
         <li class="nav-author " role="presentation"><a href="/author/lewis">Lewis</a></li>
@@ -88,68 +88,44 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default}} -->
+        <!-- dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header -->
-
-<!-- Everything inside the #author tags pulls data from the author -->
-<!-- #author  -->
-    <header class="main-header author-head " style="background-image: url(/assets/images/cover4.jpg) ">
-        <nav class="main-nav overlay clearfix">
-            <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
-            
-                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
-            
-        </nav>
-    </header>
-
-    <section class="author-profile inner">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
+    <nav class="main-nav overlay clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
         
-            
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
         
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">Tdd</h1>
+            <h2 class="page-description">
             
-        
+			    A 1-post collection
             
-        
-            
-                
-                <figure class="author-image">
-                    <div class="img" style="background-image: url(/assets/images/edgar.gif)"><span class="hidden">Edgar Rice Burroughs's Picture</span></div>
-                </figure>
-                
-                <h1 class="author-title">Edgar Rice Burroughs</h1>
-                
-                    <div style="display:inline; text-align: justify; text-justify: inter-word;">
-                        <h2 class="author-bio">I'm an American novelist, best known for my work writing about a brave jungle hero called Tarzan and his muse, Jane.</h2>
-                    </div>
-                
-                <div class="author-meta">
-                    <span class="author-location icon-location">Chicago, Illinois</span>
-                    <span class="author-link icon-link"><a href="http://yjksw.github.io/">yjksw.github.io</a></span>
-                    <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
-                    <span class="author-stats"><i class="icon-stats"></i>1 post</span>
-                </div>
-            
-        
-            
-        
-    </section>
-<!-- /author -->
+            </h2>
+        </div>
+    </div>
+</header>
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs  -->
+    <!-- The tag below includes the post loop - partials/loop.hbs -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         
             <nav class="pagination" role="pagination">
     
     <span class="page-number"> Page 1 of 1 </span>
-    
+     
 </nav>
-
         
     </div>
 
@@ -157,10 +133,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/out-to-sea">Out to Sea</a></h2>
+            <h2 class="post-title"><a href="/tdd">TDD, 리펙토링이란?</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>I had this story from one who had no business to tell it to me, or to any other. I may credit the seductive influence of... <a class="read-more" href="/out-to-sea">&raquo;</a></p>
+            <p>TDD, 리펙토링이란? Tags: LV1, TDD 날짜: Feb 16, 2021 Test Driven Development(테스트 주도 개발, TDD) Production Code : 프로그램 구현을 담당하는 부분으로 사용자가 사용하는 소스 코드... <a class="read-more" href="/tdd">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -171,12 +147,6 @@
                 
             
                 
-
-                <img class="author-thumb" src="/assets/images/edgar.gif" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/edgar'>Edgar Rice Burroughs</a>
-
-                
             
                 
             
@@ -186,11 +156,15 @@
                 on
                 
                     
-                       <a href='/tag/fiction'>Fiction</a>
+                       <a href='/tag/TDD'>Tdd</a>,
+                    
+                
+                    
+                       <a href='/tag/computer'>Computer</a>
                     
                 
             
-            <time class="post-date" datetime="1912-07-24">24 Jul 1912</time>
+            <time class="post-date" datetime="2021-02-21">21 Feb 2021</time>
         </footer>
     </article>
     
@@ -200,9 +174,8 @@
         <nav class="pagination" role="pagination">
     
     <span class="page-number"> Page 1 of 1 </span>
-    
+     
 </nav>
-
     
 
 
