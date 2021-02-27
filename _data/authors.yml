@@ -38,3 +38,11 @@ martin:
   url: yjksw.github.io
   bio: An American pastor, activist, humanitarian. People know me for leading the African-American Civil Rights movement using nonviolent civil disobedience.
   assets: assets/images/martin.jpg
+java:
+  username: java
+  name: Java Programming Language
+  location: Memphis, Tennessee
+  url_full: http://yjksw.github.io/
+  url: yjksw.github.io
+  bio: This is an programming language that builds website.
+  assets: assets/images/martin.jpg
