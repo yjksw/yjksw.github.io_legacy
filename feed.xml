@@ -12,7 +12,7 @@
         
           <description></description>
         
-        <pubDate>Sun, 28 Feb 2021 06:10:57 +0000</pubDate>
+        <pubDate>Sun, 28 Feb 2021 06:18:34 +0000</pubDate>
         <link>
         /2021-02-28-naivebayes</link>
         <guid isPermaLink="true">/2021-02-28-naivebayes</guid>
@@ -21,9 +21,24 @@
     
       
       <item>
+        <title>재귀 vs. 반복</title>
+        
+          <description>&lt;p&gt;&lt;strong&gt;Binary Search&lt;/strong&gt; 이분탐색을 구현하면서, 계속 런타임 에러가 났다. 처음에 재귀로 구현을 시작했는데, 재귀에 너무 큰 값이 들어오면서 stack overflow 에러가 났나 싶어서 다시 while 문으로 구현했다. 하지만 while 문으로 구현한 이후에도 계속 런타임 에러가 떠서 확인해보니, n과 m을 헷갈려서 잘못 적었던 것이었다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 26 Feb 2021 10:18:00 +0000</pubDate>
+        <link>
+        /recursion</link>
+        <guid isPermaLink="true">/recursion</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>TDD, 리펙토링이란?</title>
         
-          <description>&lt;h1 id=&quot;tdd-리펙토링이란&quot;&gt;TDD, 리펙토링이란?&lt;/h1&gt;
+          <description>&lt;h2 id=&quot;test-driven-development테스트-주도-개발-tdd&quot;&gt;Test Driven Development(테스트 주도 개발, TDD)&lt;/h2&gt;
 
 </description>
         
