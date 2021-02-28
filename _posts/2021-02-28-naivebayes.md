@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
 title: [머신러닝]나이브 베이즈 분류기(Naive Bayes Classifier) 
-date: 2021-02-28 10:18:00
+date: 2021-02-26 10:18:00
 tags: TDD computer
 subclass: 'post tag-TDD'
 logo: 'assets/images/ghost.png'
