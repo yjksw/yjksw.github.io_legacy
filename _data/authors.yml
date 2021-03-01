@@ -46,3 +46,11 @@ java:
   url: yjksw.github.io
   bio: This is an programming language that builds website.
   assets: assets/images/martin.jpg
+yj:
+  username: yj
+  name: YJ's Dev Journals
+  location: 개발개발, 개발
+  url_full: http://yjksw.github.io/
+  url: yjksw.github.io
+  bio: 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자 
+  assets: assets/images/martin.jpg
