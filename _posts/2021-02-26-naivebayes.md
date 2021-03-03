@@ -4,11 +4,11 @@ cover: 'assets/images/cover6.jpg'
 navigation: True
 title: "[머신러닝]나이브 베이즈 분류기(Naive Bayes Classifier)" 
 date: 2021-02-26 10:18:00
-tags: TDD computer
+tags: machinelearning
 subclass: 'post tag-TDD'
 logo: 'assets/images/ghost.png'
-author: java
-categories: java
+author: yj
+categories: yj
 ---
 강남의 어느 검색 솔루션 기업에서 인턴한지 어연 4주차가 지나간다. 중간지점을 지나가면서 한 것을 정리할 겸 나이브베이즈 문서 분류기 구현과 이론에 대해서 정리해 보려고 한다. 최대한 쉽게!!
 
