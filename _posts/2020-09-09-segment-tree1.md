@@ -3,7 +3,7 @@ layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
 title: "[알고리즘] 세그먼트 트리를 활용한 히스토그램 문제 풀이_1"
-date: 2020-09-05 10:18:00
+date: 2020-09-09 10:18:00
 tags: algorithms
 subclass: 'post tag-algorithms'
 logo: 'assets/images/ghost.png'
@@ -20,7 +20,7 @@ categories: yj
 
 다음은 [백준 블로그](https://www.acmicpc.net/blog/view/12)에 있는 문제 해설에서 가져온 그림이다. 위의 해결 방법을 이해하는데 도움이 된다. 
 
-<img src="https://user-images.githubusercontent.com/63405904/109445062-10bb9c80-7a82-11eb-9887-9047f1485785.png" width=70% />
+
 ![histogram](https://user-images.githubusercontent.com/63405904/109445062-10bb9c80-7a82-11eb-9887-9047f1485785.png)
 
 
@@ -157,7 +157,7 @@ static void solve(int startIndex, int lastIndex){
 
 ###### Segment Tree 란?
 
-<img src="https://user-images.githubusercontent.com/63405904/109445201-6e4fe900-7a82-11eb-8e6c-09edb7e236a4.png" width=80%>
+![histogram](https://user-images.githubusercontent.com/63405904/109445201-6e4fe900-7a82-11eb-8e6c-09edb7e236a4.png)
 
 히스토그램 문제에서는 위에서 말했듯 다음 두가지 풀이를 반복한다. 
 
