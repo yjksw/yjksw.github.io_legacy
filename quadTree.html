@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>[알고리즘] 쿼드 트리</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//quadTree" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[알고리즘] 쿼드 트리" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//quadTree" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[알고리즘] 쿼드 트리" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//quadTree" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "[알고리즘] 쿼드 트리",
+    "url": "//quadTree",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-algorithms">
+
+        <header class="post-header">
+            <h1 class="post-title">[알고리즘] 쿼드 트리</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/yj'>YJ's Dev Journals</a>
+                
+            
+            <time class="post-date" datetime="2020-08-12">12 Aug 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/algorithms'>Algorithms</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>자료구조 중 처음 들어본 <small>(배웠는데 기억 못하는)</small> 개념이 나와서 정리해본다. 알고리즘 문제 중 분할 문제를 푸는 중에 쿼드 트리를 사용하는 알고리즘 이라는 언급을 보고 쿼드 트리라는 것이 어떠한 것인지 살펴보기로 한다.</p>
+
+<ul>
+  <li>QuadTree(쿼드트리): 자료구조의 트리를 기반으로 자식노드가 4개인 트리를 의미함.</li>
+</ul>
+
+<p>대랑의 좌표 데이터를 메모리 안에 압축하기 위해서 사용하는 기법 중 하나로, 주어진 공간을 항상 4개로 분할해 재귀적으로 표현한다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/110094205-ea2d9680-7dde-11eb-95ce-eb1b0156b256.png" alt="quadTree" /></p>
+
+<p>대표적으로 사용되는 쿼드 트리의  사용처는 검은 색과 흰 색 밖에 없는 흑백 그림을 압축해서 표현하는 것이다. 쿼드 트리를 사용해서 해당 문제를 해결하는 것을 간단히 살펴보자.</p>
+
+<h2 id="쿼드트리-응용-예시">쿼드트리 응용 예시</h2>
+
+<p><strong>흑백그림 압축표현 하기</strong></p>
+
+<p>다음 3가지를 기억하고 논리를 따라가면 된다.</p>
+
+<ol>
+  <li>그림의 모든 픽셀이 검은 색일 경우 쿼드 트리의 압축 결과는 그림 크기에 상관없이 B가 됨.</li>
+  <li>그림의 모든 픽셀이 흰 색일 경우 쿼드 트리의 압축 결과는 그림 크기에 상관없이 W가 됨.</li>
+  <li>같은 색이 아니라면, 이 그림의 가로 세로에 대해서 2로 나누어 4개의 조각으로 나눈 다음에 재귀를 사용하여 쿼드 트리압축을 진행함.
+    <ul>
+      <li>각각 4개의 분할된 그림에 대해서 전체가 흑색이면 B가 되고 전체가 흰색이면 W가 됨.</li>
+      <li>만일 같은 색깔로 나누어지지 않으면 X로 표시한 후, 재귀로 들어가 색갈이 나올 때까지 반복함.</li>
+    </ul>
+  </li>
+</ol>
+
+<h2 id="쿼드트리를-응용한-그림-압축하기-코드">쿼드트리를 응용한 그림 압축하기 코드</h2>
+
+<p>자바로 트리를 구현하는 방법 중 하나는, 재귀로 하나씩 파고드는 것이다. 재귀와 분할정복에 대해서 몇 문제를 풀어보니 중요한 것은 다음 두가지 이다.</p>
+
+<ol>
+  <li>언제 return 할 것인지.</li>
+  <li>재귀로 들어가는 반복적인 규칙</li>
+</ol>
+
+<p>위 두가지를 고려하여 쿼드 트리로 위의 흑백 그림에 대해서 푸는 코드를 작성해보자.</p>
+
+<p>문제는 <a href="https://www.acmicpc.net/problem/2630">백준 2630번</a> 를 참고하였다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Divide and Conquere 분할정복</span>
+<span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+  <span class="kd">static</span> <span class="kt">int</span><span class="o">[][]</span> <span class="n">arr</span><span class="o">;</span>
+  <span class="kd">static</span> <span class="kt">int</span> <span class="n">b</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  <span class="kd">static</span> <span class="kt">int</span> <span class="n">w</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+    
+    <span class="k">try</span><span class="o">{</span>
+      <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+      <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">n</span><span class="o">][</span><span class="n">n</span><span class="o">];</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+        <span class="n">String</span><span class="o">[]</span> <span class="n">temp</span> <span class="o">=</span> <span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">.</span><span class="na">split</span><span class="o">(</span><span class="s">" "</span><span class="o">);</span>
+        <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">n</span><span class="o">;</span><span class="n">j</span><span class="o">++){</span>
+          <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">temp</span><span class="o">[</span><span class="n">j</span><span class="o">]);</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+      <span class="n">solve</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="mi">0</span><span class="o">,</span> <span class="n">n</span><span class="o">);</span>
+    <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IOException</span> <span class="n">e</span><span class="o">){}</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">w</span><span class="o">);</span>
+  		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">b</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">size</span><span class="o">){</span>
+    <span class="kt">int</span> <span class="n">num</span> <span class="o">=</span> <span class="n">arr</span><span class="o">[</span><span class="n">x</span><span class="o">][</span><span class="n">y</span><span class="o">];</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">x</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="n">y</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">y</span><span class="o">+</span><span class="n">size</span><span class="o">;</span><span class="n">j</span><span class="o">++){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">num</span> <span class="o">!=</span> <span class="n">arr</span><span class="o">[</span><span class="n">i</span><span class="o">][</span><span class="n">j</span><span class="o">]){</span>
+          <span class="n">solve</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
+          <span class="n">solve</span><span class="o">(</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">y</span><span class="o">,</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
+          <span class="n">solve</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">+</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
+          <span class="n">solve</span><span class="o">(</span><span class="n">x</span><span class="o">+</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">y</span><span class="o">+</span><span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="o">,</span> <span class="n">size</span><span class="o">/</span><span class="mi">2</span><span class="o">);</span>
+          <span class="k">return</span><span class="o">;</span>
+        <span class="o">}</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">num</span> <span class="o">==</span> <span class="mi">1</span><span class="o">)</span>
+      <span class="n">b</span><span class="o">++;</span>
+    <span class="k">else</span> 
+      <span class="n">w</span><span class="o">++;</span>
+    <span class="k">return</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><small>별건 아니고 이진트리에서 4개 버전이 쿼드 트리였다..</small></p>
+
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">yj's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
+
+                        
+                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> 개발개발, 개발</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[알고리즘] 쿼드 트리&amp;url=quadTree"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=quadTree"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=quadTree"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/segment-tree1">
+            <section class="post">
+                <h2>[알고리즘] 세그먼트 트리를 활용한 히스토그램 문제 풀이_1</h2>
+                <p>히스토그램에서 가장 큰 직사각형의 크기를 찾는 알고리즘을 풀다가, 관련 문제의 풀이법을 간단히 찾아서 금방 해결할...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
