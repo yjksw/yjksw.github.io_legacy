@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>[머신러닝] 추천 시스템 기술</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//ml-recommendation-system" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[머신러닝] 추천 시스템 기술" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//ml-recommendation-system" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[머신러닝] 추천 시스템 기술" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//ml-recommendation-system" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "[머신러닝] 추천 시스템 기술",
+    "url": "//ml-recommendation-system",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-machinelearning">
+
+        <header class="post-header">
+            <h1 class="post-title">[머신러닝] 추천 시스템 기술</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/yj'>YJ's Dev Journals</a>
+                
+            
+            <time class="post-date" datetime="2020-08-10">10 Aug 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/machinelearning'>Machinelearning</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>모 기업에서 인턴을 하면서 맡은 업무가 <mark>개인화 추천 모델 구현</mark>이었다. 맡은 업무는 딥러닝 기반의 개인화 추천 모델을 제작하는 것이지만 기존에 회사에서 가지고 있는 추천 시스템의 경우 협업 필터링 등으로 이미 구현이 되어 있었기 때문에 간단히 개인화 추천 시스템에 대한 브리핑을 해주시면서 감을 잡을 수 있도록 해주셨다.</p>
+
+<p>추천 시스템 기술을 처음 접해보면서 어떠한 것인지 공부하며 기록해보려고 한다.</p>
+
+<h3 id="추천이란">추천이란?</h3>
+
+<p>추천이란 간단히 말해서 사용자(user)에게 관심이 있을 것으로 예상이 되는 아이템(item)을 제안하는 것이다. 특정 아이템에 대한 특정 사용자의 선호도 또는 평가를 예측하는 것이 매우 중요하다.</p>
+
+<p>우리가 흔히 생각해 낼 수 있는 추천 시스템은 페이스북과 같은 것에서의 광고 추천, 넷플릭스나 왓챠와 같은 OTT 서비스에서의 영화 추천 시스템이다.</p>
+
+<h3 id="접근-방식">접근 방식</h3>
+
+<p>추천 시스템 기술에서의 접근 방식은 크게 다음과 같은 3가지가 있다.</p>
+
+<ul>
+  <li>내용 기반 필터링 (Content-based Filtering)</li>
+  <li>협업 필터링 (Collaborative Filtering)</li>
+  <li>하이브리드 (Hybrid)</li>
+</ul>
+
+<h4 id="1-내용-기반-필터링">1) 내용 기반 필터링</h4>
+
+<p>사용자의 프로필이나 아이템의 content 정보를 이용하는 방법이다. 사용자의 선호도, 취향 등을 파악하는 방법이 핵심이다. 예를 들어, 회원가입 시 사용자에게 선호하는 아이템 또는 분야 등에 대해서 선택하도록 하여 선호도를 파악하여 해당 정보를 기반으로 추천을 한다. 또는 사용자의 과거에 평가한 아이템 분석을 통해서 선호도를 파악할 수 있다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/110242569-0590d100-7f9a-11eb-8799-e9fe186779e6.jpeg" alt="contentbased" /></p>
+
+<h4 id="2-협업-필터링">2) 협업 필터링</h4>
+
+<p>협업 필터링은 여러 사용자들의 활동, 기호 정보들을 분석하여, 각 사아요자에게 적합한 아이템을 추천하도록 한다. 예를 들어서 사용자 A와 유사하다고 판단되는 사용자 B가 최근 구매한 상품을 사용자 A에게도 추천하도록 하는 것이다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/110242548-f14cd400-7f99-11eb-927e-2e1000c04eba.jpeg" alt="collaborative" /></p>
+
+<h4 id="3-내용-기반-필터링--협업-필터링의-장단점">3) 내용 기반 필터링 &amp; 협업 필터링의 장단점</h4>
+
+<table>
+  <thead>
+    <tr>
+      <th> </th>
+      <th>내용 기반 필터링</th>
+      <th>협업 필터링</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>장점</td>
+      <td>사용자의 명시적인 기호 정보를 직접적으로 반영한다. <br />다른 사용자의 정보나 평가, 행동 등이 필요하지 않다.<br />새로 추가된 아이템에 대한 추천이 가능하다.</td>
+      <td>대부분의 경우 추천 성과가 우수하다.<br />잠재적인 특징을 고려하여 다양한 범위의 추천이 가능하다.</td>
+    </tr>
+    <tr>
+      <td>단점</td>
+      <td>사용자의 명시적인 프로필 얻기 어려움이 있다.<br />명시적으로 표현된 특징만 다룰 수 있고 잠재적인 것을 캐치하기 어렵다.<br />추천하는 항목이 비슷한 장르에 머무르는 한계가 있다.</td>
+      <td>초기 사용자에 대한 믿을만한 추천이 어렵다. Cold start가 존재한다.<br />한번도 평가되지 않은 아이템은 추천 대상에서 제외된다. sparsity, coverage</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="4-하이브리드">4) 하이브리드</h4>
+
+<p>위에서의 내용 기반 필터링과 협업 필터링을 결합하여 사용한다. 결합하는 방식을 다양하기 때문에 어떠한 하이브리드 방식을 택하는지는 매우 광범위 하다. 하지만 간단히 보아서 위의 두가지 방식을 같이 사용함으로 각자의 단점을 보완한다는 장점을 가지고 있다. 다만 시스템적으로 매우 복잡해질 수 있는 단점이 있다.</p>
+
+<h4 id="5-협업-필터링-기술-분류">5) 협업 필터링 기술 분류</h4>
+
+<p>본 기업에서 중점적으로 사용하고 있는 협업 필터링 기술은 다음과 같이 분류된다.</p>
+
+<ul>
+  <li>메모리 기반(Memory-based) 협업 필터링
+    <ul>
+      <li>사용자 또는 아이템 간의 유사도를 계산하고 그것을 바탕을 추천 결과를 생성하는 방식으로 유사도를 계산하는 방식이 매우 중요함.</li>
+      <li><strong>대표 알고리즘</strong>: User-based CF / Item-based CF</li>
+      <li><strong>장점</strong>: 구현이 간단하고 이해하기 쉬움.</li>
+      <li><strong>한계</strong>: 1) 새로운 사용자와 아이템에 대한 cold start 문제 2) Rating matrix의 sparsity 문제 3) 큰 데이터 셋에 대해 제한된 scalability</li>
+    </ul>
+  </li>
+  <li>모델 기반(Model-based) 협업 필터링
+    <ul>
+      <li>데이터(rating matrix)에 내재되어 있는 패턴이나 속성을 학습한 모델을 만들고, 이것을 바탕으로 추천 결과를 생성하는 방식.</li>
+      <li><strong>대표 알고리즘</strong>: Slope-One EF / Matrix Facotrization</li>
+      <li><strong>장점:</strong> sparsity, scalability 문제에 상대적으로 더 잘 대처하는 것이 가능하고 예측 성능이 향상됨.</li>
+      <li><strong>한계:</strong> 1) 모델 구축 비용이 큼 2) 예측 성능과 scalability 사이의 trade-off 3) 차원 감소로 인한 정보손실(SVD 실행 시 발생)</li>
+    </ul>
+  </li>
+  <li>하이브리드(Hybrid) 방식 협업 필터링
+    <ul>
+      <li>메모리 기반 방식과 모델 기반 방식을 결합하여 사용하는 방식</li>
+      <li><strong>대표 알고리즘</strong>: 메모리 기반과 모델 기반의 조합</li>
+      <li><strong>장점</strong>: 각 방식의 단점을 보완하고 장점만을 취합할 수 있음</li>
+      <li><strong>한계:</strong> 구현이 복잡해지고 비용이 증가함.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><strong><small>[참고 자료]: https://www.samsungsemiconstory.com/2265, </small></strong></p>
+
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">yj's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
+
+                        
+                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> 개발개발, 개발</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[머신러닝] 추천 시스템 기술&amp;url=ml-recommendation-system"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=ml-recommendation-system"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=ml-recommendation-system"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/quadTree">
+            <section class="post">
+                <h2>[알고리즘] 쿼드 트리</h2>
+                <p>자료구조 중 처음 들어본 (배웠는데 기억 못하는) 개념이 나와서 정리해본다. 알고리즘 문제 중 분할 문제를...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/naivebayes">
+            <section class="post">
+                <h2>[머신러닝]나이브 베이즈 분류기(Naive Bayes Classifier)</h2>
+                <p>강남의 어느 검색 솔루션 기업에서 인턴한지 어연 4주차가 지나간다. 중간 지점을 지나가면서 한 것을 정리할...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
