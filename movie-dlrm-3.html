@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>[머신러닝] 딥러닝 영화 개인화 추천 - Part.3</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//movie-dlrm-3" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[머신러닝] 딥러닝 영화 개인화 추천 - Part.3" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//movie-dlrm-3" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[머신러닝] 딥러닝 영화 개인화 추천 - Part.3" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//movie-dlrm-3" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "[머신러닝] 딥러닝 영화 개인화 추천 - Part.3",
+    "url": "//movie-dlrm-3",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-machinelearning">
+
+        <header class="post-header">
+            <h1 class="post-title">[머신러닝] 딥러닝 영화 개인화 추천 - Part.3</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/yj'>YJ's Dev Journals</a>
+                
+            
+            <time class="post-date" datetime="2020-08-24">24 Aug 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/machinelearning'>Machinelearning</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>영화 개인화 추천 포스트의 마지막 파트이다. 이전까지는 데이터를 입력받아서 전처리하고, 모델을 구축하여 학습의 원리에 대해서 간략하게 알아보았다. 결국 학습을 하면서 loss 값을 optimizing 하는 과정에서 학습된 사용자의 영화에 대한 예측 평점인 y_hat이 출력되는 것인데, 검증셋에 대해서 출력된 y_hat의 값에 대해서 어느 정도의 후처리를 하여 사용자에게 추천할 영화 리스트를 선별하는 작업이 필요하다. 이번 포스트는 학습된 모델을 가지고 검증 및 테스트를 진행한 후에 모델에서 출력한 예측 평점에 대해서 사용자에게 추천할 영화 리스트를 추출하는 작업에 대해서 이야기해보자.</p>
+
+<h2 id="개요">개요</h2>
+
+<p>**전체적인 검증 및 테스트 과정은 다음과 같다. **</p>
+
+<ol>
+  <li>모델을 포팅해 사용자와 추천 영화 갯수를 입력한다.</li>
+  <li>영화 목록이 들어가있는 입력 데이터를 모델에 넣어 prediction을 진행한다.</li>
+  <li>모델에서 나온 예측값과 <strong>movieId</strong> 가 있는 데이터를 concat 하여 이어붙인다.</li>
+  <li><em>movies.csv</em> 파일에 있는 영화 아이디별 영화 제목을 불러서 3번 데이터에 concat 한다.</li>
+  <li>예측 평점을 기준으로 sorting 하여 내림차순 정렬을 한다.</li>
+  <li>1번에서 입력된 영화 갯수만큼 잘라서 영화 제목을 출력해준다.</li>
+</ol>
+
+<h2 id="세부-구현">세부 구현</h2>
+
+<p>파이썬으로 구현한 데이터 후처리 부분이다.</p>
+
+<ol>
+  <li>입력 데이터에 대한 인코딩 후 모델에 넣어 학습하기</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">target_usr</span> <span class="o">=</span> <span class="n">df_test</span><span class="p">[</span><span class="s">'userId'</span><span class="p">]</span> <span class="o">==</span> <span class="n">userId</span> <span class="c">#특정 유저에 대해서 filtering 하기 </span>
+<span class="n">target_df</span> <span class="o">=</span> <span class="n">df_test</span><span class="p">[</span><span class="n">target_usr</span><span class="p">]</span>
+<span class="n">users</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">target_df</span><span class="o">.</span><span class="n">userId</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="c">#유저 목록 데이터 </span>
+<span class="n">items</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">LongTensor</span><span class="p">(</span><span class="n">target_df</span><span class="o">.</span><span class="n">movieId</span><span class="o">.</span><span class="n">values</span><span class="p">)</span> <span class="c"># 영화 목록 데이터</span>
+<span class="n">y_hat</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="n">items</span><span class="p">)</span> <span class="c">#예측 ratings y_hat에 저장</span>
+</code></pre></div></div>
+
+<ol>
+  <li>기존 영화 목록 데이터에 예측 평점 매칭하여 이어붙이기</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">target_df</span> <span class="o">=</span> <span class="n">target_df</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">target_df</span><span class="p">,</span> <span class="n">predictions</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span> <span class="c">#이어붙인 dataframe</span>
+</code></pre></div></div>
+
+<p>아래 이미지는 검증을 위해서 입력된 데이터를 모델에 넣어 학습했을 때 나온 결과 예측 rating이다.</p>
+
+<p>&lt;img src=”prediction.png” width=70% &gt;</p>
+
+<ol>
+  <li>영화 ID 별 영화 제목 매칭하기</li>
+</ol>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">movies</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">read_csv</span><span class="p">(</span><span class="s">'./ml-latest-small/movies.csv'</span><span class="p">)</span>
+<span class="n">new_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">merge</span><span class="p">(</span><span class="n">new_df</span><span class="p">,</span> <span class="n">movies</span><span class="p">,</span> <span class="n">on</span><span class="o">=</span><span class="s">'movieId'</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>오른쪽에 나와있는 영화제목 데이터를 위의 dataframe에 이어붙여서 영화 아이디에 대한 영화 제목을 매칭하는 과정이 필요하다.</p>
+
+<p>&lt;img src=”movieName.png” width=70%&gt;</p>
+
+<p>최종 영화 목록을 선별하여 출력하기 이전에 필요한 모든 dataframe들을 concat 했을때의 화면이다. 모든 데이터들을 이어붙였기 때문에 다소 지저분하지만 한눈에 볼 수 있는 장점이 있다.</p>
+
+<p>&lt;img src=”test.png” width=50%&gt;</p>
+
+<h2 id="결과">결과</h2>
+
+<p>다음과 같은 입력에 대한 추천 영화 목록이 아웃풋으로 나온다. 아래 결과는 사용자 1에 대한 상위 6개의 영화추천이다.</p>
+
+<p>&lt;img src=”result.png” width=50%&gt;</p>
+
+<p>overfitting이나 underfitting이 되지 않고, 최적화된 학습 모델을 찾기 위해서는 여러번의 learning rate 조정 분석이 필요하다. 이것은 정답이 없기 때문에 충분한 데이터를 가지고 learning rate와 epoch를 변경하면서 여러 테스트 과정이 필요하다. 나도 굉장히 많은 learning rate를 시도해보면 실제 검증 validation loss와 train loss 를 비교하고 그래프를 그려가면서 나름 최적화 되었다고 생각하는 지점을 찾는 과정을 거쳤다.</p>
+
+<p>&lt;img src=”learningRate.png” width=70%&gt;</p>
+
+<p>매우 간단한 구현이었지만 딥러닝에 대해서 더욱 알 수 있는 경험이었다. 무엇보다 우리 삶에 밀접하게 쓰여지고 있는 기술을 직접 구현해보고 처리해보니 더욱 흥미로웠다. 그렇지만 당근마켓, 페이스북, 유투브의 개인화 추천관련 논문과 블로그 등을 읽어보니, 정말 고려해야할 것도 필터링 해야 할 부분도 많다.</p>
+
+<p><strong>생각해볼 것</strong>은 다음과 같다.</p>
+
+<ol>
+  <li>데이터베이스에 있는 모든 영화목록을 매번 넣어서 예측 평점을 모두 predict 한 뒤, sorting 하여 최상위 예측 평점 순으로 영화를 고르는 것은 매우 비효율 적이다. 데이터 베이스에 있는 영화가 100만개가 넘어가거나 할 경우 매번 그것을 반복할 수 없기 때문이다. 당근마켓의 블로그를 참고해보면 1차로 후보모델을 추출한 뒤에 일부 후보를 추리는 1차 작업을 한 뒤에, 해당 후보 모델에서 랭킹을 매기는 랭킹모델을 구축한다. 이렇듯 여러 과정을 거쳐서 일부 후보들을 filtering 하는 과정이 필요할 듯 하다.</li>
+  <li>cold start 문제를 고려해야 한다. 처음 들어온 유저, 아무도 랭킹을 매기지 않은 영화에 대해서는 영영 추천하지 못하는 상황이 되어버릴 것이다. cold start에 대한 여러 고찰과 방법들에 대해서 나와있으니 한번 참고해보자.</li>
+</ol>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">yj's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
+
+                        
+                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> 개발개발, 개발</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[머신러닝] 딥러닝 영화 개인화 추천 - Part.3&amp;url=movie-dlrm-3"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=movie-dlrm-3"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=movie-dlrm-3"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/segment-tree1">
+            <section class="post">
+                <h2>[알고리즘] 세그먼트 트리를 활용한 히스토그램 문제 풀이_1</h2>
+                <p>히스토그램에서 가장 큰 직사각형의 크기를 찾는 알고리즘을 풀다가, 관련 문제의 풀이법을 간단히 찾아서 금방 해결할...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/movie-dlrm-2">
+            <section class="post">
+                <h2>[머신러닝] 딥러닝 영화 개인화 추천 - Part.2</h2>
+                <p>이어서 딥러닝 영화 개인화 추천 모델을 구현하면서 구축한 딥러닝 협업 필터링 모델 부분에 대한 코드를...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
