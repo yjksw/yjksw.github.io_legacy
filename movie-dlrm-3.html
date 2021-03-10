@@ -181,7 +181,7 @@
 
 <p>아래 이미지는 검증을 위해서 입력된 데이터를 모델에 넣어 학습했을 때 나온 결과 예측 rating이다.</p>
 
-<p>&lt;img src=”prediction.png” width=70% &gt;</p>
+<p><img src="https://user-images.githubusercontent.com/63405904/110633039-a0341e80-81eb-11eb-97cf-9042280a7c5f.png" alt="image" /></p>
 
 <ol>
   <li>영화 ID 별 영화 제목 매칭하기</li>
@@ -193,21 +193,21 @@
 
 <p>오른쪽에 나와있는 영화제목 데이터를 위의 dataframe에 이어붙여서 영화 아이디에 대한 영화 제목을 매칭하는 과정이 필요하다.</p>
 
-<p>&lt;img src=”movieName.png” width=70%&gt;</p>
+<p><img src="https://user-images.githubusercontent.com/63405904/110632972-90b4d580-81eb-11eb-8f8b-ff8adc76abe5.png" alt="image" /></p>
 
 <p>최종 영화 목록을 선별하여 출력하기 이전에 필요한 모든 dataframe들을 concat 했을때의 화면이다. 모든 데이터들을 이어붙였기 때문에 다소 지저분하지만 한눈에 볼 수 있는 장점이 있다.</p>
 
-<p>&lt;img src=”test.png” width=50%&gt;</p>
+<p><img src="https://user-images.githubusercontent.com/63405904/110633113-b8a43900-81eb-11eb-9c31-15ac27ece25d.png" alt="image" /></p>
 
 <h2 id="결과">결과</h2>
 
 <p>다음과 같은 입력에 대한 추천 영화 목록이 아웃풋으로 나온다. 아래 결과는 사용자 1에 대한 상위 6개의 영화추천이다.</p>
 
-<p>&lt;img src=”result.png” width=50%&gt;</p>
+<p><img src="https://user-images.githubusercontent.com/63405904/110633077-ad510d80-81eb-11eb-9a9e-e53a771b4201.png" alt="image" /></p>
 
 <p>overfitting이나 underfitting이 되지 않고, 최적화된 학습 모델을 찾기 위해서는 여러번의 learning rate 조정 분석이 필요하다. 이것은 정답이 없기 때문에 충분한 데이터를 가지고 learning rate와 epoch를 변경하면서 여러 테스트 과정이 필요하다. 나도 굉장히 많은 learning rate를 시도해보면 실제 검증 validation loss와 train loss 를 비교하고 그래프를 그려가면서 나름 최적화 되었다고 생각하는 지점을 찾는 과정을 거쳤다.</p>
 
-<p>&lt;img src=”learningRate.png” width=70%&gt;</p>
+<p><img src="https://user-images.githubusercontent.com/63405904/110632879-7aa71500-81eb-11eb-9673-65d53a82f20e.png" alt="image" /></p>
 
 <p>매우 간단한 구현이었지만 딥러닝에 대해서 더욱 알 수 있는 경험이었다. 무엇보다 우리 삶에 밀접하게 쓰여지고 있는 기술을 직접 구현해보고 처리해보니 더욱 흥미로웠다. 그렇지만 당근마켓, 페이스북, 유투브의 개인화 추천관련 논문과 블로그 등을 읽어보니, 정말 고려해야할 것도 필터링 해야 할 부분도 많다.</p>
 
