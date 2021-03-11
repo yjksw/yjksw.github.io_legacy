@@ -38,6 +38,21 @@
     
       
       <item>
+        <title>[동적계획법] 이항계수</title>
+        
+          <description>&lt;p&gt;이런 말이 있다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 24 Sep 2020 10:18:00 +0000</pubDate>
+        <link>
+        /binary-coefficient</link>
+        <guid isPermaLink="true">/binary-coefficient</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>[알고리즘] 세그먼트 트리를 활용한 히스토그램 문제 풀이_2</title>
         
           <description>&lt;p&gt;앞서 &lt;a href=&quot;https://www.acmicpc.net/problem/6549&quot;&gt;히스토그램 문제&lt;/a&gt;에 대한 접근 방법을 간단하게 설명하고 세그먼트 트리를 히스토그램에 맞추어서 설명했다. 이번 글에서는 구체적으로 어떻게 세그먼트 트리를 구현하여 히스토그램 문제를 푸는데까지 이어지는지 다루어 보도록 하겠다.&lt;/p&gt;
