@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>[알고리즘] 이진탐색 응용: UpperBound와 LowerBound</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//bin-search-bound" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[알고리즘] 이진탐색 응용: UpperBound와 LowerBound" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//bin-search-bound" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[알고리즘] 이진탐색 응용: UpperBound와 LowerBound" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//bin-search-bound" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "[알고리즘] 이진탐색 응용: UpperBound와 LowerBound",
+    "url": "//bin-search-bound",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-algorithms">
+
+        <header class="post-header">
+            <h1 class="post-title">[알고리즘] 이진탐색 응용: UpperBound와 LowerBound</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/java'>Java Programming Language</a>
+                
+            
+                
+            
+            <time class="post-date" datetime="2020-09-04">04 Sep 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/algorithms'>Algorithms</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>이진탐색의 응용 버전으로 상/하한선을 찾는 알고리즘이다. 이를 응용한 <a href="https://www.acmicpc.net/problem/10816">문제</a>를 풀면서 배운 개념을 정리해둔다.</p>
+
+<p>이진탐색을 사용하면 모든 요소들을 다 방문하면서 탐색하는 것보다 훨씬 더 효율적으로 원하는 요소를 탐색할 수 있다. 하지만 이진탐색의 경우, <u>중복되지 않은 값이 주어진 경우</u>이거나, <u>해당 요소의 존재 여부</u>만을 가리기 위해서 일 경우에만 사용이 가능하다. 위의 문제의 경우, 중복되는 값들이 존재하며 그 값들이 총 몇개가 있는지도 확인할 수 있어야 하기 때문에 일반적인 이진탐색을 통해서는 답을 도출할 수 없다. 그래서 찾은 알고리즘 <mark>Upper Bound</mark> 와 <mark>Lower Bound</mark> 알고리즘 이다. <strong>이진탐색에서 살짝 변형되어서 중복된 자료가 있을 때 유용하게 탐색할 수 있는 알고리즘</strong>이다.</p>
+
+<p>아래 그림을 보면 lower bound와 upper bound에 대해서 더 잘 이해할 수 있다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/111030306-c4d70300-8444-11eb-8b82-7ad2c3cc0ec1.png" alt="image" /></p>
+
+<h3 id="upper-bound-algorithm">Upper Bound Algorithm</h3>
+
+<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>&gt; Upper Bound Theory:
+	K 값보다 큰 값(&gt;)이 처음 나오는 위치를 리턴해주는 알고리즘. 
+</code></pre></div></div>
+
+<p>구현은 이진 탐색과 매우 유사하지만 약간의 변형이 있다.</p>
+
+<ol>
+  <li><strong>탐색의 범위를 크기가 n일 때:</strong> index만큼인 n-1까지 탐색하는 것이 아니라, n까지 탐색해야 함.</li>
+  <li><strong>탐색하는 숫자 k를 찾았거나, mid 값보다 k가 작을 경우:</strong>  해당 값이나 위치를 return하는 것이 아니라, 중간 값 이후부터 분할한 오른쪽 부분을 재 탐색함.</li>
+  <li><strong>탐색하는 숫자 k보다 mid에 있는 값이 클 경우:</strong> 본래 mid를 제외한 start~mid-1까지를 탐색했으나, 여기서는 start~mid 탐색해 mid값을 재포함 함.</li>
+</ol>
+
+<p>여기서 1번을 시행하는 이유는 만약 배열에 있는 모든 요소, 혹은 마지막 요소보다 큰 값에 대해서 return 해야할 경우, 배열의 크기 만큼을 리턴해야 하므로 end 요소에 이진 탐색처럼 <code class="highlighter-rouge">array.length-1</code>이 아닌 <code class="highlighter-rouge">array.length</code>가 들어가야 한다.</p>
+
+<p>2번의 경우에는 해당 값 k를 찾았을 때도, <em><u>k보다 큰 값이 처음 등장하는 위치</u></em> 를 찾아야 하기 때문에, 해당 다음 위치부터 end index에 대해서 마지막 하나 남을 때까지 재탐색 해야 한다.</p>
+
+<p>3번의 경우 mid 인덱스를 재포함하는 이유는 해당 mid에 있는 값이 upper bound 일 수 있으나, 탐색 숫자 k보다 <u>큰 첫번째 숫자임을 보장할 수 없기 때문에</u> 탐색을 이어서 진행하는 것이다.</p>
+
+<p><strong>코드:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">int</span> <span class="nf">searchUpper</span><span class="o">(</span><span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num</span><span class="o">){</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">start</span><span class="o">&gt;=</span><span class="n">end</span><span class="o">)</span>
+    <span class="k">return</span> <span class="n">start</span><span class="o">;</span>
+  
+  <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">start</span><span class="o">+</span><span class="n">end</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+  
+  <span class="k">if</span><span class="o">(</span><span class="n">num_list</span><span class="o">[</span><span class="n">mid</span><span class="o">]&lt;=</span><span class="n">num</span><span class="o">){</span>
+    <span class="k">return</span> <span class="nf">searchUpper</span><span class="o">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">searchUpper</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">mid</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h3 id="lower-bound-algorithm">Lower Bound Algorithm</h3>
+
+<p>Lower bound 또한 Upper bound와 매우 유사하게 진행되므로 위의 설명을 참고하면 된다. 다만 upper bound와 다르게 작용하는 부분은, 딱 한 부분이다.</p>
+
+<ul>
+  <li>탐색하고 있는 k가 등장했을 때, upper bound 알고리즘에서는 mid+1 값부터 오른쪽 반을 탐색하였는데, lower bound 알고리즘에서는 mid를 포함시켜 왼쪽 반을 탐색하도록 한다.</li>
+</ul>
+
+<p>이 부분은 lower bound이 경우 숫자 k 가 처음 등장한 위치를 찾아야 하기 때문에 k 가 등장하더라도 그 이전에 k가 존재하지는 않는지 확인해야 하기 때문이다.</p>
+
+<p><strong>코드:</strong></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">int</span> <span class="nf">searchLower</span><span class="o">(</span><span class="kt">int</span> <span class="n">start</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num</span><span class="o">){</span>
+  <span class="k">if</span><span class="o">(</span><span class="n">start</span><span class="o">&gt;=</span><span class="n">end</span><span class="o">)</span>
+    <span class="k">return</span> <span class="n">start</span><span class="o">;</span>
+  
+  <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">start</span><span class="o">+</span><span class="n">end</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+  
+  <span class="k">if</span><span class="o">(</span><span class="n">num_list</span><span class="o">[</span><span class="n">mid</span><span class="o">]&gt;=</span><span class="n">num</span><span class="o">){</span>
+    <span class="k">return</span> <span class="nf">searchLower</span><span class="o">(</span><span class="n">start</span><span class="o">,</span> <span class="n">mid</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+  <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="nf">searchLower</span><span class="o">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">,</span> <span class="n">num</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><strong><small>[참고 자료]: http://bajamircea.github.io/coding/cpp/2018/08/09/lower-bound.html, <a href="https://jackpot53.tistory.com/33#:~:text=lower bound는 데이터내,를 리턴해주는 알고리즘이다.">https://jackpot53.tistory.com/33#:~:text=lower%20bound%EB%8A%94%20%EB%8D%B0%EC%9D%B4%ED%84%B0%EB%82%B4,%EB%A5%BC%20%EB%A6%AC%ED%84%B4%ED%95%B4%EC%A3%BC%EB%8A%94%20%EC%95%8C%EA%B3%A0%EB%A6%AC%EC%A6%98%EC%9D%B4%EB%8B%A4.</a> </small></strong></p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/java" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">java's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/java">Java Programming Language</a></h4>
+
+                        
+                            <p> This is an programming language that builds website.</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> Memphis, Tennessee</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[알고리즘] 이진탐색 응용: UpperBound와 LowerBound&amp;url=bin-search-bound"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=bin-search-bound"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=bin-search-bound"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/segment-tree1">
+            <section class="post">
+                <h2>[알고리즘] 세그먼트 트리를 활용한 히스토그램 문제 풀이_1</h2>
+                <p>히스토그램에서 가장 큰 직사각형의 크기를 찾는 알고리즘을 풀다가, 관련 문제의 풀이법을 간단히 찾아서 금방 해결할...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/movie-dlrm-3">
+            <section class="post">
+                <h2>[머신러닝] 딥러닝 영화 개인화 추천 - Part.3</h2>
+                <p>영화 개인화 추천 포스트의 마지막 파트이다. 이전까지는 데이터를 입력받아서 전처리하고, 모델을 구축하여 학습의 원리에 대해서...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>

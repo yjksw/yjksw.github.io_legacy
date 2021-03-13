@@ -8,21 +8,6 @@
     
       
       <item>
-        <title>재귀 vs. 반복</title>
-        
-          <description>&lt;p&gt;&lt;strong&gt;Binary Search&lt;/strong&gt; 이분탐색을 구현하면서, 계속 런타임 에러가 났다. 처음에 재귀로 구현을 시작했는데, 재귀에 너무 큰 값이 들어오면서 stack overflow 에러가 났나 싶어서 다시 while 문으로 구현했다. 하지만 while 문으로 구현한 이후에도 계속 런타임 에러가 떠서 확인해보니, n과 m을 헷갈려서 잘못 적었던 것이었다.&lt;/p&gt;
-
-</description>
-        
-        <pubDate>Fri, 26 Feb 2021 10:18:00 +0000</pubDate>
-        <link>
-        /recursion</link>
-        <guid isPermaLink="true">/recursion</guid>
-      </item>
-      
-    
-      
-      <item>
         <title>TDD, 리펙토링이란?</title>
         
           <description>&lt;h2 id=&quot;test-driven-development테스트-주도-개발-tdd&quot;&gt;Test Driven Development(테스트 주도 개발, TDD)&lt;/h2&gt;
@@ -53,6 +38,21 @@
     
       
       <item>
+        <title>재귀 vs. 반복</title>
+        
+          <description>&lt;p&gt;&lt;strong&gt;Binary Search&lt;/strong&gt; 이분탐색을 구현하면서, 계속 런타임 에러가 났다. 처음에 재귀로 구현을 시작했는데, 재귀에 너무 큰 값이 들어오면서 stack overflow 에러가 났나 싶어서 다시 while 문으로 구현했다. 하지만 while 문으로 구현한 이후에도 계속 런타임 에러가 떠서 확인해보니, n과 m을 헷갈려서 잘못 적었던 것이었다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 11 Sep 2020 10:18:00 +0000</pubDate>
+        <link>
+        /recursion</link>
+        <guid isPermaLink="true">/recursion</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>[알고리즘] 세그먼트 트리를 활용한 히스토그램 문제 풀이_2</title>
         
           <description>&lt;p&gt;앞서 &lt;a href=&quot;https://www.acmicpc.net/problem/6549&quot;&gt;히스토그램 문제&lt;/a&gt;에 대한 접근 방법을 간단하게 설명하고 세그먼트 트리를 히스토그램에 맞추어서 설명했다. 이번 글에서는 구체적으로 어떻게 세그먼트 트리를 구현하여 히스토그램 문제를 푸는데까지 이어지는지 다루어 보도록 하겠다.&lt;/p&gt;
@@ -78,6 +78,21 @@
         <link>
         /segment-tree1</link>
         <guid isPermaLink="true">/segment-tree1</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>[알고리즘] 이진탐색 응용: UpperBound와 LowerBound</title>
+        
+          <description>&lt;p&gt;이진탐색의 응용 버전으로 상/하한선을 찾는 알고리즘이다. 이를 응용한 &lt;a href=&quot;https://www.acmicpc.net/problem/10816&quot;&gt;문제&lt;/a&gt;를 풀면서 배운 개념을 정리해둔다.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 04 Sep 2020 10:18:00 +0000</pubDate>
+        <link>
+        /bin-search-bound</link>
+        <guid isPermaLink="true">/bin-search-bound</guid>
       </item>
       
     
