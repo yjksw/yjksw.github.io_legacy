@@ -3,9 +3,9 @@ layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
 title: "[알고리즘] 이진탐색 응용: UpperBound와 LowerBound"
-date: 2021-09-04 10:18:00
-tags: TDD computer
-subclass: 'post tag-computer'
+date: 2020-09-04 10:18:00
+tags: algorithms
+subclass: 'post tag-algorithms'
 logo: 'assets/images/ghost.png'
 author: java
 categories: java

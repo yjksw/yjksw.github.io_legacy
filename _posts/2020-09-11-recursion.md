@@ -3,9 +3,9 @@ layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
 title: 재귀 vs. 반복
-date: 2021-02-26 10:18:00
-tags: TDD computer
-subclass: 'post tag-computer'
+date: 2020-09-11 10:18:00
+tags: algorithms
+subclass: 'post tag-algorithms'
 logo: 'assets/images/ghost.png'
 author: java
 categories: java
