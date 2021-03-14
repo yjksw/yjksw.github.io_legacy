@@ -154,7 +154,7 @@
 
 <p>이렇게 크기를 지정해서 배열을 생성한 이후에 재귀 함수를 사용해서 이전 포스트에서 이야기 했던 부분을 구현하면 된다. 재귀를 잘 이해했다면 segment tree 생성은 크게 어렵지 않다.</p>
 
-<p>**코드: **</p>
+<p><strong>코드:</strong></p>
 
 <p>먼저 segment tree를 저장할 배열 공간을 할당한다.  다음은 구현할 때 유용한 몇가지 JAVA 함수를 소개해준다.</p>
 
@@ -258,7 +258,7 @@
 
 <p>위의 방법이 분할정복인 이유는 반복적으로 나뉘어지는 구간에서의 직사각형을 계속 비교하면서 최대 크기를 찾기 때문이다. 세그먼트 트리에 저장된 최소값의 위치를 활용해서 해당 기준으로 나누고, 나눈 구간에서의 직사각형 넓이 구할 때 사용하도록 한다.</p>
 
-<p>**코드: **</p>
+<p><strong>코드:</strong></p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">void</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">int</span> <span class="n">startIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">lastIndex</span><span class="o">){</span>
   <span class="kt">long</span> <span class="n">area</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
@@ -486,7 +486,7 @@
 
 <h2 id="개요">개요</h2>
 
-<p>**전체적인 검증 및 테스트 과정은 다음과 같다. **</p>
+<p><strong>전체적인 검증 및 테스트 과정은 다음과 같다.</strong></p>
 
 <ol>
   <li>모델을 포팅해 사용자와 추천 영화 갯수를 입력한다.</li>

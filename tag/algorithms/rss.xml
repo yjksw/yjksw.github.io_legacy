@@ -165,7 +165,7 @@
 
 <p>첫번째 실행이 tail recursion을 사용하여 구현했을 때이고, 두번째가 while 반복문을 사용하여서 구현한 것인데 tail recursion이 재귀를 사용했음에도 불구하고 그 시간이 현저히 빠르고 메모리 효율 또한 좋은 것을 확인할 수 있다.</p>
 
-<p><img src="%E1%84%8C%E1%85%A2%E1%84%80%E1%85%B1%20vs%20%E1%84%87%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A9%E1%86%A8%20cdf97d3b5b144477a10068a6f868ddaf/baekResult.png" alt="%E1%84%8C%E1%85%A2%E1%84%80%E1%85%B1%20vs%20%E1%84%87%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A9%E1%86%A8%20cdf97d3b5b144477a10068a6f868ddaf/baekResult.png" /></p>
+<p><img src="https://user-images.githubusercontent.com/63405904/111058336-470d0900-84d1-11eb-9272-ebb0632be6b4.png" alt="image" /></p>
 
 
 	  ]]></description>
@@ -197,7 +197,7 @@
 
 <p>이렇게 크기를 지정해서 배열을 생성한 이후에 재귀 함수를 사용해서 이전 포스트에서 이야기 했던 부분을 구현하면 된다. 재귀를 잘 이해했다면 segment tree 생성은 크게 어렵지 않다.</p>
 
-<p>**코드: **</p>
+<p><strong>코드:</strong></p>
 
 <p>먼저 segment tree를 저장할 배열 공간을 할당한다.  다음은 구현할 때 유용한 몇가지 JAVA 함수를 소개해준다.</p>
 
@@ -301,7 +301,7 @@
 
 <p>위의 방법이 분할정복인 이유는 반복적으로 나뉘어지는 구간에서의 직사각형을 계속 비교하면서 최대 크기를 찾기 때문이다. 세그먼트 트리에 저장된 최소값의 위치를 활용해서 해당 기준으로 나누고, 나눈 구간에서의 직사각형 넓이 구할 때 사용하도록 한다.</p>
 
-<p>**코드: **</p>
+<p><strong>코드:</strong></p>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">void</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">int</span> <span class="n">startIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">lastIndex</span><span class="o">){</span>
   <span class="kt">long</span> <span class="n">area</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
