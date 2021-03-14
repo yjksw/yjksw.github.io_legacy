@@ -2,6 +2,7 @@
 layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
+use_math: True
 title: "[동적계획법] 이항계수"
 date: 2020-09-24 10:18:00
 tags: algorithms

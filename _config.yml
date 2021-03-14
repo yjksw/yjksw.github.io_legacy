@@ -3,6 +3,9 @@
 #highlighter: pygments
 markdown: kramdown
 highlighter: rouge
+lsi: false
+excerpt_separator: "\n\n"
+incremental: false
 paginate: 5
 language: 'en-uk'
 
