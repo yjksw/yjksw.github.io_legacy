@@ -42,6 +42,7 @@ static int fac(int num){
 
 첫번째 실행이 tail recursion을 사용하여 구현했을 때이고, 두번째가 while 반복문을 사용하여서 구현한 것인데 tail recursion이 재귀를 사용했음에도 불구하고 그 시간이 현저히 빠르고 메모리 효율 또한 좋은 것을 확인할 수 있다. 
 
-![%E1%84%8C%E1%85%A2%E1%84%80%E1%85%B1%20vs%20%E1%84%87%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A9%E1%86%A8%20cdf97d3b5b144477a10068a6f868ddaf/baekResult.png](%E1%84%8C%E1%85%A2%E1%84%80%E1%85%B1%20vs%20%E1%84%87%E1%85%A1%E1%86%AB%E1%84%87%E1%85%A9%E1%86%A8%20cdf97d3b5b144477a10068a6f868ddaf/baekResult.png)
+![image](https://user-images.githubusercontent.com/63405904/111058336-470d0900-84d1-11eb-9272-ebb0632be6b4.png)
+
 
 [참고 자료]: https://www.geeksforgeeks.org/tail-recursion/(https://www.geeksforgeeks.org/tail-recursion/)

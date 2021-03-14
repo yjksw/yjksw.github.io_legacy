@@ -31,7 +31,7 @@ Segment Tree를 구현할 때 배열을 사용해서 구현하도록 할텐데 s
 
 
 
-**코드: **
+**코드:**
 
 먼저 segment tree를 저장할 배열 공간을 할당한다.  다음은 구현할 때 유용한 몇가지 JAVA 함수를 소개해준다. 
 
@@ -137,7 +137,7 @@ static int findMin(int start, int last, int left, int right, int index){
 
 
 
-**코드: **
+**코드:**
 
 ```java
 static void solve(int startIndex, int lastIndex){
