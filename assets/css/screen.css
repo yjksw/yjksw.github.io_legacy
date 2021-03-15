@@ -348,7 +348,8 @@ mark {
 code, tt {
     padding: 1px 3px;
     font-family: Inconsolata, monospace, sans-serif;
-    font-size: 0.85em;
+    /*font-size: 0.85em;*/
+    font-size: 0.65em;
     white-space: pre-wrap;
     border: #E3EDF3 1px solid;
     background: #F7FAFB;
@@ -456,7 +457,8 @@ textarea, select, input {
     padding: 6px 9px;
     margin: 0 0 5px 0;
     outline: 0;
-    font-family: 'Open Sans', sans-serif;
+    /*font-family: 'Open Sans', sans-serif;*/
+    font-family: 'Noto Sans KR', sans-serif;
     font-size: 1.6rem;
     font-weight: 100;
     line-height: 1.4em;
