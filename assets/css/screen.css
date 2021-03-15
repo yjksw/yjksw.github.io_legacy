@@ -190,7 +190,7 @@ body {
     /*font-family: "Merriweather", serif;*/
     font-family: 'Noto Sans KR', sans-serif;
     letter-spacing: 0.01rem;
-    font-size: 1.8rem;
+    font-size: 1.55rem;
     /*font-size: 1.8rem;*/
     line-height: 1.75em;
     color: #3A4145;
@@ -459,7 +459,8 @@ textarea, select, input {
     outline: 0;
     /*font-family: 'Open Sans', sans-serif;*/
     font-family: 'Noto Sans KR', sans-serif;
-    font-size: 1.6rem;
+    /*font-size: 1.6rem;*/
+    font-size: 1.75rem
     font-weight: 100;
     line-height: 1.4em;
     background: #fff;
