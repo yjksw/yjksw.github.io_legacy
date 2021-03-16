@@ -129,6 +129,121 @@
 	</item>
 
 	<item>
+	  <title>순열과 조합</title>
+	  <link>//permutation-n-combination</link>
+	  <author></author>
+	  <pubDate>2020-09-12T10:18:00+00:00</pubDate>
+	  <guid>//permutation-n-combination</guid>
+	  <description><![CDATA[
+	     <p>Back-tracking 알고리즘을 공부할 때 제일 먼저 구현하는 것이 순열과 조합이다.</p>
+
+<p>Back-tracking 알고리즘에 대해서 입문하고 감을 잡기 위해서 시작하기 좋은 코드이다. 따라서 순열과 조합을 구하는 코드를 보고 외워서 머릿속에 저장해두는 것을 추천한다.</p>
+
+<blockquote>
+  <p>순열과 조합의 차이점:</p>
+
+  <ul>
+    <li>순열: 순열은 순서가 있는 조합이다.(A Permutation is an ordered Combination)</li>
+    <li>조합: 조합은 순서를 생각하지 않고 선택만 한다.</li>
+  </ul>
+</blockquote>
+
+<h5 id="순열-코드">순열 코드</h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Back-tracking 알고리즘</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Stack</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="o">;</span>
+<span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+    
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="n">DFS</span><span class="o">(</span><span class="n">n</span><span class="o">,</span><span class="n">m</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">DFS</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">){</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">cnt</span><span class="o">==</span><span class="n">count</span><span class="o">){</span>
+      <span class="n">print</span><span class="o">();</span>
+      <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">num</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+        <span class="k">continue</span><span class="o">;</span>
+      <span class="n">st</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+      <span class="n">cnt</span><span class="o">++;</span>
+      <span class="n">DFS</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+      <span class="n">st</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+      <span class="n">cnt</span><span class="o">--;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+ 
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(){</span>
+    <span class="n">Iterator</span> <span class="n">value</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%d "</span><span class="o">,</span> <span class="n">value</span><span class="o">.</span><span class="na">next</span><span class="o">());</span> 
+    <span class="o">}</span>   
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="조합-코드">조합 코드</h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Back-tracking 알고리즘</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Stack</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+  <span class="kd">static</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
+  <span class="kd">static</span> <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    
+    <span class="n">DFS</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">m</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">DFS</span><span class="o">(</span><span class="kt">int</span> <span class="n">idx</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">){</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">cnt</span> <span class="o">==</span> <span class="n">count</span><span class="o">){</span>
+      <span class="n">print</span><span class="o">();</span>
+      <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">idx</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">num</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="n">i</span><span class="o">)!=-</span><span class="mi">1</span><span class="o">)</span>
+        <span class="k">continue</span><span class="o">;</span>
+      <span class="n">st</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+      <span class="n">cnt</span><span class="o">++;</span>
+      <span class="n">DFS</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">num</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+      <span class="n">st</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+      <span class="n">cnt</span><span class="o">--;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(){</span>
+    <span class="n">Iterator</span> <span class="n">value</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%d "</span><span class="o">,</span> <span class="n">value</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>재귀 vs. 반복</title>
 	  <link>//recursion</link>
 	  <author></author>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>순열과 조합</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//permutation-n-combination" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="순열과 조합" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//permutation-n-combination" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="순열과 조합" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//permutation-n-combination" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "순열과 조합",
+    "url": "//permutation-n-combination",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-algorithms">
+
+        <header class="post-header">
+            <h1 class="post-title">순열과 조합</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/yj'>YJ's Dev Journals</a>
+                
+            
+            <time class="post-date" datetime="2020-09-12">12 Sep 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/algorithms'>Algorithms</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>Back-tracking 알고리즘을 공부할 때 제일 먼저 구현하는 것이 순열과 조합이다.</p>
+
+<p>Back-tracking 알고리즘에 대해서 입문하고 감을 잡기 위해서 시작하기 좋은 코드이다. 따라서 순열과 조합을 구하는 코드를 보고 외워서 머릿속에 저장해두는 것을 추천한다.</p>
+
+<blockquote>
+  <p>순열과 조합의 차이점:</p>
+
+  <ul>
+    <li>순열: 순열은 순서가 있는 조합이다.(A Permutation is an ordered Combination)</li>
+    <li>조합: 조합은 순서를 생각하지 않고 선택만 한다.</li>
+  </ul>
+</blockquote>
+
+<h5 id="순열-코드">순열 코드</h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Back-tracking 알고리즘</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Stack</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="o">;</span>
+<span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+    
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    <span class="n">DFS</span><span class="o">(</span><span class="n">n</span><span class="o">,</span><span class="n">m</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">DFS</span><span class="o">(</span><span class="kt">int</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">){</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">cnt</span><span class="o">==</span><span class="n">count</span><span class="o">){</span>
+      <span class="n">print</span><span class="o">();</span>
+      <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">num</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="n">i</span><span class="o">)</span> <span class="o">!=</span> <span class="o">-</span><span class="mi">1</span><span class="o">)</span>
+        <span class="k">continue</span><span class="o">;</span>
+      <span class="n">st</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+      <span class="n">cnt</span><span class="o">++;</span>
+      <span class="n">DFS</span><span class="o">(</span><span class="n">num</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+      <span class="n">st</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+      <span class="n">cnt</span><span class="o">--;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+ 
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(){</span>
+    <span class="n">Iterator</span> <span class="n">value</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%d "</span><span class="o">,</span> <span class="n">value</span><span class="o">.</span><span class="na">next</span><span class="o">());</span> 
+    <span class="o">}</span>   
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h5 id="조합-코드">조합 코드</h5>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//Back-tracking 알고리즘</span>
+<span class="kn">import</span> <span class="nn">java.util.Scanner</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Stack</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Iterator</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+  <span class="kd">static</span> <span class="n">Stack</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Stack</span><span class="o">&lt;&gt;();</span>
+  <span class="kd">static</span> <span class="kt">int</span> <span class="n">cnt</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="n">Scanner</span> <span class="n">sc</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Scanner</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="kt">int</span> <span class="n">m</span> <span class="o">=</span> <span class="n">sc</span><span class="o">.</span><span class="na">nextInt</span><span class="o">();</span>
+    <span class="n">sc</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    
+    <span class="n">DFS</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="n">n</span><span class="o">,</span> <span class="n">m</span><span class="o">);</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">DFS</span><span class="o">(</span><span class="kt">int</span> <span class="n">idx</span><span class="o">,</span> <span class="kt">int</span> <span class="n">num</span><span class="o">,</span> <span class="kt">int</span> <span class="n">count</span><span class="o">){</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">cnt</span> <span class="o">==</span> <span class="n">count</span><span class="o">){</span>
+      <span class="n">print</span><span class="o">();</span>
+      <span class="k">return</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">idx</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">num</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">search</span><span class="o">(</span><span class="n">i</span><span class="o">)!=-</span><span class="mi">1</span><span class="o">)</span>
+        <span class="k">continue</span><span class="o">;</span>
+      <span class="n">st</span><span class="o">.</span><span class="na">push</span><span class="o">(</span><span class="n">i</span><span class="o">);</span>
+      <span class="n">cnt</span><span class="o">++;</span>
+      <span class="n">DFS</span><span class="o">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">num</span><span class="o">,</span> <span class="n">count</span><span class="o">);</span>
+      <span class="n">st</span><span class="o">.</span><span class="na">pop</span><span class="o">();</span>
+      <span class="n">cnt</span><span class="o">--;</span>
+    <span class="o">}</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">print</span><span class="o">(){</span>
+    <span class="n">Iterator</span> <span class="n">value</span> <span class="o">=</span> <span class="n">st</span><span class="o">.</span><span class="na">iterator</span><span class="o">();</span>
+    <span class="k">while</span><span class="o">(</span><span class="n">value</span><span class="o">.</span><span class="na">hasNext</span><span class="o">()){</span>
+      <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">printf</span><span class="o">(</span><span class="s">"%d "</span><span class="o">,</span> <span class="n">value</span><span class="o">.</span><span class="na">next</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">print</span><span class="o">(</span><span class="s">"\n"</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">yj's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
+
+                        
+                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> 개발개발, 개발</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=순열과 조합&amp;url=permutation-n-combination"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=permutation-n-combination"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=permutation-n-combination"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/binomial-coefficient">
+            <section class="post">
+                <h2>[동적계획법] 이항계수</h2>
+                <p>이런 말이 있다. > 동적 계획법이라는 말은 전문가들이 전문가들처럼 보여줄 수 있도록 해주는 말이고 일반인들에게는...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/recursion">
+            <section class="post">
+                <h2>재귀 vs. 반복</h2>
+                <p>Binary Search 이분탐색을 구현하면서, 계속 런타임 에러가 났다. 처음에 재귀로 구현을 시작했는데, 재귀에 너무 큰...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
