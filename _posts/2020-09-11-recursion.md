@@ -7,8 +7,8 @@ date: 2020-09-11 10:18:00
 tags: algorithms
 subclass: 'post tag-algorithms'
 logo: 'assets/images/ghost.png'
-author: java
-categories: java
+author: yj
+categories: yj
 ---
 
 **Binary Search** 이분탐색을 구현하면서, 계속 런타임 에러가 났다. 처음에 재귀로 구현을 시작했는데, 재귀에 너무 큰 값이 들어오면서 stack overflow 에러가 났나 싶어서 다시 while 문으로 구현했다. 하지만 while 문으로 구현한 이후에도 계속 런타임 에러가 떠서 확인해보니, n과 m을 헷갈려서 잘못 적었던 것이었다. 
