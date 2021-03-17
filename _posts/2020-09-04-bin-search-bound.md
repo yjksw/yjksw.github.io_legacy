@@ -7,8 +7,8 @@ date: 2020-09-04 10:18:00
 tags: algorithms
 subclass: 'post tag-algorithms'
 logo: 'assets/images/ghost.png'
-author: java
-categories: java
+author: yj
+categories: yj
 ---
 
 
