@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>[알고리즘] 이분 탐색(Binary Search)응용 파라메트릭서치(Parametric Search)</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//bin-search-parametric-Search" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[알고리즘] 이분 탐색(Binary Search)응용 파라메트릭서치(Parametric Search)" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//bin-search-parametric-Search" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[알고리즘] 이분 탐색(Binary Search)응용 파라메트릭서치(Parametric Search)" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//bin-search-parametric-Search" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "[알고리즘] 이분 탐색(Binary Search)응용 파라메트릭서치(Parametric Search)",
+    "url": "//bin-search-parametric-Search",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-algorithms">
+
+        <header class="post-header">
+            <h1 class="post-title">[알고리즘] 이분 탐색(Binary Search)응용 파라메트릭서치(Parametric Search)</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/yj'>YJ's Dev Journals</a>
+                
+            
+            <time class="post-date" datetime="2020-09-28">28 Sep 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/algorithms'>Algorithms</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>백준 이분탐색 알고리즘 <a href="https://www.acmicpc.net/problem/1654">문제</a>를 풀다가 <strong>Parametric Search</strong>라는 새로운 개념을 접하게 되었다. 처음 이 랜선 자르기 문제를 접했을 때, 어느 부분에서 이분탐색을 응용해야하는 건지 감이 잡히지 않았다. 아마도 sorting된 특정한 input에 특정한 값을 탐색하는 분야로만 이분탐색을 한정지어서 생각했기 때문에 그 틀에서 벗어난 응용을 생각하기 힘들었던 것 같다. 이런 것을 보면 아직 알고리즘 쪽으로 한참은 더 발전해야 한다고 생각한다.</p>
+
+<h3 id="parametric-search파라메트릭-서치">Parametric Search(파라메트릭 서치)</h3>
+
+<h5 id="이진탐색과의-차이점">이진탐색과의 차이점:</h5>
+
+<ul>
+  <li>
+    <p>주어진 일련의 값들이 아니라, 주어진 범위 내에서 원하는 값이나 특정한 조건에 일치하는 값을 찾아내는 알고리즘.</p>
+
+    <p>Ex. 이진 탐색 - 1~9에서 3이라는 값을 찾아내는 알고리즘</p>
+
+    <p>​	   파라메트릭 서치 - 1~9 범위에서 어떠한 조건을 만족하는 3을 찾아가는 알고리즘.</p>
+  </li>
+</ul>
+
+<h5 id="장점">장점:</h5>
+
+<p>Parametric Search를 사용하면 최적화 문제를 결정 문제로 바꾸어 풀 수 있는 장점이 있다.</p>
+
+<ul>
+  <li>ex. 최대값, 최소값을 찾는 문제 -&gt; 특정 값이 어떤 조건을 만족하는지 확인하는 문제.</li>
+</ul>
+
+<h3 id="parametric-search를-응용한-랜선-자르기-풀이">Parametric Search를 응용한 [랜선 자르기] 풀이</h3>
+
+<ul>
+  <li>
+    <p><strong>[문제 분석]</strong>: 오영식은 K개의 각기 다른 길이를 지닌 랜선을 가지고 있다. 이 랜선들을 가지고 N 개의 랜선을 만들고 싶을 때, N개 혹은 이상의 랜선을 맨들 수 있는 랜선의 최대 길이는 무엇인가?</p>
+  </li>
+  <li>
+    <p><strong>[입력]</strong>: 랜선 갯수 k, 만들고 싶은 랜선 갯수 n</p>
+
+    <p>​			k 번 동안 각 랜선의 길이</p>
+  </li>
+  <li>
+    <p><strong>[문제풀이]</strong>:</p>
+
+    <ol>
+      <li>가장 긴 랜선의 길이를 범위로 &lt;1~랜선 길이&gt;를 범위로 parametric search를 한다.</li>
+      <li>이분 탐색과 동일하게 탐색하지만, 같을 경우 해당 mid 값을 return 하는 것이 아니라, mid+1 부터 추가적으로 탐색을 진행해야 한다.
+        <ul>
+          <li>이것은 특정한 값을 찾는 것이 아니라, 최대 길이를 찾고 싶은 것이기 때문에 추가탐색을 해서 최대로 갈 수 있는 범위 까지 탐색해야하기 때문이다.</li>
+        </ul>
+      </li>
+    </ol>
+
+    <p>** 주의 사항: index가 합쳐지면서 long을 넘기 때문에 left, right, middle은 long을 사용해야 한다.</p>
+  </li>
+</ul>
+
+<h4 id="코드">[코드]</h4>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span><span class="o">{</span>
+    <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+    <span class="n">StringTokenizer</span> <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+    
+    <span class="kt">int</span> <span class="n">k</span><span class="o">,</span> <span class="n">n</span><span class="o">;</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+    <span class="n">n</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+    
+    <span class="kt">int</span><span class="o">[]</span> <span class="n">input</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">k</span><span class="o">];</span>
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+      <span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+    <span class="o">}</span>
+    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">input</span><span class="o">);</span>
+    
+    <span class="kt">long</span> <span class="n">left</span> <span class="o">=</span> <span class="mi">1</span><span class="o">;</span>
+    <span class="kt">long</span> <span class="n">right</span> <span class="o">=</span> <span class="n">input</span><span class="o">[</span><span class="n">k</span><span class="o">-</span><span class="mi">1</span><span class="o">];</span>
+    <span class="kt">long</span> <span class="n">middle</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+    
+    <span class="k">while</span><span class="o">(</span><span class="n">left</span><span class="o">&lt;=</span><span class="n">right</span><span class="o">)</span> <span class="o">{</span>
+      <span class="n">middle</span> <span class="o">=</span> <span class="o">(</span><span class="n">left</span><span class="o">+</span><span class="n">right</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+      <span class="kt">int</span> <span class="n">count</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">k</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+        <span class="n">count</span> <span class="o">+=</span> <span class="n">input</span><span class="o">[</span><span class="n">i</span><span class="o">]/</span><span class="n">middle</span><span class="o">;</span>
+      <span class="o">}</span>
+      <span class="k">if</span><span class="o">(</span><span class="n">count</span><span class="o">&lt;</span><span class="n">n</span><span class="o">){</span>
+        <span class="n">right</span> <span class="o">=</span> <span class="n">middle</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span>
+      <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+        <span class="n">left</span> <span class="o">=</span> <span class="n">middle</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">right</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">yj's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
+
+                        
+                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> 개발개발, 개발</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[알고리즘] 이분 탐색(Binary Search)응용 파라메트릭서치(Parametric Search)&amp;url=bin-search-parametric-Search"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=bin-search-parametric-Search"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=bin-search-parametric-Search"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/tdd">
+            <section class="post">
+                <h2>TDD, 리펙토링이란?</h2>
+                <p>## Test Driven Development(테스트 주도 개발, TDD) - Production Code : 프로그램 구현을 담당하는 부분으로...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/binomial-coefficient">
+            <section class="post">
+                <h2>[동적계획법] 이항계수</h2>
+                <p>이런 말이 있다. 동적 계획법이라는 말은 전문가들이 전문가들처럼 보여줄 수 있도록 해주는 말이고 일반인들에게는 그냥...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
