@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>[알고리즘]분할정복 - 백준 2261 가장 가까운 두 점</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//dac-closestPoint" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[알고리즘]분할정복 - 백준 2261 가장 가까운 두 점" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//dac-closestPoint" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[알고리즘]분할정복 - 백준 2261 가장 가까운 두 점" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//dac-closestPoint" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "[알고리즘]분할정복 - 백준 2261 가장 가까운 두 점",
+    "url": "//dac-closestPoint",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-algorithms">
+
+        <header class="post-header">
+            <h1 class="post-title">[알고리즘]분할정복 - 백준 2261 가장 가까운 두 점</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/yj'>YJ's Dev Journals</a>
+                
+            
+            <time class="post-date" datetime="2020-09-17">17 Sep 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/algorithms'>Algorithms</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>분할정복 알고리즘을 배울 때 나오는 유명한 문제 중 하나이다. 하지만 난이도가 굉장히 높기 때문에 쉽게 접근하기 어려웠는데, 분할 정복에 남은 마지막 문제를 그냥 안풀고 넘어가기엔 마음에 걸려서 마음먹고 공부해보기로 했다.</p>
+
+<p>백준 사이트에서도 검색을 추천하여 알고리즘을 공부하기를 권하기 때문에 검색을 통해 <a href="https://octorbirth.tistory.com/274">좋은 글</a>을 발견했다. 그리고 해당 문제의 솔루션을 이해하는데만 집중했다.</p>
+
+<p>분할정복 문제를 반복해서 풀어보니 분할정복은 DP 만큼이나 여러가지 형태의 문제가 있으니 최대한 많은 문제들을 풀어보는 것이 중요하다는 것을 알 수 있었다. 그리고 여러 문제를 풀어 본 결과 다음을 깨달을 수 있었다.</p>
+
+<ul>
+  <li>분할정복에서 분할을 하는 이유 중 하나는 <strong>굳이 필요 없는 연산/비교 등을 하지 않기 위해서</strong>이다.</li>
+</ul>
+
+<p>다르게 이야기하면 <strong>쓸데없는 것을 쳐내기 위해서</strong> 특정 기준에 따라서 계속 분할을 하는 것이다. <a href="https://www.acmicpc.net/problem/2261">백준 2261</a> 문제를 보면 어떤 의미인지 알 수 있다. 이 사실이 나로 하여금 더 구현을 잘하게 해주지는 못하지만 <em>개발자 마인드</em>를 갖추는데 어느 정도 일조했다고 생각한다. 알고리즘 문제들을 풀면 풀수록 쌓이는 <em>개발자 마인드</em> 룰을 통해서 새로운 문제를 바라보더라도 개발자스럽게 생각해야지 적합한 알고리즘을 찾을 수 있다.</p>
+
+<p>이렇게 지나지게 많은 비교 연산을 해야할 때 필요 없는 것이 무엇인지부터 접근해야 한다.</p>
+
+<h2 id="문제-해결">문제 해결</h2>
+
+<p>가장 가까운 두 점 문제의 솔루션을 요약하면 다음과 같다.</p>
+
+<ol>
+  <li>x값 기준으로 정렬.</li>
+  <li>중간을 기준으로 왼쪽과 오른쪽을 나눔.</li>
+  <li>왼쪽 가장 가까운 거리 d1, 오른쪽 가장 가까운 거리 d2 찾아냄.</li>
+  <li>d1과 d2 중 더 최소값을 d 에다가 저장함.</li>
+  <li>중간으로 가로지르는 점들 중 중앙과 d 이상 차이나는 점들을 제외함.</li>
+  <li>해당 점들을 y 기준으로 정렬해서 위의 점과 높이가 d 이상 차이나는 점들을 제외하여 비교하여 d3을 구함.</li>
+</ol>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/111621456-5c649900-882b-11eb-9fc0-3f1dbdaca71e.png" alt="image" /></p>
+
+<p>위의 그림을 보면 보다 직관적으로 이해할 수 있다. 위 과정을 반복하면서 최소값을 지속적으로 업데이트하면 최종적으로 최소값을 찾을 수 있다.</p>
+
+<p>이렇게 x 값을 기준으로 정렬해서 제외한 후에, 아래 사진과 같이 y 값을 기준으로 또 정렬하여 제외시키면 된다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/111621504-69818800-882b-11eb-9fb4-7be3a658c7b8.png" alt="image" /></p>
+
+<h2 id="솔루션-구현">솔루션 구현</h2>
+
+<p>다음 솔루션을 구현하기 위해서 이해하거나 응용하면 좋을 개념들은 다음과 같다.</p>
+
+<ol>
+  <li>JAVA comparator</li>
+  <li>재귀</li>
+  <li>객체 생성</li>
+</ol>
+
+<p>“완전히 모르는 건 아닌데?” 라고 생각하기 쉽지만 제대로 생각해보면 나는 잘 활용하지 않았던 개념들이 있었다. 예를 들어, comparator를 생성하여 정렬하기 보다 조금 돌아가지만 이전에 하던 방식으로 일일이 정렬하는 방법을 주로 사용하고, 객체를 생성하여 코드가 직관적이게 되기 보다 배열에 나만 아는 규칙으로 끼워 넣는 경우가 많았던 것 같다. 한번 이 모든 개념들을 제대로 응용해서 좋은 코드를 짜보자.</p>
+
+<p>아래의 대부분의 코드는 <a href="https://octorbirth.tistory.com/274">사이트</a>에서 참고하고 내가 조금의 업그레이드를 시킨 정도이다.</p>
+
+<h4 id="java-comparator">JAVA Comparator</h4>
+
+<p>JAVA Comparator는 배열이나 객체 등을 sorting 하기 위해서 매우 유용한 인터페이스이다. 숫자가 아닌 무언가, 또는 조금 다른 기준을 통해서 정렬을 하기 원할 때, 이 comparator를 정의하여 사용하면 매우 유용하다.</p>
+
+<p>기본적인 사용방법은 다음과 같다.</p>
+
+<ol>
+  <li>Comparator를 implement 한 class 정의</li>
+  <li><code class="highlighter-rouge">Arrays.sort</code>나, <code class="highlighter-rouge">Collections.sort</code>에서 내부 정렬 기준을 구현 하면됨.</li>
+</ol>
+
+<p>비슷한 기능을 하는 인터페이스로는 Comparable이 있다. 이것은 어떠한 클래스에서 implement 하여 내부에 있는 compareTo 함수를 통해 클래스 기본 정렬 기준을 설정하는 것이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Comparable</th>
+      <th>클래스의 기본 정렬 기준을 설정하는 인터페이스</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>Comparator</td>
+      <td>기본 정렬 기준과는 다르게 정렬하고 싶을 때 이용하는 클래스</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>이번에 <strong>가장 가까운 두 점</strong> 문제에서는 Comparator를 사용하여 sort 메소드를 통해서 사용할 예정이다. 우선 점들을 x좌표 기준으로 정렬하고, 이후에 y 기준으로 정렬하는 2가지 기준으로 정렬하는 클래스를 생성한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">xComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">){</span>
+    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">yComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">y</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="재귀-recursion">재귀 Recursion</h4>
+
+<p>거의 모든 알고리즘 문제의 일부분이 되는 재귀이지만 이번 문제에서 재귀를 활용하면서 재귀에 대해서 한층 더 이해할 수 있었다. 재귀에도 tail-recursion과 head-recursion이 나누어져 있고, 코드가 복잡해 질수록 더더욱 어느 타이밍에 재귀를 호출하는지가 매우 중요하다.</p>
+
+<p>이번 풀이에서는 앞서 소개한 문제해결 방식을 재귀적으로 반복하여 매번 왼쪽, 오른쪽, 중간 가로지르는 부분으로 분할해 최소 거리를 찾도록 하였다. 이렇게 head-recursion으로 호출한 후에 return 된 최소 거리를 저장하고 이후에 처리해야 할 코드를 수행한다.</p>
+
+<h4 id="객체-생성">객체 생성</h4>
+
+<p>매번 이런 두 점과 같은 문제가 나올 때, 2차원 배열을 생성해서 수행했었다. 물론 그래도 아무 문제가 없고 이런 경우가 메모리나 속도 측면에서 더욱 효율적인 경우가 많다. 하지만 객체를 생성해서 데이터를 저장해야만 할 때가 있는데, 객체 생성을 해서 저장하는게 익숙하지 못해서 하지 못하는 경우가 많기 때문에 이번 문제에서 점의 좌표를 클래스 객체에 한번 담에 보았다. 생각보다 매우 간단하지만 첫 걸음이 어려워서 자주 사용하지 못했다고 생각한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Point</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<h4 id="전체-코드">전체 코드</h4>
+
+<p>다음과 같은 구성을 가지고 있다.</p>
+
+<ol>
+  <li>점들 사이의 최소값을 분할정복으로 찾는 minDistance()</li>
+  <li>특정 기준 이하의 점들 사이의 최소값을 brute-force로 찾는 searchMin()</li>
+  <li>점들 사이의 거리를 계산하는 distance()</li>
+  <li>xComparator와 yComparator</li>
+  <li>Point 클래스 객체</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
+  <span class="kd">static</span> <span class="n">Point</span><span class="o">[]</span> <span class="n">value</span><span class="o">;</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
+    <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
+    <span class="n">StringTokenizer</span> <span class="n">st</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
+    
+    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
+    
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+      <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
+      <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+      <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
+      <span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="k">new</span> <span class="n">xComparator</span><span class="o">());</span>
+    
+    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">minDistance</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
+    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">answer</span><span class="o">);</span>
+    <span class="n">br</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
+    
+    <span class="k">return</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">minDistance</span><span class="o">(</span><span class="kt">int</span> <span class="n">begin</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">){</span>
+    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">end</span><span class="o">-</span><span class="n">begin</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
+    <span class="k">if</span><span class="o">(</span><span class="n">size</span><span class="o">&lt;=</span><span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
+      <span class="k">return</span> <span class="nf">searchMin</span><span class="o">(</span><span class="n">begin</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+    <span class="o">}</span>
+    
+    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">begin</span><span class="o">+</span><span class="n">end</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">minDistance</span><span class="o">(</span><span class="n">begin</span><span class="o">,</span> <span class="n">mid</span><span class="o">);</span>
+    <span class="kt">int</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">minDistance</span><span class="o">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
+    
+    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">d1</span><span class="o">,</span> <span class="n">d2</span><span class="o">);</span>
+    
+    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">mid_list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+    
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">begin</span><span class="o">;</span><span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">xDist</span> <span class="o">=</span> <span class="n">value</span><span class="o">[</span><span class="n">mid</span><span class="o">].</span><span class="na">x</span> <span class="o">-</span> <span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">x</span><span class="o">;</span>
+      <span class="k">if</span><span class="o">((</span><span class="n">xDist</span><span class="o">*</span><span class="n">xDist</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mid_list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+      <span class="o">}</span> <span class="k">else</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">end</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
+      <span class="kt">int</span> <span class="n">xDist</span> <span class="o">=</span> <span class="n">value</span><span class="o">[</span><span class="n">mid</span><span class="o">].</span><span class="na">x</span> <span class="o">-</span> <span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">x</span><span class="o">;</span>
+      <span class="k">if</span><span class="o">((</span><span class="n">xDist</span><span class="o">*</span><span class="n">xDist</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">mid_list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
+      <span class="o">}</span> <span class="k">else</span>
+        <span class="k">break</span><span class="o">;</span>
+    <span class="o">}</span>
+    
+    <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">mid_list</span><span class="o">,</span> <span class="k">new</span> <span class="n">yComparator</span><span class="o">());</span>
+    <span class="kt">int</span> <span class="n">mlist_size</span> <span class="o">=</span> <span class="n">mid_list</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
+    
+    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">mlist_size</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">mlist_size</span><span class="o">;</span><span class="n">j</span><span class="o">++){</span>
+        <span class="kt">int</span> <span class="n">yDist</span> <span class="o">=</span> <span class="n">mid_list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">y</span> <span class="o">-</span> <span class="n">mid_list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">).</span><span class="na">y</span><span class="o">;</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">yDist</span><span class="o">*</span><span class="n">yDist</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
+          <span class="kt">int</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">distance</span><span class="o">(</span><span class="n">mid_list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">),</span> <span class="n">mid_list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">));</span>
+          <span class="k">if</span><span class="o">(</span><span class="n">dist</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">)</span>
+            <span class="n">result</span> <span class="o">=</span> <span class="n">dist</span><span class="o">;</span>
+        <span class="o">}</span> <span class="k">else</span>
+          <span class="k">break</span><span class="o">;</span>
+      <span class="o">}</span>
+    <span class="o">}</span>
+    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
+  <span class="o">}</span>
+  
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">distance</span><span class="o">(</span><span class="n">Point</span> <span class="n">a</span><span class="o">,</span> <span class="n">Point</span> <span class="n">b</span><span class="o">){</span>
+    <span class="k">return</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">x</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="na">x</span><span class="o">)*(</span><span class="n">a</span><span class="o">.</span><span class="na">x</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="na">x</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">y</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="na">y</span><span class="o">)*(</span><span class="n">a</span><span class="o">.</span><span class="na">y</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+  
+<span class="kd">class</span> <span class="nc">xComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">){</span>
+    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">yComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
+    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">y</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Point</span> <span class="o">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
+  <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">yj's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
+
+                        
+                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> 개발개발, 개발</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[알고리즘]분할정복 - 백준 2261 가장 가까운 두 점&amp;url=dac-closestPoint"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=dac-closestPoint"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=dac-closestPoint"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/binomial-coefficient">
+            <section class="post">
+                <h2>[동적계획법] 이항계수</h2>
+                <p>이런 말이 있다. > 동적 계획법이라는 말은 전문가들이 전문가들처럼 보여줄 수 있도록 해주는 말이고 일반인들에게는...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/permutation-n-combination">
+            <section class="post">
+                <h2>순열과 조합</h2>
+                <p>Back-tracking 알고리즘을 공부할 때 제일 먼저 구현하는 것이 순열과 조합이다. Back-tracking 알고리즘에 대해서 입문하고 감을...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
