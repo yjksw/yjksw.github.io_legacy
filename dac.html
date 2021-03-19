@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>[알고리즘]분할정복</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//dac" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="[알고리즘]분할정복" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//dac" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="[알고리즘]분할정복" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//dac" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "[알고리즘]분할정복",
+    "url": "//dac",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-algorithms">
+
+        <header class="post-header">
+            <h1 class="post-title">[알고리즘]분할정복</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/yj'>YJ's Dev Journals</a>
+                
+            
+            <time class="post-date" datetime="2020-07-21">21 Jul 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/algorithms'>Algorithms</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p>다음은 분할정복 Divide and Conquer Algorithm에 대한 지식 블로그 <strong>번역 및 요약+추가정리</strong> 내용이다.</p>
+
+<p><small>원문: https://www.geeksforgeeks.org/divide-and-conquer-algorithm-introduction/</small></p>
+
+<p>이 글에서는 <strong>분할정복</strong>이 유용한 경우와 분할정복으로 해결할 수 있는 문제의 접근방식에 대해서 다룰 것이다. 다음이 이 글에서 다룰 내용들이다.</p>
+
+<ol>
+  <li>DAC(분할정복) 소개 및 정리</li>
+  <li>DAC을 사용하는 알고리즘</li>
+  <li>DAC 알고리즘을 사용한 재귀</li>
+  <li><del>DAC를 사용한 문제 예시</del></li>
+</ol>
+
+<h4 id="divide-and-conquer">Divide and Conquer:</h4>
+
+<ol>
+  <li><strong>Divide</strong>: 문제를 분할이 가능한 경우까지 분할한다.</li>
+  <li><strong>Conquer</strong>: 분할된 sub problem을 재귀로 호출해 정복한다.</li>
+  <li><strong>Combine</strong>: 해결된 sub problem들을 합쳐 문제의 해결책을 찾는다.</li>
+</ol>
+
+<h4 id="dac가-응용된-알고리즘-기법들">DAC가 응용된 알고리즘 기법들:</h4>
+
+<ol>
+  <li>
+    <p>Binary Search(이진탐색): 검색하고자 하는 value를 주어진 배열의 중간 인덱스((start+end)/2)와 비교한다. <small>이때 배열은 오름차순으로 정렬된 상태이다.</small> value가 중간 인덱스의 값과 일치하면 해당 index를 반환한다. 작다면 중간 인덱스를 기준으로 왼쪽 배열에 재귀호출하여 앞의 탐색을 반복한다. 만일 크다면, 중간 인덱스를 기준으로 오른쪽 배열을 재귀적으로 탐색한다.</p>
+
+    <ul>
+      <li><mark>Divide</mark>: 중간 인덱스를 기준으로 재귀호출을 통해 분할함.</li>
+      <li><mark>Conquere</mark>: 분할된 배열 내에서 value를 탐색하여 정복함.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/111792910-14677400-8908-11eb-8cb1-9bdbffc79340.png" alt="image" /></p>
+
+<ol>
+  <li>
+    <p>Quick Sort(퀵 정렬): 정렬의 한 기법으로 pivot element를 기준으로 pivot보다 더 작은 요소들은 pivot 기준 왼쪽에, 큰 요소들은 pivot 기준 오른쪽으로 분할한다. 각각 분할된 부분배열에서도 각각 pivot을 정해 동일하게 정렬하고 더 이상 분할할 수 없을 때(부분배열의 크기가 0또는 1이 됨)까지 반복하여 정렬한다.</p>
+
+    <ul>
+      <li><mark>Divide</mark>:  배열을 pivot element의 기준으로 비균등한 크기로 나눈다. 재귀호출을 통해 더 나누어질 수 없을 때까지 나눈다.</li>
+      <li><mark>Conquer</mark>: 부분 배열을 pivot element 기준으로 크기 정렬을 하여 정복한다. 이때 순환 호출을 통해서 분할 정복을 반복 실행한다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/111793059-395be700-8908-11eb-9a9a-8b690b3012f4.png" alt="image" /></p>
+
+<ol>
+  <li>
+    <p>Merge Sort(합병정렬): 정렬의 한 기법으로 순훈호출로 배열을 반으로 분할하여 정렬하고 합병하여 정렬하는 기법이다.</p>
+
+    <ul>
+      <li><mark>Divide</mark>: 배열을 반으로 분할한다.</li>
+      <li><mark>Conquer</mark>: 분할된 부분배열을 정렬하고 부분 배열이 충분히 작지 않으면 순환 호출로 다시 분할 정복을 적용한다.</li>
+    </ul>
+  </li>
+</ol>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/111793003-2a753480-8908-11eb-8183-c3fe1f88e15c.png" alt="image" /></p>
+
+<ol>
+  <li>Closest Pair of Points: 여러 포인트들의 집합 속에서 가장 서로 가까운 포인트 쌍을 찾는 문제이다. 해당 문제는 모든 포인트 쌍의 거리를 비교하여 min 값을 찾을 때에는 O(n^2) 만큼의 시간 복잡도를 가지지만 DAC 알고리즘을 사용하면 O(nLogn) 의 시간 복잡도로 해결이 가능하다.</li>
+</ol>
+
+<p><small>이미지 출처: https://m.blog.naver.com/PostView.nhn?blogId=horajjan&amp;logNo=220310806806&amp;proxyReferer=https:%2F%2Fwww.google.com%2F, https://gmlwjd9405.github.io/2018/05/10/algorithm-quick-sort.html, https://www.geeksforgeeks.org/divide-and-conquer-algorithm-introduction/ </small></p>
+
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">yj's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
+
+                        
+                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> 개발개발, 개발</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[알고리즘]분할정복&amp;url=dac"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=dac"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=dac"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/naivebayes">
+            <section class="post">
+                <h2>[머신러닝]나이브 베이즈 분류기(Naive Bayes Classifier)</h2>
+                <p>강남의 어느 검색 솔루션 기업에서 인턴한지 어연 4주차가 지나간다. 중간 지점을 지나가면서 한 것을 정리할...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
