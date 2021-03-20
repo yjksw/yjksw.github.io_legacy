@@ -128,6 +128,21 @@
     
       
       <item>
+        <title>[번역] Lower and Upper Bound Theory</title>
+        
+          <description>&lt;p&gt;알고리즘에 대해서 배울 때 가장 먼저 다루는 부분이 바로 &lt;strong&gt;Time Complexity&lt;/strong&gt; 이다. 기술이 발전하면서 메모리에 대한 부분은 상당 부분 해결이 되고 걱정하지 않아도 되는 부분이 되었다. 하지만 시간 복잡도 측면에서는 아무리 발전해도 부족한 부분이다. 왜냐하면 짧으면 짧을수록 더 좋기 때문이다. 따라서 알고리즘 강의를 들을 때에는 항상 Time Complexity에 대한 강의를 시작으로 배운다. 어떠한 문제에 대해서 여러가지 알고리즘을 사용하여 해결할 수 있을 때 무엇이 최적의 알고리즘인지를 판단하는 잣대는 해당 알고리즘으로 문제를 해결하는데 걸리는 시간이기 때문이다. 거기서 핵심적인 역할을 하는 두 theory에 대해서 &lt;a href=&quot;https://www.geeksforgeeks.org/lower-and-upper-bound-theory/&quot;&gt;다음 글&lt;/a&gt;의 내용을 번역 및 정리하면서 알아보자.&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Fri, 04 Sep 2020 10:18:00 +0000</pubDate>
+        <link>
+        /low-upper-bound</link>
+        <guid isPermaLink="true">/low-upper-bound</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>[알고리즘] 이진탐색 응용: UpperBound와 LowerBound</title>
         
           <description>&lt;p&gt;이진탐색의 응용 버전으로 상/하한선을 찾는 알고리즘이다. 이를 응용한 &lt;a href=&quot;https://www.acmicpc.net/problem/10816&quot;&gt;문제&lt;/a&gt;를 풀면서 배운 개념을 정리해둔다.&lt;/p&gt;

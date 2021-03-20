@@ -985,6 +985,101 @@
 	</item>
 
 	<item>
+	  <title>[번역] Lower and Upper Bound Theory</title>
+	  <link>//low-upper-bound</link>
+	  <author></author>
+	  <pubDate>2020-09-04T10:18:00+00:00</pubDate>
+	  <guid>//low-upper-bound</guid>
+	  <description><![CDATA[
+	     <p>알고리즘에 대해서 배울 때 가장 먼저 다루는 부분이 바로 <strong>Time Complexity</strong> 이다. 기술이 발전하면서 메모리에 대한 부분은 상당 부분 해결이 되고 걱정하지 않아도 되는 부분이 되었다. 하지만 시간 복잡도 측면에서는 아무리 발전해도 부족한 부분이다. 왜냐하면 짧으면 짧을수록 더 좋기 때문이다. 따라서 알고리즘 강의를 들을 때에는 항상 Time Complexity에 대한 강의를 시작으로 배운다. 어떠한 문제에 대해서 여러가지 알고리즘을 사용하여 해결할 수 있을 때 무엇이 최적의 알고리즘인지를 판단하는 잣대는 해당 알고리즘으로 문제를 해결하는데 걸리는 시간이기 때문이다. 거기서 핵심적인 역할을 하는 두 theory에 대해서 <a href="https://www.geeksforgeeks.org/lower-and-upper-bound-theory/">다음 글</a>의 내용을 번역 및 정리하면서 알아보자.</p>
+
+<hr />
+
+<p>Lower Bound와 upper Bound Theory는 어떠한 문제에 대한 가장 적은 복잡도를 가진 알고리즘을 선택하는데 핵심적인 역할을 한다. 구체적으로 이 이론들을 다루기 이전에 각각 Lower Bound와 Upper Bound가 무엇을 의미하는지 살펴보자.</p>
+
+<ul>
+  <li>
+    <p><strong>Lower Bound</strong> -</p>
+
+    <p>L(n)이 알고리즘 A에 대한 수행 시간일 때, $L(n) &gt;= C*g(n)$을 성립하는 $C$가 있는 경우 $g(n)$은 A의 lower bound이다. 어떠한 알고리즘의 lower bound는 Big Omega 로 나타낸다.</p>
+  </li>
+  <li>
+    <p><strong>Upper Bound</strong> -</p>
+
+    <p>U(n)이 알고리즘 A에 대한 수행 시간일 때, $L(n) &lt;= C*g(n)$을 성립하는 $C$가 있는 경우 $g(n)$은 A의 lower bound이다. 어떠한 알고리즘의 lower bound는 Big Oh(O) 로 나타낸다.</p>
+  </li>
+</ul>
+
+<h4 id="1-lower-bound-theory">1. Lower Bound Theory:</h4>
+
+<p>Lower Bound Theory에 의하면 어떠한 알고리즘의 lower bound에 대하여 다른 어떠한 알고리즘도 랜덤한 input에 대하여 L(n)보다 적은 시간 복잡도를 가질 수 없다. 또한 다르게 말하면 모든 알고리즘들이 <strong>적어도 L(n)</strong> 만큼의 시간을 가질 수 밖에 없다.</p>
+
+<p><em>주의할 점: L(n)은 모든 알고리즘 중 최소의 복잡도를 나타낸다.</em></p>
+
+<p>Lower Bound 는 그 어던 알고리즘에 있어서도 매우 중요하다. Lower Bound를 계산한 후에, 특정 알고리즘의 복잡도를 계산하여 L(n)과 같다면 해당 알고리즘이 최적의 알고리즘이라는 것을 알 수 있다. 이 글에서 우리는 어떠한 알고리즘의 lower bound를 찾는 방법들에 대해서 다루어 볼 것이다.</p>
+
+<p>명심해야 하는 것은 언제나 우리의 가장 중요한 목적이 <strong>최적의 알고리즘</strong>을 구하는 것이라는 것이다. 여기서 최적의 알고리즘이라고 함은 해당 알고리즘의 Upper Bound 가 해당 문제의 Lower Bound와 같은(U(n)=L(n)) 경우이다. <em>Merge sort</em>를 통해서 optimal algorithm을 살펴보자.</p>
+
+<h5 id="trivial-lower-bound--">Trivial Lower Bound -</h5>
+
+<p>Lower bound를 찾는 가장 쉬운 방법이다. 이 방법은 Lower bound가 문제의 input의 개수와 output의 개수로 쉽게 알 수 있다고 하는 Trivial Lower Bound 방법이다.</p>
+
+<h6 id="예시-multiplication-of-nn-matrix">예시: Multiplication of n*n matrix</h6>
+
+<ul>
+  <li>Input: 2개의 행렬에 대해 $2n^2$개</li>
+  <li>Output: 1 개의 n*n 행렬, $n^2$ 개</li>
+</ul>
+
+<p>위의 input/output의 숫자를 보면 쉽게 lower bound가 $O(n^2)$라는 것을 알 수 있다.</p>
+
+<h5 id="computational-model--">Computational Model -</h5>
+
+<p>이 방법을 비교를 하는 모든 알고리즘에 대해서 사용할 수 있다. 예를 들어, sorting 문제의 경우 각 원소들을 비교하고 배열을 해야한다. 탐색하는 문제 또한 비슷하다. 예시를 통해서 해당 문제들의 lower bound를 구하는 법에 대해서 살펴보자.</p>
+
+<h5 id="ordered-searching--">Ordered Searching -</h5>
+
+<p>이미 정렬이 되어 있는 리스트에 대해서 탐색을 하는 경우이다.</p>
+
+<h6 id="example-1-linear-search">Example 1: Linear Search</h6>
+
+<p>처음부터 시작하여 차례로 각 element를 순회하며 해당 원소가 찾던 원소인지 확인한다.</p>
+
+<h6 id="example-2-binary-search">Example 2: Binary Search</h6>
+
+<p>중간에 있는 것과 비교하여 찾고자 하는 숫자가 클 경우, 반의 오른쪽 부분을, 작을 경우 반의 왼쪽 부분을 나누어서 탐색한다.</p>
+
+<h6 id="calculation-the-lower-bound">Calculation the lower bound:</h6>
+
+<p>비교하는 최대 횟수는 n이고, 리스트의 tree에 총 k levels이 있다고 한다면..</p>
+
+<ol>
+  <li>Node의 갯수는 $2^k-1$</li>
+  <li>$2^k -1$에 대하여 worst case의 경우 upper bound 개수인 n</li>
+  <li>
+    <table>
+      <tbody>
+        <tr>
+          <td>각 레밸에서 1번 비교를 하니, 비교하는 횟수는 $k&gt;=</td>
+          <td>log2n</td>
+          <td>$</td>
+        </tr>
+      </tbody>
+    </table>
+  </li>
+</ol>
+
+<p>따라서 비교 문제에 있어서 n개의 원소를 가질 경우 복잡도는 log(n) 보다 작을 수 없다. 따라서 시간복잡도를 (log n)을 가진 binary serach가 최적화된 알고리즘이라고 판단할 수 있다.</p>
+
+<h4 id="2-upper-bound-theory">2. Upper Bound Theory</h4>
+
+<p>Upper Bound Theory는 해당 문제를 푸는데 최대 U(n)만큼이 시간이 뜬다는 것이다. 주로 worst case input인 경우 Upper Bound를 알 수 있다.</p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>[알고리즘] 이진탐색 응용: UpperBound와 LowerBound</title>
 	  <link>//bin-search-bound</link>
 	  <author></author>
@@ -1166,85 +1261,6 @@
 </code></pre></div></div>
 
 <p><small>별건 아니고 이진트리에서 4개 버전이 쿼드 트리였다..</small></p>
-
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>[알고리즘]분할정복</title>
-	  <link>//dac</link>
-	  <author></author>
-	  <pubDate>2020-07-21T10:18:00+00:00</pubDate>
-	  <guid>//dac</guid>
-	  <description><![CDATA[
-	     <p>다음은 분할정복 Divide and Conquer Algorithm에 대한 지식 블로그 <strong>번역 및 요약+추가정리</strong> 내용이다.</p>
-
-<p><small>원문: https://www.geeksforgeeks.org/divide-and-conquer-algorithm-introduction/</small></p>
-
-<p>이 글에서는 <strong>분할정복</strong>이 유용한 경우와 분할정복으로 해결할 수 있는 문제의 접근방식에 대해서 다룰 것이다. 다음이 이 글에서 다룰 내용들이다.</p>
-
-<ol>
-  <li>DAC(분할정복) 소개 및 정리</li>
-  <li>DAC을 사용하는 알고리즘</li>
-  <li>DAC 알고리즘을 사용한 재귀</li>
-  <li><del>DAC를 사용한 문제 예시</del></li>
-</ol>
-
-<h4 id="divide-and-conquer">Divide and Conquer:</h4>
-
-<ol>
-  <li><strong>Divide</strong>: 문제를 분할이 가능한 경우까지 분할한다.</li>
-  <li><strong>Conquer</strong>: 분할된 sub problem을 재귀로 호출해 정복한다.</li>
-  <li><strong>Combine</strong>: 해결된 sub problem들을 합쳐 문제의 해결책을 찾는다.</li>
-</ol>
-
-<h4 id="dac가-응용된-알고리즘-기법들">DAC가 응용된 알고리즘 기법들:</h4>
-
-<ol>
-  <li>
-    <p>Binary Search(이진탐색): 검색하고자 하는 value를 주어진 배열의 중간 인덱스((start+end)/2)와 비교한다. <small>이때 배열은 오름차순으로 정렬된 상태이다.</small> value가 중간 인덱스의 값과 일치하면 해당 index를 반환한다. 작다면 중간 인덱스를 기준으로 왼쪽 배열에 재귀호출하여 앞의 탐색을 반복한다. 만일 크다면, 중간 인덱스를 기준으로 오른쪽 배열을 재귀적으로 탐색한다.</p>
-
-    <ul>
-      <li><mark>Divide</mark>: 중간 인덱스를 기준으로 재귀호출을 통해 분할함.</li>
-      <li><mark>Conquere</mark>: 분할된 배열 내에서 value를 탐색하여 정복함.</li>
-    </ul>
-  </li>
-</ol>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/111792910-14677400-8908-11eb-8cb1-9bdbffc79340.png" alt="image" /></p>
-
-<ol>
-  <li>
-    <p>Quick Sort(퀵 정렬): 정렬의 한 기법으로 pivot element를 기준으로 pivot보다 더 작은 요소들은 pivot 기준 왼쪽에, 큰 요소들은 pivot 기준 오른쪽으로 분할한다. 각각 분할된 부분배열에서도 각각 pivot을 정해 동일하게 정렬하고 더 이상 분할할 수 없을 때(부분배열의 크기가 0또는 1이 됨)까지 반복하여 정렬한다.</p>
-
-    <ul>
-      <li><mark>Divide</mark>:  배열을 pivot element의 기준으로 비균등한 크기로 나눈다. 재귀호출을 통해 더 나누어질 수 없을 때까지 나눈다.</li>
-      <li><mark>Conquer</mark>: 부분 배열을 pivot element 기준으로 크기 정렬을 하여 정복한다. 이때 순환 호출을 통해서 분할 정복을 반복 실행한다.</li>
-    </ul>
-  </li>
-</ol>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/111793059-395be700-8908-11eb-9a9a-8b690b3012f4.png" alt="image" /></p>
-
-<ol>
-  <li>
-    <p>Merge Sort(합병정렬): 정렬의 한 기법으로 순훈호출로 배열을 반으로 분할하여 정렬하고 합병하여 정렬하는 기법이다.</p>
-
-    <ul>
-      <li><mark>Divide</mark>: 배열을 반으로 분할한다.</li>
-      <li><mark>Conquer</mark>: 분할된 부분배열을 정렬하고 부분 배열이 충분히 작지 않으면 순환 호출로 다시 분할 정복을 적용한다.</li>
-    </ul>
-  </li>
-</ol>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/111793003-2a753480-8908-11eb-8183-c3fe1f88e15c.png" alt="image" /></p>
-
-<ol>
-  <li>Closest Pair of Points: 여러 포인트들의 집합 속에서 가장 서로 가까운 포인트 쌍을 찾는 문제이다. 해당 문제는 모든 포인트 쌍의 거리를 비교하여 min 값을 찾을 때에는 O(n^2) 만큼의 시간 복잡도를 가지지만 DAC 알고리즘을 사용하면 O(nLogn) 의 시간 복잡도로 해결이 가능하다.</li>
-</ol>
-
-<p><small>이미지 출처: https://m.blog.naver.com/PostView.nhn?blogId=horajjan&amp;logNo=220310806806&amp;proxyReferer=https:%2F%2Fwww.google.com%2F, https://gmlwjd9405.github.io/2018/05/10/algorithm-quick-sort.html, https://www.geeksforgeeks.org/divide-and-conquer-algorithm-introduction/ </small></p>
 
 
 	  ]]></description>
