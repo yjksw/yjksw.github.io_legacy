@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>[머신러닝] 추천 시스템 기술</title>
+    <title>알고리즘 학습일지</title>
     <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
 
     <!-- Mobile Meta -->
@@ -26,21 +26,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//ml-recommendation-system" />
+        <link rel="canonical" href="//algorithm-logs" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="코딩만 잘하면 될까?" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="[머신러닝] 추천 시스템 기술" />
+    <meta property="og:title" content="알고리즘 학습일지" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//ml-recommendation-system" />
+    <meta property="og:url" content="//algorithm-logs" />
     <meta property="og:image" content="/assets/images/cover6.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[머신러닝] 추천 시스템 기술" />
+    <meta name="twitter:title" content="알고리즘 학습일지" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//ml-recommendation-system" />
+    <meta name="twitter:url" content="//algorithm-logs" />
     <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
 
     <script type="application/ld+json">
@@ -48,8 +48,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
-    "name": "[머신러닝] 추천 시스템 기술",
-    "url": "//ml-recommendation-system",
+    "name": "알고리즘 학습일지",
+    "url": "//algorithm-logs",
     "image": "/assets/images/cover6.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
@@ -103,10 +103,10 @@
 
 <main class="content" role="main">
 
-    <article class="post tag-machinelearning">
+    <article class="post tag-algorithms">
 
         <header class="post-header">
-            <h1 class="post-title">[머신러닝] 추천 시스템 기술</h1>
+            <h1 class="post-title">알고리즘 학습일지</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -127,13 +127,13 @@
                     <a href='/author/yj'>YJ's Dev Journals</a>
                 
             
-            <time class="post-date" datetime="2020-08-10">10 Aug 2020</time>
+            <time class="post-date" datetime="2020-08-11">11 Aug 2020</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
                 
                     
-                       <a href='/tag/machinelearning'>Machinelearning</a>
+                       <a href='/tag/algorithms'>Algorithms</a>
                     
                 
                 
@@ -142,98 +142,87 @@
 
         <section class="post-content">
 
-            <p>모 기업에서 인턴을 하면서 맡은 업무가 <mark>개인화 추천 모델 구현</mark>이었다. 맡은 업무는 딥러닝 기반의 개인화 추천 모델을 제작하는 것이지만 기존에 회사에서 가지고 있는 추천 시스템의 경우 협업 필터링 등으로 이미 구현이 되어 있었기 때문에 간단히 개인화 추천 시스템에 대한 브리핑을 해주시면서 감을 잡을 수 있도록 해주셨다.</p>
+            <blockquote>
+  <p>알고리즘 공부를 하면서 각 알고리즘의 특징 정리 및 스터디 노트</p>
+</blockquote>
 
-<p>추천 시스템 기술을 처음 접해보면서 어떠한 것인지 공부하며 기록해보려고 한다.</p>
-
-<h3 id="추천이란">추천이란?</h3>
-
-<p>추천이란 간단히 말해서 사용자(user)에게 관심이 있을 것으로 예상이 되는 아이템(item)을 제안하는 것이다. 특정 아이템에 대한 특정 사용자의 선호도 또는 평가를 예측하는 것이 매우 중요하다.</p>
-
-<p>우리가 흔히 생각해 낼 수 있는 추천 시스템은 페이스북과 같은 것에서의 광고 추천, 넷플릭스나 왓챠와 같은 OTT 서비스에서의 영화 추천 시스템이다.</p>
-
-<h3 id="접근-방식">접근 방식</h3>
-
-<p>추천 시스템 기술에서의 접근 방식은 크게 다음과 같은 3가지가 있다.</p>
+<h2 id="dynamic-programming">Dynamic Programming</h2>
 
 <ul>
-  <li>내용 기반 필터링 (Content-based Filtering)</li>
-  <li>협업 필터링 (Collaborative Filtering)</li>
-  <li>하이브리드 (Hybrid)</li>
-</ul>
-
-<h4 id="1-내용-기반-필터링">1) 내용 기반 필터링</h4>
-
-<p>사용자의 프로필이나 아이템의 content 정보를 이용하는 방법이다. 사용자의 선호도, 취향 등을 파악하는 방법이 핵심이다. 예를 들어, 회원가입 시 사용자에게 선호하는 아이템 또는 분야 등에 대해서 선택하도록 하여 선호도를 파악하여 해당 정보를 기반으로 추천을 한다. 또는 사용자의 과거에 평가한 아이템 분석을 통해서 선호도를 파악할 수 있다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/110242569-0590d100-7f9a-11eb-8799-e9fe186779e6.jpeg" alt="contentbased" /></p>
-
-<h4 id="2-협업-필터링">2) 협업 필터링</h4>
-
-<p>협업 필터링은 여러 사용자들의 활동, 기호 정보들을 분석하여, 각 사아요자에게 적합한 아이템을 추천하도록 한다. 예를 들어서 사용자 A와 유사하다고 판단되는 사용자 B가 최근 구매한 상품을 사용자 A에게도 추천하도록 하는 것이다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/110242548-f14cd400-7f99-11eb-927e-2e1000c04eba.jpeg" alt="collaborative" /></p>
-
-<h4 id="3-내용-기반-필터링--협업-필터링의-장단점">3) 내용 기반 필터링 &amp; 협업 필터링의 장단점</h4>
-
-<table>
-  <thead>
-    <tr>
-      <th> </th>
-      <th>내용 기반 필터링</th>
-      <th>협업 필터링</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>장점</td>
-      <td>사용자의 명시적인 기호 정보를 직접적으로 반영한다. <br />다른 사용자의 정보나 평가, 행동 등이 필요하지 않다.<br />새로 추가된 아이템에 대한 추천이 가능하다.</td>
-      <td>대부분의 경우 추천 성과가 우수하다.<br />잠재적인 특징을 고려하여 다양한 범위의 추천이 가능하다.</td>
-    </tr>
-    <tr>
-      <td>단점</td>
-      <td>사용자의 명시적인 프로필 얻기 어려움이 있다.<br />명시적으로 표현된 특징만 다룰 수 있고 잠재적인 것을 캐치하기 어렵다.<br />추천하는 항목이 비슷한 장르에 머무르는 한계가 있다.</td>
-      <td>초기 사용자에 대한 믿을만한 추천이 어렵다. Cold start가 존재한다.<br />한번도 평가되지 않은 아이템은 추천 대상에서 제외된다. sparsity, coverage</td>
-    </tr>
-  </tbody>
-</table>
-
-<h4 id="4-하이브리드">4) 하이브리드</h4>
-
-<p>위에서의 내용 기반 필터링과 협업 필터링을 결합하여 사용한다. 결합하는 방식을 다양하기 때문에 어떠한 하이브리드 방식을 택하는지는 매우 광범위 하다. 하지만 간단히 보아서 위의 두가지 방식을 같이 사용함으로 각자의 단점을 보완한다는 장점을 가지고 있다. 다만 시스템적으로 매우 복잡해질 수 있는 단점이 있다.</p>
-
-<h4 id="5-협업-필터링-기술-분류">5) 협업 필터링 기술 분류</h4>
-
-<p>본 기업에서 중점적으로 사용하고 있는 협업 필터링 기술은 다음과 같이 분류된다.</p>
-
-<ul>
-  <li>메모리 기반(Memory-based) 협업 필터링
+  <li>DP에서 중요한 것은 규칙을 찾거나, 일반식을 찾는 것이 키 포인트</li>
+  <li>배열을 사용하라.</li>
+  <li>부분 문제를 해결하는데 초점을 두어서 이전 부분 수열을 사용하여 일반식을 도출하라.</li>
+  <li>다양한 문제에 대해서 다양한 일반식과 규칙이 존재하기 때문에 최대한 많은 문제를 푸는 것이 중요!</li>
+  <li>DP와 분할정복의 차이는 둘 다 더 작은 것으로 더 나눌 수 있지만 DP의 경우 더 작은 요소가 반복적으로 일어난다. (중요!)
     <ul>
-      <li>사용자 또는 아이템 간의 유사도를 계산하고 그것을 바탕을 추천 결과를 생성하는 방식으로 유사도를 계산하는 방식이 매우 중요함.</li>
-      <li><strong>대표 알고리즘</strong>: User-based CF / Item-based CF</li>
-      <li><strong>장점</strong>: 구현이 간단하고 이해하기 쉬움.</li>
-      <li><strong>한계</strong>: 1) 새로운 사용자와 아이템에 대한 cold start 문제 2) Rating matrix의 sparsity 문제 3) 큰 데이터 셋에 대해 제한된 scalability</li>
-    </ul>
-  </li>
-  <li>모델 기반(Model-based) 협업 필터링
-    <ul>
-      <li>데이터(rating matrix)에 내재되어 있는 패턴이나 속성을 학습한 모델을 만들고, 이것을 바탕으로 추천 결과를 생성하는 방식.</li>
-      <li><strong>대표 알고리즘</strong>: Slope-One EF / Matrix Facotrization</li>
-      <li><strong>장점:</strong> sparsity, scalability 문제에 상대적으로 더 잘 대처하는 것이 가능하고 예측 성능이 향상됨.</li>
-      <li><strong>한계:</strong> 1) 모델 구축 비용이 큼 2) 예측 성능과 scalability 사이의 trade-off 3) 차원 감소로 인한 정보손실(SVD 실행 시 발생)</li>
-    </ul>
-  </li>
-  <li>하이브리드(Hybrid) 방식 협업 필터링
-    <ul>
-      <li>메모리 기반 방식과 모델 기반 방식을 결합하여 사용하는 방식</li>
-      <li><strong>대표 알고리즘</strong>: 메모리 기반과 모델 기반의 조합</li>
-      <li><strong>장점</strong>: 각 방식의 단점을 보완하고 장점만을 취합할 수 있음</li>
-      <li><strong>한계:</strong> 구현이 복잡해지고 비용이 증가함.</li>
+      <li>예. 피보나치</li>
     </ul>
   </li>
 </ul>
 
-<p><strong><small>[참고 자료]: https://www.samsungsemiconstory.com/2265, </small></strong></p>
+<h2 id="back-tracking">Back-tracking</h2>
+
+<ul>
+  <li>DFS와 유사함.</li>
+  <li>Stack 을 사용하거나, 배열로 방문 여부를 측정하도록 함.</li>
+  <li>Index 참조가 많다면 배열이 더 효율적임.</li>
+  <li>DFS이지만 더 이상 가능성이 없는 부분에서는 빠져나와 back-track을 함.</li>
+  <li>Brute-force의 마인드를 가지고 tree를 설계하고 DFS 형식으로 탐색하며, 가능성 없는 부분은 더 이상 가지 않는다가 키 포인트.</li>
+</ul>
+
+<h2 id="greedy">Greedy</h2>
+
+<ul>
+  <li>순간에 최선의 것을 선택.</li>
+  <li>코딩을 하기 전에 어느 순간에 최선이 무엇인지부터 문제 속에서 찾아라.</li>
+  <li>문제 속에서 순간순간의 최선의 선택이 해답이 된다는 것이 확인되면 greedy를 사용하기.</li>
+</ul>
+
+<h2 id="분할정복">분할정복</h2>
+
+<ul>
+  <li>더 작은 부분으로 나누어서 반복적으로 수행했을 때, 답을 도출할 수 있는 경우이다. 주로 작게 나누어진 sub-problem이 반복되지 않는다.</li>
+  <li>굉장히 많은 종류의 문제들이 있으니 최대한 많이 풀어보는 것을 추천.</li>
+  <li>세그먼트 트리를 활용한 분할정복 문제도 많이 있음.</li>
+</ul>
+
+<h2 id="segment-tree">Segment Tree</h2>
+
+<ul>
+  <li>구간합, 구간 최소값, 구간 최댓값 빠르게 lgN 으로 계산할 때 필요한 자료구조</li>
+  <li>위의 문제들에서 값이 변경되었을 때 빠르게 업데이터 하기 위해 필요한 자료구조</li>
+</ul>
+
+<h2 id="수열-규칙">수열 규칙</h2>
+
+<ul>
+  <li>그 앞의 규칙에 더해서 뒤에 무언가가 나오는 경우 등에 대해서 해결할 때는, 수열의 규칙을 찾는 것이 중요하다.
+    <ul>
+      <li>Ex. 모든 숫자는 1과 3과 4로 이루어질 수 있을 때 숫자 n을 1,3,4로 조합할 수 있는 경우의 수는 얼마인가?
+        <ul>
+          <li>1부터 n 까지 그 규칙을 찾으면 이 규칙 수열 p에 대해서 p(n-1)+p(n-3)+p(n-4) 이다.</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="binary-search-이분-탐색">Binary Search 이분 탐색</h2>
+
+<ul>
+  <li>어떤 정렬된 값들 사이에서 특정 값을 빠르게 찾을 때 좋은 탐색</li>
+  <li>중복된 값이 있을 때 유용한 이진탐색 응용:
+    <ul>
+      <li>특정한 값보다 큰 값이 처음 나오는 upper bound</li>
+      <li>특정한 값보다 작지 않은 값이 처음 나오는 lower bound</li>
+    </ul>
+  </li>
+  <li>Parametric Search:
+    <ul>
+      <li>정렬된 수열 내에서 특정 값을 탐색하는 것보다, <strong>특정 범위</strong>내에서 <strong>특정 조건</strong>을 만족하는 값을 찾을 때 유용함.</li>
+    </ul>
+  </li>
+</ul>
 
 
 
@@ -279,15 +268,15 @@
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=[머신러닝] 추천 시스템 기술&amp;url=ml-recommendation-system"
+                        <a class="icon-twitter" href="http://twitter.com/share?text=알고리즘 학습일지&amp;url=algorithm-logs"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=ml-recommendation-system"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=algorithm-logs"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=ml-recommendation-system"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=algorithm-logs"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -308,20 +297,20 @@
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/algorithm-logs">
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/quadTree">
             <section class="post">
-                <h2>알고리즘 학습일지</h2>
-                <p>> 알고리즘 공부를 하면서 각 알고리즘의 특징 정리 및 스터디 노트 ## Dynamic Programming -...</p>
+                <h2>[알고리즘] 쿼드 트리</h2>
+                <p>자료구조 중 처음 들어본 (배웠는데 기억 못하는) 개념이 나와서 정리해본다. 알고리즘 문제 중 분할 문제를...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/naivebayes">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/ml-recommendation-system">
             <section class="post">
-                <h2>[머신러닝]나이브 베이즈 분류기(Naive Bayes Classifier)</h2>
-                <p>강남의 어느 검색 솔루션 기업에서 인턴한지 어연 4주차가 지나간다. 중간 지점을 지나가면서 한 것을 정리할...</p>
+                <h2>[머신러닝] 추천 시스템 기술</h2>
+                <p>모 기업에서 인턴을 하면서 맡은 업무가 개인화 추천 모델 구현이었다. 맡은 업무는 딥러닝 기반의 개인화...</p>
             </section>
         </a>
     
