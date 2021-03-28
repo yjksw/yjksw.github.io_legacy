@@ -167,15 +167,17 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
         <section class="post-content">
 
-            <h3><br /></h3>
-
-<p><br /></p>
+            <p><br /></p>
 
 <p>Github에 익숙하지 않기 때문에 커밋은 나에게 push를 해서 업로드를 하기 위한 중간과정 중 하나였다. 하지만 다른 곳에서 깃헙이나 프로젝트 진행을 하면서 커밋을 하는 단위의 중요성과 깃헙의 최대 장점인 프로젝트를 되돌리기 위한 커밋 메세지의 중요성에 대해서 여러번 들었었다. 이번에 프리코스를 시작하면서 커밋 메세지에 대한 가이드를 읽고 정리해보기로 했다.</p>
 
 <p><a href="[https://gist.github.com/stephenparish/9941e89d80e2bc58a153#recognizing-unimportant-commits](https://gist.github.com/stephenparish/9941e89d80e2bc58a153#recognizing-unimportant-commits)">참고 사이트</a></p>
 
-<h1 id="changelogmd-생성하기">CHANGELOG.md 생성하기</h1>
+<p><br /></p>
+
+<p><br /></p>
+
+<h2 id="changelogmd-생성하기">CHANGELOG.md 생성하기</h2>
 
 <ul>
   <li>changelog에는 3개의 section이 있다: new features, bug fixes, breaking changes.</li>
@@ -198,7 +200,9 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   </li>
 </ul>
 
-<h2 id="recognizing-unimportant-commits">Recognizing unimportant commits</h2>
+<p><br /></p>
+
+<h3 id="recognizing-unimportant-commits">Recognizing unimportant commits</h3>
 
 <ul>
   <li>
@@ -209,14 +213,18 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   </li>
 </ul>
 
-<h2 id="history-브라우징-시-정보-제공을-위한-커밋">History 브라우징 시 정보 제공을 위한 커밋</h2>
+<p><br /></p>
+
+<h3 id="history-브라우징-시-정보-제공을-위한-커밋">History 브라우징 시 정보 제공을 위한 커밋</h3>
 
 <ul>
   <li>커밋 메세지를 작성할 때 가능한 많은 정보들을 제공하는 것이 좋다.</li>
   <li>그렇기에 메세지로 무슨 변경이나 추가가 있었는지 확인 할 수 있는데, 해당 메세지가 일정한 convention을 지닐 필요가 있다.</li>
 </ul>
 
-<h1 id="commit-message-형식">Commit Message 형식</h1>
+<p><br /></p>
+
+<h2 id="commit-message-형식">Commit Message 형식</h2>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&lt;</span><span class="n">type</span><span class="o">&gt;(&lt;</span><span class="n">scope</span><span class="o">&gt;):</span> <span class="o">&lt;</span><span class="n">subject</span><span class="o">&gt;</span>
 <span class="o">&lt;</span><span class="n">BLANK</span> <span class="n">LINE</span><span class="o">&gt;</span>
@@ -229,13 +237,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   <li>커밋 메세지는 100자를 넘지 않는다. 이래야지 깃헙이나 깃 툴을 사용할 때 메세지 읽기가 쉽다.</li>
 </ul>
 
+<p><br /></p>
+
 <h3 id="subject-line">Subject line</h3>
 
 <p>어떤 변경이 일어났는지에 대한 간단명료한 설명을 담고 있다. (커밋 메세지의 첫 줄)</p>
 
 <ol>
-  <li>Allowed **<type>**
-</type>    <ul>
+  <li>Allowed <code class="highlighter-rouge">&lt;type&gt;</code>
+    <ul>
       <li>feat (feature)</li>
       <li>fix (bug fix)</li>
       <li>docs (documentation)</li>
@@ -245,14 +255,14 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
       <li>chore (maintain)</li>
     </ul>
   </li>
-  <li>Allowed **<scope>**
-</scope>    <ul>
+  <li>Allowed <code class="highlighter-rouge">&lt;scope&gt;</code>
+    <ul>
       <li>적용 범위를 나타내는 것으로 커밋에 대한 부가적인 정보이다. (선택 사항)</li>
       <li>적용 범위에 대한 예시는 이러하다: $location, $browser, $compile, $rootScope, ngHref, ngClick, ngView, 등등</li>
     </ul>
   </li>
-  <li>**<subject>**
-</subject>    <ul>
+  <li><code class="highlighter-rouge">&lt;subject&gt;</code>
+    <ul>
       <li>현재형으로 작성한다: “change” → x “changed” or “changes”</li>
       <li>첫 문자를 대문자로 작성하지 않는다.</li>
       <li>(.)을 작성하지 않는다.</li>
@@ -265,6 +275,8 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   </li>
 </ol>
 
+<p><br /></p>
+
 <h3 id="message-body">Message body</h3>
 
 <ul>
@@ -272,6 +284,8 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   <li>수정의 동기화, 수정 이전과의 비교를 명시한다.</li>
   <li>본문에 여러개가 있을 경우에는 (-)로 구분한다.</li>
 </ul>
+
+<p><br /></p>
 
 <h3 id="message-footer">Message footer</h3>
 
@@ -313,7 +327,9 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   </li>
 </ul>
 
-<h1 id="예시">예시</h1>
+<p><br /></p>
+
+<h2 id="예시">예시</h2>
 
 <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">feat</span><span class="o">(</span><span class="n">$browser</span><span class="o">):</span> <span class="n">onUrlChange</span> <span class="nf">event</span> <span class="o">(</span><span class="n">popstate</span><span class="o">/</span><span class="n">hashchange</span><span class="o">/</span><span class="n">polling</span><span class="o">)</span>
 
