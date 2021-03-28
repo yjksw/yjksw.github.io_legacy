@@ -26,7 +26,7 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//" />
+        <link rel="canonical" href="//tag/gitHub/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
@@ -34,14 +34,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="코딩만 잘하면 될까?" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//" />
-    <meta property="og:image" content="/assets/images/cover1.jpg" />
+    <meta property="og:url" content="//tag/gitHub/" />
+    <meta property="og:image" content="/assets/images/cover2.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="코딩만 잘하면 될까?" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//" />
-    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+    <meta name="twitter:url" content="//tag/gitHub/" />
+    <meta name="twitter:image:src" content="/assets/images/cover2.jpg" />
 
     <script type="application/ld+json">
 {
@@ -49,8 +49,8 @@
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
     "name": "코딩만 잘하면 될까?",
-    "url": "//",
-    "image": "/assets/images/cover1.jpg",
+    "url": "//tag/gitHub/",
+    "image": "/assets/images/cover2.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
     </script>
@@ -61,7 +61,7 @@
 
     
 </head>
-<body class="home-template nav-closed">
+<body class="tag-template nav-closed">
 
     <!-- The blog navigation links -->
     <div class="nav">
@@ -70,7 +70,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
 	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
@@ -84,12 +84,14 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover1.jpg) ">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
     <nav class="main-nav overlay clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
         
@@ -98,11 +100,14 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">코딩만 잘하면 될까?</h1>
-            <h2 class="page-description">A beautiful narrative written with the world's most elegant publishing platform. The story begins here.</h2>
+            <h1 class="page-title">Github</h1>
+            <h2 class="page-description">
+            
+			    A 1-post collection
+            
+            </h2>
         </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -114,62 +119,13 @@
         
             <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 5 </span>
-     
-        <a class="older-posts" href="/page2/" title="Next Page">Older Posts &raquo;</a>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
         
     </div>
 
     <!-- This is the post loop - each post will be output using this markup -->
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/tdd">TDD, 리펙토링이란?</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Test Driven Development(테스트 주도 개발, TDD) Production Code : 프로그램 구현을 담당하는 부분으로 사용자가 사용하는 소스 코드 Test code : 프로덕션 코드가 정상적으로 동작하는지 확인하는 코드... <a class="read-more" href="/tdd">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/martin.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/java'>Java Programming Language</a>
-
-                
-            
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/TDD'>Tdd</a>,
-                    
-                
-                    
-                       <a href='/tag/computer'>Computer</a>
-                    
-                
-            
-            <time class="post-date" datetime="2021-02-21">21 Feb 2021</time>
-        </footer>
-    </article>
     
     <article class="post">
         <header class="post-header">
@@ -214,143 +170,12 @@
         </footer>
     </article>
     
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/baek1300">[이분탐색] 백준 1300 - k번째 수</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>문제 문제 바로가기 문제 분석 &gt; 크기가 NxN인 배열 A는 각각 A[i][j] = ixj 로 채워져 있다. 이 수를 NxN 크기의 일차원 배열 B에 오름차순 정렬하였을... <a class="read-more" href="/baek1300">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/martin.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/algorithms'>Algorithms</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-10-11">11 Oct 2020</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/baek1018">[브루트포스] 백준 1018 - 체스판 다시 칠하기</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>문제 문제 바로가기 문제 분석 &gt; 각 칸에 검은색과 흰색이 섞여서 칠해있는 M x N 보드가 있을 때 해당 보드에서 검은색과 흰색이 칠해져 있는 8 x... <a class="read-more" href="/baek1018">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/martin.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/algorithms'>Algorithms</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-10-03">03 Oct 2020</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/bin-search-parametric-Search">[알고리즘] 이분 탐색(Binary Search)응용 파라메트릭서치(Parametric Search)</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>백준 이분탐색 알고리즘 문제를 풀다가 Parametric Search라는 새로운 개념을 접하게 되었다. 처음 이 랜선 자르기 문제를 접했을 때, 어느 부분에서 이분탐색을 응용해야하는 건지 감이 잡히지 않았다.... <a class="read-more" href="/bin-search-parametric-Search">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/martin.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/algorithms'>Algorithms</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-09-28">28 Sep 2020</time>
-        </footer>
-    </article>
-    
 
     <!-- Previous/next page links - displayed on every page -->
     
         <nav class="pagination" role="pagination">
     
-    <span class="page-number"> Page 1 of 5 </span>
-     
-        <a class="older-posts" href="/page2/" title="Next Page">Older Posts &raquo;</a>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
     
