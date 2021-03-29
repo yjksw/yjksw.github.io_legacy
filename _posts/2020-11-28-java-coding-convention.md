@@ -1,3 +1,4 @@
+---
 layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
