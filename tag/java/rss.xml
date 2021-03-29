@@ -1,173 +1,24 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <!-- Document Settings -->
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<?xml version="1.0" encoding="UTF-8" ?>
 
-    <!-- Page Meta -->
-    <title>[JAVA] 구글에서 제공하는 Java Coding Convention Guide</title>
-    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-
-    <!-- Mobile Meta -->
-    <meta name="HandheldFriendly" content="True" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-    <!-- Brand icon -->
-    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
-
-    <!-- Styles'n'Scripts -->
-    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
-    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
-    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
-
-    <!-- highlight.js -->
-    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
-    <style>.hljs { background: none; }</style>
-
-    <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//java-coding-convention" />
-    <meta name="referrer" content="origin" />
-    <link rel="next" href="/page2/" />
-
-    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="[JAVA] 구글에서 제공하는 Java Coding Convention Guide" />
-    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//java-coding-convention" />
-    <meta property="og:image" content="/assets/images/cover6.jpg" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[JAVA] 구글에서 제공하는 Java Coding Convention Guide" />
-    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//java-coding-convention" />
-    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
-
-    <script type="application/ld+json">
-{
-    "@context": "http://schema.org",
-    "@type": "Website",
-    "publisher": "코딩만 잘하면 될까?",
-    "name": "[JAVA] 구글에서 제공하는 Java Coding Convention Guide",
-    "url": "//java-coding-convention",
-    "image": "/assets/images/cover6.jpg",
-    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
-}
-    </script>
-
-    <meta name="generator" content="Jekyll 3.0.0" />
-    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
-
-
-    
-      <script type="text/x-mathjax-config">
-MathJax.Hub.Config({
-    TeX: {
-      equationNumbers: {
-        autoNumber: "AMS"
-      }
-    },
-    tex2jax: {
-    inlineMath: [ ['$', '$'] ],
-    displayMath: [ ['$$', '$$'] ],
-    processEscapes: true,
-  }
-});
-MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
-	  alert("Math Processing Error: "+message[1]);
-	});
-</script>
-<script type="text/javascript" async
-  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
-</script>
-
-    
-</head>
-<body class="home-template nav-closed">
-
-    <!-- The blog navigation links -->
-    <div class="nav">
-    <h3 class="nav-title">Menu</h3>
-    <a href="#" class="nav-close">
-        <span class="hidden">Close</span>
-    </a>
-    <ul>
-        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
-        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
-        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
-	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
-	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
-    </ul>
-    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
-</div>
-<span class="nav-cover"></span>
-
-
-    <div class="site-wrapper">
-
-        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- default -->
-
-<!-- The comment above "< default" means - insert everything in this file into -->
-    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
-
-<!-- Everything inside the #post tags pulls data from the post -->
-<!-- #post -->
-
-<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
-    <nav class="main-nav  overlay  clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
-        
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
-        
-    </nav>
-</header>
-
-<main class="content" role="main">
-
-    <article class="post tag-java">
-
-        <header class="post-header">
-            <h1 class="post-title">[JAVA] 구글에서 제공하는 Java Coding Convention Guide</h1>
-            <section class="post-meta">
-            <!-- <a href='/'></a> -->
-
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-                    <a href='/author/yj'>YJ's Dev Journals</a>
-                
-            
-            <time class="post-date" datetime="2020-11-28">28 Nov 2020</time>
-                <!-- [[tags prefix=" on "]] -->
-                
-                on
-                
-                    
-                       <a href='/tag/java'>Java</a>
-                    
-                
-                
-            </section>
-        </header>
-
-        <section class="post-content">
-
-            <p><br /></p>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+   
+      <title>yjksw.github.io/</title>
+   
+   <link></link>
+   <description>A beautiful narrative written with the world's most elegant publishing platform. The story begins here.</description>
+   <language>en-uk</language>
+   <managingEditor> </managingEditor>
+   <atom:link href="rss" rel="self" type="application/rss+xml" />
+   
+	<item>
+	  <title>[JAVA] 구글에서 제공하는 Java Coding Convention Guide</title>
+	  <link>//java-coding-convention</link>
+	  <author></author>
+	  <pubDate>2020-11-28T10:18:00+00:00</pubDate>
+	  <guid>//java-coding-convention</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
 
 <p>프리코스를 진행하면서 구글에서 제공하는 javaGuide를 읽고 해당 convention을 따라서 코딩 하도록 하기 위해서 해당 문서를 정독했다. 원래 알고 있던 부분들도 있고 아닌 부분들도 있는데, 이렇게 잘 문서화 되어 있다는 것을 처음 알았다. 다음은 해당 문서를 읽으면서 두고두고 참고할 내용들을 정리한 것들이다.</p>
 
@@ -461,131 +312,9 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
   <li>Parameter, local variable, type variable 모두 lowCamelCase로 쓴다.</li>
 </ol>
 
-
-        </section>
-
-        <footer class="post-footer">
-
-            <!-- Everything inside the #author tags pulls data from the author -->
-            <!-- #author-->
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-                    
-                        <figure class="author-image">
-                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/martin.jpg)"><span class="hidden">yj's Picture</span></a>
-                        </figure>
-                    
-
-                    <section class="author">
-                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
-
-                        
-                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
-                        
-                        <div class="author-meta">
-                            <span class="author-location icon-location"> 개발개발, 개발</span>
-                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
-                        </div>
-                    </section>
-
-                    <!-- /author  -->
-
-                    <section class="share">
-                        <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=[JAVA] 구글에서 제공하는 Java Coding Convention Guide&amp;url=java-coding-convention"
-                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
-                            <span class="hidden">Twitter</span>
-                        </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=java-coding-convention"
-                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
-                            <span class="hidden">Facebook</span>
-                        </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=java-coding-convention"
-                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
-                            <span class="hidden">Google+</span>
-                        </a>
-                    </section>
-                
-            
-
-            <!-- Add Disqus Comments -->
-            
-
-        </footer>
-
-    </article>
-
-</main>
-
-<aside class="read-next">
-
-    <!-- [[! next_post ]] -->
-    
-        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/commit-message-convetion">
-            <section class="post">
-                <h2>[GitHub] Commit Message Convetion</h2>
-                <p>Github에 익숙하지 않기 때문에 커밋은 나에게 push를 해서 업로드를 하기 위한 중간과정 중 하나였다. 하지만...</p>
-            </section>
-        </a>
-    
-    <!-- [[! /next_post ]] -->
-    <!-- [[! prev_post ]] -->
-    
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/baek1300">
-            <section class="post">
-                <h2>[이분탐색] 백준 1300 - k번째 수</h2>
-                <p>문제 문제 바로가기 문제 분석 &gt; 크기가 NxN인 배열 A는 각각 A[i][j] = ixj 로...</p>
-            </section>
-        </a>
-    
-    <!-- [[! /prev_post ]] -->
-</aside>
-
-<!-- /post -->
+	  ]]></description>
+	</item>
 
 
-        <!-- The tiny footer at the very bottom -->
-        <footer class="site-footer clearfix">
-          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
-          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
-        </footer>
-    </div>
-    <!-- highlight.js -->
-    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
-    <script>hljs.initHighlightingOnLoad();</script>
-
-    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
-    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
-    <!-- Ghost outputs important scripts and data with this tag -->
-    <!--  -->
-    <!-- Add Google Analytics  -->
-        <!-- Google Analytics Tracking code -->
-     <script>
-	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-	    ga('create', 'UA-69281367-1', 'auto');
-	    ga('send', 'pageview');
-
-     </script>
-    <!-- Fitvids makes video embeds responsive and awesome -->
-    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
-    <!-- The main JavaScript file for Casper -->
-    <script type="text/javascript" src="/assets/js/index.js"></script>
-
-</body>
-</html>
+</channel>
+</rss>

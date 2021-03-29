@@ -215,6 +215,310 @@
 	</item>
 
 	<item>
+	  <title>[JAVA] 구글에서 제공하는 Java Coding Convention Guide</title>
+	  <link>//java-coding-convention</link>
+	  <author></author>
+	  <pubDate>2020-11-28T10:18:00+00:00</pubDate>
+	  <guid>//java-coding-convention</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+
+<p>프리코스를 진행하면서 구글에서 제공하는 javaGuide를 읽고 해당 convention을 따라서 코딩 하도록 하기 위해서 해당 문서를 정독했다. 원래 알고 있던 부분들도 있고 아닌 부분들도 있는데, 이렇게 잘 문서화 되어 있다는 것을 처음 알았다. 다음은 해당 문서를 읽으면서 두고두고 참고할 내용들을 정리한 것들이다.</p>
+
+<p>다음 사이트 참고: <a href="https://google.github.io/styleguide/javaguide.html">Google Java Style Guide</a></p>
+
+<h2 id="1-source-file-structure">1. Source file structure</h2>
+
+<p>Java 소스 파일은 다음과 같은 구조를 가지고 있다. 순서에 유의하여 구조화 되어 있다.</p>
+
+<ol>
+  <li>만약 존재한다면, license or copyright information</li>
+  <li>Package 명시</li>
+  <li>Import statements</li>
+  <li>단 하나의 top-level class</li>
+</ol>
+
+<p>→ 위의 4 section을 1줄 간격(exactly one blank)으로 나눈다.</p>
+
+<p><br /></p>
+
+<h3 id="1-1-copyright-information">1-1. copyright information</h3>
+
+<p>소스파일 맨 위에 시작 주석으로 파일 클래스 이름, 버전 정보, 날짜, 저작권 주의를 보여주는 주석으로 시작한다.</p>
+
+<h3 id="1-2-import-statements">1-2. Import Statements</h3>
+
+<ol>
+  <li>Wildcard imports는 지양한다.
+    <ul>
+      <li>(*) 추가해서 전체를 한꺼번에 import 하는 것.</li>
+      <li><a href="https://medium.com/@tharakamd.12/is-it-bad-to-use-wildcard-imports-in-java-1b46a863b2be#:~:text=Wildcard%20imports%20tell%20java%20compiler,performance%20may%20lower%20a%20bit">관련 참고 사이트</a></li>
+    </ul>
+  </li>
+  <li>한 줄이 너무 길어도 line wrapping 하지 않는다.</li>
+  <li>static imports를 하나의 block에 non-static imports를 하나의 block에 넣고 두 block 사이만 한 줄 간격이 있다.</li>
+  <li>각 block 내에서는 ASCII sort order에 따라서 정렬한다.</li>
+  <li>class는 static import 가 아닌 normal import 한다.</li>
+</ol>
+
+<h3 id="1-3-class-declaration">1-3 Class Declaration</h3>
+
+<ol>
+  <li>Top-level 클래스는 각 소스파일 당 단 1개만 존재한다.</li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="2-formatting">2. Formatting</h2>
+
+<h3 id="2-1-괄호">2-1. 괄호</h3>
+
+<ol>
+  <li>
+    <p>optional인 경우에도 괄호를 쓴다.</p>
+
+    <ul>
+      <li><code class="highlighter-rouge">if, else, for, do, while</code> 이 비어 있거나 한 줄만 있더라도 괄호를 추가한다.</li>
+    </ul>
+  </li>
+  <li>비어 있지 않은 블록의 경우 다음과 같이 한다.
+    <ul>
+      <li>’{‘ 앞에 줄 간격 두지 않는다.</li>
+      <li>’{‘ 이후에  줄 간격 둔다.</li>
+      <li>’}’ 이전에 줄 간격 둔다.</li>
+      <li>’}’ 이후에 다음과 같은 경우에만 줄 간격을 둔다.
+        <ul>
+          <li>statement가 끝났을 때, 메소드, constructor, class가 끝났을 때</li>
+          <li>, 나 else 가 그 다음에 나오는 경우에는 줄 간격을 두지 않는다.</li>
+        </ul>
+      </li>
+    </ul>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="k">return</span> <span class="o">()</span> <span class="o">-&gt;</span> <span class="o">{</span>
+   <span class="k">while</span> <span class="o">(</span><span class="n">condition</span><span class="o">())</span> <span class="o">{</span>
+     <span class="n">method</span><span class="o">();</span>
+   <span class="o">}</span>
+ <span class="o">};</span>
+
+ <span class="k">return</span> <span class="k">new</span> <span class="nf">MyClass</span><span class="o">()</span> <span class="o">{</span>
+   <span class="nd">@Override</span> <span class="kd">public</span> <span class="kt">void</span> <span class="nf">method</span><span class="o">()</span> <span class="o">{</span>
+     <span class="k">if</span> <span class="o">(</span><span class="n">condition</span><span class="o">())</span> <span class="o">{</span>
+       <span class="k">try</span> <span class="o">{</span>
+         <span class="n">something</span><span class="o">();</span>
+       <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ProblemException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+         <span class="n">recover</span><span class="o">();</span>
+       <span class="o">}</span>
+     <span class="o">}</span> <span class="k">else</span> <span class="k">if</span> <span class="o">(</span><span class="n">otherCondition</span><span class="o">())</span> <span class="o">{</span>
+       <span class="n">somethingElse</span><span class="o">();</span>
+     <span class="o">}</span> <span class="k">else</span> <span class="o">{</span>
+       <span class="n">lastThing</span><span class="o">();</span>
+     <span class="o">}</span>
+   <span class="o">}</span>
+ <span class="o">};</span>
+</code></pre></div>    </div>
+  </li>
+  <li>
+    <p>빈 블록의 경우:</p>
+
+    <p>다음 두 경우 모드 가능하나, multi-block 인 경우에는 consice 하게 할 수 없다.</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">// This is acceptable</span>
+   <span class="kt">void</span> <span class="nf">doNothing</span><span class="o">()</span> <span class="o">{}</span>
+
+   <span class="c1">// This is equally acceptable</span>
+   <span class="kt">void</span> <span class="nf">doNothingElse</span><span class="o">()</span> <span class="o">{</span>
+   <span class="o">}</span>
+</code></pre></div>    </div>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">// This is not acceptable: No concise empty blocks in a multi-block statement</span>
+   <span class="k">try</span> <span class="o">{</span>
+     <span class="n">doSomething</span><span class="o">();</span>
+   <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">Exception</span> <span class="n">e</span><span class="o">)</span> <span class="o">{}</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="2-2-블록-indentation-2-spaces">2-2. 블록 indentation: +2 spaces</h3>
+
+<ul>
+  <li>새로운 블록일 경우 2 만큼 들여쓰기 한다.</li>
+  <li>하지만 우테코에서는 +2 가 아니라 +4 만큼 들여쓰기 하도록 한다.</li>
+</ul>
+
+<h3 id="2-3-한-줄에-한-statement만-작성한다">2-3 한 줄에 한 statement만 작성한다.</h3>
+
+<ul>
+  <li>각 statement는 줄 간격을 둔다.</li>
+</ul>
+
+<h3 id="2-4-column-limit-100">2-4 Column limit: 100</h3>
+
+<p>다음과 같은 경우가 아니라 한 줄에 100자가 넘지 않도록 line-wrapping을 한다.</p>
+
+<ol>
+  <li>line-wrapping이 불가능한 경우</li>
+  <li>package / import 일 경우</li>
+  <li>shell에 복사 붙여넣기 해야 하는 comment일 경우</li>
+</ol>
+
+<h3 id="2-5-line-wrapping">2-5 Line-wrapping</h3>
+
+<ul>
+  <li>다음과 같은 상황에서 line break를 하여 line-wrapping 한다.
+    <ol>
+      <li>
+        <p>non-assignment operator일 경우 줄 간격은 해당 Operator 앞에서 break 한다.</p>
+
+        <p>다음과 같은 것들에도 적용된다:</p>
+
+        <ul>
+          <li>dot separator (.)</li>
+          <li>two colons of method reference (::)</li>
+          <li>an ampersand in a type bound (&lt;T extends Foo &amp; Bar&gt;)</li>
+          <li>
+            <table>
+              <tbody>
+                <tr>
+                  <td>pipe in a catch block ( catch (FooException</td>
+                  <td>BarException e) )</td>
+                </tr>
+              </tbody>
+            </table>
+          </li>
+        </ul>
+      </li>
+      <li>assignment-operator일 경우 해당 operator 다음에 line break 한다.</li>
+      <li>( 앞에 있는 메소드나 constructor 이름은 붙어 있도록 한다.</li>
+      <li>, 같은 경우 그 앞의 토큰과 붙어 있는다.</li>
+      <li>
+        <p>lambda 의 → 다음에는 line break 하지 않는데, lambda body가 single expression 인 경우를 제외하고는 반드시 ( 다음에 line break 해야 한다.</p>
+
+        <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="n">MyLambda</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Long</span><span class="o">,</span> <span class="n">Object</span><span class="o">&gt;</span> <span class="n">lambda</span> <span class="o">=</span>
+     <span class="o">(</span><span class="n">String</span> <span class="n">label</span><span class="o">,</span> <span class="n">Long</span> <span class="n">value</span><span class="o">,</span> <span class="n">Object</span> <span class="n">obj</span><span class="o">)</span> <span class="o">-&gt;</span> <span class="o">{</span>
+         <span class="o">...</span>
+     <span class="o">};</span>
+
+ <span class="n">Predicate</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">predicate</span> <span class="o">=</span> <span class="n">str</span> <span class="o">-&gt;</span>
+     <span class="n">longExpressionInvolving</span><span class="o">(</span><span class="n">str</span><span class="o">);</span>
+</code></pre></div>        </div>
+      </li>
+    </ol>
+  </li>
+  <li>line-wrapping 이후에는 +4 만큼의 들여쓰기를 한다.</li>
+</ul>
+
+<h3 id="2-6-공백-whitespace">2-6 공백 Whitespace</h3>
+
+<ol>
+  <li>Vertical Whitespace
+    <ul>
+      <li>다음과 같은 경우 빈 줄이 들어간다.
+        <ol>
+          <li>consecutive members 나 initializers of a class 사이에 빈 줄
+            <ul>
+              <li>필드, constructors, methods, nested classes, static initializer, instance initializer</li>
+              <li>두 필드 사이에 공백은 선택이다.</li>
+            </ul>
+          </li>
+        </ol>
+      </li>
+      <li>빈 줄은 가독성을 위해서 필요한 곳에 어디든 추가될 수 있다.</li>
+    </ul>
+  </li>
+  <li>Horizontal whitespace
+    <ol>
+      <li>if, for, catch 뒤에 있는 ‘(‘ 사이에 공백</li>
+      <li>else, catch 앞에 있는 ‘}’ 사이에 공백</li>
+      <li>’{‘ 앞에 공백.
+        <ul>
+          <li>예외1: annotation 안에 있는 ‘{‘ 앞에는 공백 없음</li>
+          <li>배열 안에 원소로 인한 ‘{‘ 앞에는 공백 없음</li>
+        </ul>
+      </li>
+      <li>binary 나 ternary operator 앞 뒤로 공백 넣는다.
+        <ul>
+          <li>&lt;T extends Foo &amp; Bar&gt;</li>
+          <li><code class="highlighter-rouge">catch (FooException | BarException e)</code></li>
+          <li><code class="highlighter-rouge">(String str) -&gt; str.length()</code></li>
+          <li>(::) 이나 (.) 앞 뒤에는 공백 없음</li>
+        </ul>
+      </li>
+      <li>,:; 나 ‘)’ 뒤에 공백 있음.</li>
+      <li>변수이름과 type 사이에 공백: List<String> list</String></li>
+    </ol>
+  </li>
+</ol>
+
+<p><br /></p>
+
+<h2 id="3-naming">3. Naming</h2>
+
+<h3 id="3-1-package-names">3-1. Package names</h3>
+
+<ol>
+  <li>패지키 이름은 Camel Case도 아니고 전부 소문자로 띄어쓰기 없이 이루어진다.</li>
+</ol>
+
+<h3 id="3-2-class-names">3-2. Class names</h3>
+
+<ol>
+  <li>클래스 이름은 UpperCamelCase로 이루어 진다.</li>
+  <li>주로 noun이나 noun phase이다.</li>
+  <li>Test 클래스의 경우 뒤에 Test가 붙는다.</li>
+</ol>
+
+<h3 id="3-3-method-names">3-3 Method names</h3>
+
+<ol>
+  <li>메소드 이름은 lowerCamelCase로 나타난다.</li>
+  <li>주로 verb 이다.</li>
+</ol>
+
+<h3 id="3-4-constant-names">3-4 Constant names</h3>
+
+<ol>
+  <li>상수의 경우 CONSTANT_CASE 와 같이 전부 대문자, _ 로 구분되어 있다.</li>
+  <li>여기서 상수라고 하는 것은 static final field 이며, 잘 변하지 않고, 메소드에 이거에 의한 부작용이 없는 숫자를 말한다.</li>
+  <li>
+    <p>예시:</p>
+
+    <div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code> <span class="c1">// Constants</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="kt">int</span> <span class="n">NUMBER</span> <span class="o">=</span> <span class="mi">5</span><span class="o">;</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">ImmutableList</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">NAMES</span> <span class="o">=</span> <span class="n">ImmutableList</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"Ed"</span><span class="o">,</span> <span class="s">"Ann"</span><span class="o">);</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">ImmutableMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">Integer</span><span class="o">&gt;</span> <span class="n">AGES</span> <span class="o">=</span> <span class="n">ImmutableMap</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"Ed"</span><span class="o">,</span> <span class="mi">35</span><span class="o">,</span> <span class="s">"Ann"</span><span class="o">,</span> <span class="mi">32</span><span class="o">);</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">Joiner</span> <span class="n">COMMA_JOINER</span> <span class="o">=</span> <span class="n">Joiner</span><span class="o">.</span><span class="na">on</span><span class="o">(</span><span class="sc">','</span><span class="o">);</span> <span class="c1">// because Joiner is immutable</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">SomeMutableType</span><span class="o">[]</span> <span class="n">EMPTY_ARRAY</span> <span class="o">=</span> <span class="o">{};</span>
+ <span class="kd">enum</span> <span class="n">SomeEnum</span> <span class="o">{</span> <span class="n">ENUM_CONSTANT</span> <span class="o">}</span>
+
+ <span class="c1">// Not constants</span>
+ <span class="kd">static</span> <span class="n">String</span> <span class="n">nonFinal</span> <span class="o">=</span> <span class="s">"non-final"</span><span class="o">;</span>
+ <span class="kd">final</span> <span class="n">String</span> <span class="n">nonStatic</span> <span class="o">=</span> <span class="s">"non-static"</span><span class="o">;</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">Set</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;</span> <span class="n">mutableCollection</span> <span class="o">=</span> <span class="k">new</span> <span class="n">HashSet</span><span class="o">&lt;</span><span class="n">String</span><span class="o">&gt;();</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">ImmutableSet</span><span class="o">&lt;</span><span class="n">SomeMutableType</span><span class="o">&gt;</span> <span class="n">mutableElements</span> <span class="o">=</span> <span class="n">ImmutableSet</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="n">mutable</span><span class="o">);</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">ImmutableMap</span><span class="o">&lt;</span><span class="n">String</span><span class="o">,</span> <span class="n">SomeMutableType</span><span class="o">&gt;</span> <span class="n">mutableValues</span> <span class="o">=</span>
+     <span class="n">ImmutableMap</span><span class="o">.</span><span class="na">of</span><span class="o">(</span><span class="s">"Ed"</span><span class="o">,</span> <span class="n">mutableInstance</span><span class="o">,</span> <span class="s">"Ann"</span><span class="o">,</span> <span class="n">mutableInstance2</span><span class="o">);</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">Logger</span> <span class="n">logger</span> <span class="o">=</span> <span class="n">Logger</span><span class="o">.</span><span class="na">getLogger</span><span class="o">(</span><span class="n">MyClass</span><span class="o">.</span><span class="na">getName</span><span class="o">());</span>
+ <span class="kd">static</span> <span class="kd">final</span> <span class="n">String</span><span class="o">[]</span> <span class="n">nonEmptyArray</span> <span class="o">=</span> <span class="o">{</span><span class="s">"these"</span><span class="o">,</span> <span class="s">"can"</span><span class="o">,</span> <span class="s">"change"</span><span class="o">};</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<h3 id="3-5-non-cnastant-field-names">3-5 Non-cnastant field names</h3>
+
+<ol>
+  <li>Non-constant field(static 이거나 아니거나)의 경우 lowerCamelCase로 되어 있다. 주로 noun 이다.</li>
+</ol>
+
+<h3 id="3-6-이외의-다른-camelcase">3-6 이외의 다른 CamelCase</h3>
+
+<ol>
+  <li>Parameter, local variable, type variable 모두 lowCamelCase로 쓴다.</li>
+</ol>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>[이분탐색] 백준 1300 - k번째 수</title>
 	  <link>//baek1300</link>
 	  <author></author>
@@ -1224,190 +1528,6 @@
 
 <p><strong><small>[참고 자료]: https://www.acmicpc.net/blog/view/12, https://www.crocus.co.kr/648, https://www.acmicpc.net/blog/view/9 </small></strong></p>
 
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>[알고리즘] 세그먼트 트리를 활용한 히스토그램 문제 풀이_1</title>
-	  <link>//segment-tree1</link>
-	  <author></author>
-	  <pubDate>2020-09-09T10:18:00+00:00</pubDate>
-	  <guid>//segment-tree1</guid>
-	  <description><![CDATA[
-	     <p>히스토그램에서 가장 큰 직사각형의 크기를 찾는 알고리즘을 풀다가, 관련 문제의 풀이법을 간단히 찾아서 금방 해결할 줄 알았으니 구현에서 의도치 않은 오랜 시간이 걸렸다.</p>
-
-<p>먼저 <a href="https://www.acmicpc.net/problem/6549">문제</a>의 해결 방법을 요약하면 다음과 같다.</p>
-
-<blockquote>
-  <ol>
-    <li>히스토그램 중, 높이가 가장 낮은 min 값과 해당 너비값을 곱하여 넓이를 구함.</li>
-    <li>해당 최소값을 기준으로 히스토램을 나누어서 1번을 반복함.</li>
-    <li>더 이상 나눌 수 없을 때까지 반복하며 매번 넓이의 max 값을 업데이트 함.</li>
-  </ol>
-</blockquote>
-
-<p>다음은 <a href="https://www.acmicpc.net/blog/view/12">백준 블로그</a>에 있는 문제 해설에서 가져온 그림이다. 위의 해결 방법을 이해하는데 도움이 된다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/109445062-10bb9c80-7a82-11eb-9887-9047f1485785.png" alt="histogram" /></p>
-
-<p>처음에 단순히 이 풀이방법을 배열과 재귀를 사용해서 구현하는 방법으로 시도를 했었다. 사이트에 나와있는 테스트 케이스가 통과하길래 바로 채점을 했더니 결과는 <em>시간초과</em> 였다.. 개인적으로 알고리즘을 할 때 가장 어려운 부분이 답을 출력이 되지만 시간초과가 나올 때 인 것 같다. 문제설명 밑에 해당 문제를 세그먼트 트리를 사용한 분할정복으로 풀 수 있다고 하길래 세그먼트 트리에 대해서 공부하면서 정리한 내용과 처음에 접근했던 방식에 대해서 쓰려고 한다.</p>
-
-<ol>
-  <li>배열/재귀를 사용해서 풀었던 방법: <mark> 시간초과 </mark></li>
-  <li>세그먼트 트리/분할정복을 사용해서 푼 방법: <mark>통과</mark></li>
-</ol>
-
-<h3 id="배열과-재귀를-사용한-첫번째-접근-방법">배열과 재귀를 사용한 첫번째 접근 방법</h3>
-
-<p>배열과 재귀를 사용한 접근 방법은 간단하지만 번거롭다. 매번 나뉘어진 구간 사이에서의 <strong>최솟값</strong>을 찾는 과정을 반복해야 하기 때문이다.</p>
-
-<h4 id="접근-방법-1-arraylist">접근 방법 1: ArrayList</h4>
-
-<p>ArrayList를 사용해서 탐색 API를 사용해서 최솟값 구하기</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. ArrayList의 일부 구간을 subList를 사용하여 List에 저장한다.
-2. Collections.min() 메소드를 사용하여 최솟값을 추출하여 넓이를 구한다. 
-3. indexOf() 메소드를 사용하여 최솟값의 index를 구한다. 
-4. 다음과 같은 재귀로 반복한다.
-	* 맨 첫번째 요소가 최소값일 경우: 두번째 요소부터 마지막 요소까지 재귀
-	* 맨 마지막 요소가 최소값일 경우: 첫본째 요소부터 마지막 이전 요소까지 재귀
-	* 중간의 어느 값이 최소값일 경우: (시작 요소, 최소값 위치 -1)과 (최소값 위치 +1, 마지막 요소)로 나누어서 재귀
-</code></pre></div></div>
-
-<p>위의 방식은 조금만 큰 값이 들어가도 바로 <em>시간 초과</em>가 결렸다. 이유는 ArrayList의 경우 일반 배열과 달리 초반에 메모리 할당이 되지 않기 때문에 추가/삭제 시 메모리 할당을 매번 해줘야 한다. 따라서 일반적으로 일반 배열이 더욱 빠르다. 그래서 두번째 접근 방식으로 일반 배열을 사용하는 것을 택했다. 일반 배열을 사용하면 최소값을 찾는 등의 메소드를 사용하기는 어렵지만 최소값을 찾는 구현은 어렵지 않고, 시간 복잡도도 비슷하기 때문에 시도해 보았다.</p>
-
-<p><strong>코드:</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">void</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">int</span> <span class="n">startIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">lastIndex</span><span class="o">){</span>
-  <span class="kt">long</span> <span class="n">area</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">startIndex</span> <span class="o">==</span> <span class="n">lastIndex</span><span class="o">){</span>
-    <span class="n">area</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">startIndex</span><span class="o">);</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">area</span><span class="o">&gt;</span><span class="n">max</span><span class="o">)</span>
-    	<span class="n">max</span> <span class="o">=</span> <span class="n">area</span><span class="o">;</span>
-    <span class="k">return</span><span class="o">;</span>
-  <span class="o">}</span>
-  
-  <span class="n">List</span><span class="o">&lt;</span><span class="n">Integer</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="n">value</span><span class="o">.</span><span class="na">subList</span><span class="o">(</span><span class="n">startIndex</span><span class="o">,</span> <span class="n">lastIndex</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
-  <span class="kt">long</span> <span class="n">min</span> <span class="o">=</span> <span class="n">Collections</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">list</span><span class="o">);</span>
-  <span class="n">area</span> <span class="o">=</span> <span class="n">min</span><span class="o">*(</span><span class="n">lastIndex</span><span class="o">-</span><span class="n">startIndex</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
-  <span class="kt">int</span> <span class="n">index</span> <span class="o">=</span> <span class="n">startIndex</span> <span class="o">+</span> <span class="n">list</span><span class="o">.</span><span class="na">indexOf</span><span class="o">(</span><span class="n">min</span><span class="o">);</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">area</span> <span class="o">&gt;</span> <span class="n">max</span><span class="o">)</span>
-    <span class="n">max</span> <span class="o">=</span> <span class="n">area</span><span class="o">;</span>
-  
-  <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">startIndex</span><span class="o">)</span>
-    <span class="n">solve</span><span class="o">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">lastIndex</span><span class="o">);</span>
-  <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">lastIndex</span><span class="o">)</span>
-    <span class="n">solve</span><span class="o">(</span><span class="n">startIndex</span><span class="o">,</span> <span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
-  <span class="k">else</span><span class="o">{</span>
-    <span class="n">solve</span><span class="o">(</span><span class="n">startIndex</span><span class="o">,</span> <span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
-    <span class="n">solve</span><span class="o">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">lastIndex</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="접근-방법-2-arrays">접근 방법 2: Arrays</h4>
-
-<p>Array를 사용해서 최소값을 구하기</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. for-loop를 사용해서 최소값 구하기
-2. 최소값 사용하여 넓이 구하기 
-3. 접근 방법 1에서와 같이 재귀하기
-</code></pre></div></div>
-
-<p>ArrayList를 사용했을 때보다는 빨랐기 때문에 더 많은 test case를 통과할 수 있었다. 하지만 여전히 시간초과에 걸렸다.</p>
-
-<p>문제에서 나온 직사각형의 갯수 제한은 100,000이고 재귀 초기함수가 <code class="highlighter-rouge">(startIndex==lastIndex)</code> 일 때이기 때문에 각각하나씩 모두 접근한다. 이때마다 해당 구간의 최소값을 찾기위해 O(n)만큼 탐색을 하니 시간 초과가 걸릴만 하다. 때문에 문제의 태그에서 나온 세그먼트 트리에 대해서 공부하고 활용해보기로 했다.</p>
-
-<p><strong>코드:</strong></p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">static</span> <span class="kt">void</span> <span class="nf">solve</span><span class="o">(</span><span class="kt">int</span> <span class="n">startIndex</span><span class="o">,</span> <span class="kt">int</span> <span class="n">lastIndex</span><span class="o">){</span>
-  <span class="kt">long</span> <span class="n">area</span> <span class="o">=</span> <span class="mi">0</span><span class="o">;</span>
-  <span class="kt">long</span> <span class="n">min</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-  <span class="kt">long</span> <span class="n">index</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span><span class="o">;</span>
-  <span class="k">if</span><span class="o">(</span><span class="n">startIndex</span><span class="o">==</span><span class="n">lastIndex</span><span class="o">){</span>
-    <span class="n">area</span> <span class="o">=</span> <span class="n">value</span><span class="o">[</span><span class="n">startIndex</span><span class="o">];</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">area</span><span class="o">&gt;</span><span class="n">max</span><span class="o">)</span>
-      <span class="n">max</span><span class="o">=</span><span class="n">area</span><span class="o">;</span>
-    <span class="k">return</span><span class="o">;</span>
-  <span class="o">}</span>
-  
-  <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">temp</span><span class="o">=</span><span class="n">startIndex</span><span class="o">;</span><span class="n">temp</span><span class="o">&lt;=</span><span class="n">lastIndex</span><span class="o">;</span><span class="n">temp</span><span class="o">++){</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">min</span><span class="o">&lt;</span><span class="mi">0</span> <span class="o">||</span> <span class="n">value</span><span class="o">[</span><span class="n">temp</span><span class="o">]&lt;</span><span class="n">min</span><span class="o">){</span>
-      <span class="n">min</span> <span class="o">=</span> <span class="n">value</span><span class="o">[</span><span class="n">temp</span><span class="o">];</span>
-      <span class="n">index</span> <span class="o">=</span> <span class="n">temp</span><span class="o">;</span>
-    <span class="o">}</span>
-  <span class="o">}</span>
-  
-  <span class="n">area</span> <span class="o">=</span> <span class="n">min</span><span class="o">*(</span><span class="n">lastIndex</span><span class="o">-</span><span class="n">startIndex</span><span class="o">+</span><span class="mi">1</span><span class="o">);</span>
-  
-  <span class="k">if</span><span class="o">(</span><span class="n">area</span><span class="o">&gt;</span><span class="n">max</span><span class="o">)</span>
-    <span class="n">max</span> <span class="o">=</span> <span class="n">area</span><span class="o">;</span>
-  
-  <span class="k">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">startIndex</span><span class="o">)</span>
-    <span class="n">solve</span><span class="o">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">lastIndex</span><span class="o">);</span>
-  <span class="k">else</span> <span class="nf">if</span><span class="o">(</span><span class="n">index</span> <span class="o">==</span> <span class="n">lastIndex</span><span class="o">)</span>
-    <span class="n">solve</span><span class="o">(</span><span class="n">startIndex</span><span class="o">,</span> <span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
-  <span class="k">else</span><span class="o">{</span>
-    <span class="n">solve</span><span class="o">(</span><span class="n">startIndex</span><span class="o">,</span> <span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
-    <span class="n">solve</span><span class="o">(</span><span class="n">index</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">lastIndex</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="접근-방법-3-segment-tree">접근 방법 3: Segment Tree</h4>
-
-<p>세그먼트 트리는 <mark>주어진 쿼리에 빠르게 응답하기 위해 만들어진 자료구조</mark>이고, 그 사용법은 쿼리마다 상이하다. 가장 대표적으로 세그먼트 트리를 사용할 때 내는 예시는 구간 합을 구하는 문제이다. 하지만 이 글에서는 <em>히스토그램에서 가장 큰 직사각형</em> 푸는 문제에 적용된 세그먼트를 설명할 것이다.</p>
-
-<p>풀이에 세그먼트 트리를 활용할 수 있는 상황은 다음 두가지와 같다. <strong>1. 쿼리 형식으로 문제가 주어진 경우 2. 시간 복잡도를 log로 만들고 싶을 경우</strong>. <small>개인적으로 구간에 관련한 문제가 나올 경우, 시간 복잡도를 줄이기 위해 세그먼트 트리 사용을 하는 것이 좋은 것 같다.</small></p>
-
-<p>세그먼트 트리는 주로 이진트리를 이용하며, 주로 완전 이진 트리 Full Binary Tree에 가깝다. 그렇기 대문에 세그먼트 트리를 사용하면 다음과 같은 성능을 지닌다.</p>
-
-<ol>
-  <li>쿼리의 결과값 구하기: O(lgN)</li>
-  <li>값 업데이트 하기: O(lgN)</li>
-</ol>
-
-<p>히스토그램 문제에서는 쿼리의 결과값 구하는 과정의 시간 복잡도가 O(lgN)이 되면서 성능이 매우 좋아지게 된다.</p>
-
-<h6 id="segment-tree-란">Segment Tree 란?</h6>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/109445201-6e4fe900-7a82-11eb-8e6c-09edb7e236a4.png" alt="histogram" /></p>
-
-<p>히스토그램 문제에서는 위에서 말했듯 다음 두가지 풀이를 반복한다.</p>
-
-<ol>
-  <li>
-    <p>최소값 기준으로 구간 나누기</p>
-  </li>
-  <li>
-    <p>나뉘어진 구간에서 재귀로 1) 반복하기</p>
-  </li>
-</ol>
-
-<p>히스토그램에서 중요 요소는 최소값이기 때문에 각 구간의 최소값의 위치를 저장하도록 한다. 따라서 이후에 특정 구간의 최소값을 찾을 때 <mark>O(lgN)</mark>만큼의 시간복잡도로 최소값을 찾을 수 있다. 위의 이진 세그먼트 트리는 10개의 원소가 있다고 가정했을 때 각 구간이 나뉜 것을 보여준다. <strong>세그먼트 트리에서 모든 leaf node는 원래 배열의 자기자신 element</strong>이다.</p>
-
-<p>요약하자면 segment tree의 구성요소는 다음과 같다.</p>
-
-<ul>
-  <li>Leaf node :  원래 배열의 그 수의 위치. <small>(이 값은 응용 문제에 따라서 달라진다.)</small></li>
-  <li>다른 node:  왼쪽 자식과 오른쪽 자식 중 더 최소값의 위치.</li>
-</ul>
-
-<p>히스토그램 문제에서 Segment tree 구현을 요약하면 다음과 같다.</p>
-
-<div class="highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1. 초기화 함수: 구간이 자기 자신일 경우, leaf node이므로 해당 위치를 기록함. 
-2. 재귀 함수: 구간을 반으로 나누어서 재귀함.
-3. 일반 함수: 자신의 왼쪽 자식 노드와, 오른쪽 자식 노드 위치의 값을 비교하여 더 작은 값의 위치를 트리의 해당 노트에 입력함. 
-</code></pre></div></div>
-
-<p>전체 구간 <code class="highlighter-rouge">0 ~ n-1</code>까지부터 시작해 재귀를 하면 각 구간마다의 <mark>최솟값의 위치</mark>를 기록한 <em>lgN</em> 높이 만큼의 segment tree가 생성된다. 이 세그먼트 트리를 사용해서 더 빠른 방법으로 최소값을 탐색하고 제일 앞에서 설명한 방법을 통해서 정답을 도출하면 된다.</p>
-
-<hr />
-
-<p>다음 글에서 구체적으로 세그먼트 트리를 구현하는 방법과 히스토그램에서 응용된 방법에 대해서 다루도록 하겠다.</p>
-
-<p><strong><small>[참고 자료]: https://www.acmicpc.net/blog/view/12, https://www.crocus.co.kr/648, https://www.acmicpc.net/blog/view/9 </small></strong></p>
 
 	  ]]></description>
 	</item>
