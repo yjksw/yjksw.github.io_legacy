@@ -38,6 +38,31 @@
     
       
       <item>
+        <title>Java Coding Convention</title>
+        
+          <description>&lt;p&gt;layout: post
+cover: ‘assets/images/cover6.jpg’
+navigation: True
+use_math: True
+title: “[JAVA] 구글에서 제공하는 Java Coding Convention Guide”
+date: 2020-11-28 10:18:00
+tags: java
+subclass: ‘post tag-java’
+logo: ‘assets/images/ghost.png’
+author: yj
+categories: yj&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Sat, 28 Nov 2020 00:00:00 +0000</pubDate>
+        <link>
+        /java-coding-convention</link>
+        <guid isPermaLink="true">/java-coding-convention</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>[이분탐색] 백준 1300 - k번째 수</title>
         
           <description>&lt;h3 id=&quot;문제&quot;&gt;문제&lt;/h3&gt;
