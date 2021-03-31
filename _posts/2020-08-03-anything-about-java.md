@@ -1,20 +1,19 @@
----
+​---
 layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
-use_math: True
-title: "[JAVA] 유용 문법 모음"
+title: "[JAVA] 유용 문법 모음" 
 date: 2020-08-02 10:18:00
 tags: java
 subclass: 'post tag-java'
 logo: 'assets/images/ghost.png'
 author: yj
 categories: yj
----
+​---
 
 <br>
 
-- Java를 사용해서 코딩 테스트 준비 겸 알고리즘 문제를 풀어보다 알아두면 유용한 자바 문법이나 코드 등등을 맥락없이 적어놓는 메모장 같은 페이지.
+> Java를 사용해서 코딩 테스트 준비 겸 알고리즘 문제를 풀어보다 알아두면 유용한 자바 문법이나 코드 등등을 맥락없이 적어놓는 메모장 같은 페이지.
 
 ## StringBuilder & StringBuffer
 
