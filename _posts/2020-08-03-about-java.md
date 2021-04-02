@@ -2,14 +2,16 @@
 layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
-title: "[JAVA] 유용 문법 모음" 
+use_math: True
+title: "[JAVA] 유용 문법 모음"
 date: 2020-08-03 10:18:00
 tags: java
 subclass: 'post tag-java'
 logo: 'assets/images/ghost.png'
 author: yj
 categories: yj
-​---
+
+---
 
 <br>
 
