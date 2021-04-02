@@ -325,24 +325,13 @@
     
       
       <item>
-        <title>About Java</title>
+        <title>[JAVA] 유용 문법 모음</title>
         
-          <description>&lt;hr /&gt;
-&lt;p&gt;layout: post
-cover: ‘assets/images/cover6.jpg’
-navigation: True
-title: “[JAVA] 유용 문법 모음” 
-date: 2020-08-03 10:18:00
-tags: java
-subclass: ‘post tag-java’
-logo: ‘assets/images/ghost.png’
-author: yj
-categories: yj
-​—&lt;/p&gt;
+          <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
 
 </description>
         
-        <pubDate>Mon, 03 Aug 2020 00:00:00 +0000</pubDate>
+        <pubDate>Mon, 03 Aug 2020 10:18:00 +0000</pubDate>
         <link>
         /about-java</link>
         <guid isPermaLink="true">/about-java</guid>
