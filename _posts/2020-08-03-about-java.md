@@ -1,4 +1,4 @@
-​---
+---
 layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
@@ -32,3 +32,65 @@ System.out.println(sb);
 
 <br>
 
+## BufferedReader
+
+* Scanner를 사용하여서 많은 데이터를 입력할 때 시간초과가 일어나기도 함. 
+
+* 한꺼번에 버퍼에 저장했다가 한번에 읽어드리는 BufferedReader가 확연히 빠르게 동작함. 
+
+```java
+import java.io.*;
+import java.util.StringTokenizer;
+
+class Main{
+  public static void main(String[] args){
+    BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    String input = "";
+    
+    try{
+      input = br.readLine();
+    } catch(IOException e){}
+    StringTokenizer st = new StringTokenizer(input);
+    
+    int n = Integer.parseInt(st.nextToken());
+    int m = Integer.paresInt(st.nextToken());
+    
+    br.close();
+  }
+}
+    
+```
+
+* BufferedReader는 항상 try-catch를 사용해서 읽음.
+* 한줄 씩 밖에 읽을 수 없고, 반드시 String으로 들어오기 때문에 입력 데이터에 대한 가공이 필요함.
+  * StringTokenizer로 원하는 문자 기준으로 나눌 수 있음.
+  * Integer.parseInt를 사용하여 스트링을 정수로 변함.
+  * 반드시 close() 해주어야 함. 
+
+<br>
+
+## Iterator
+
+* 여러모로 유명하고 유용하나 Stack등에 대한 자료구조에 있어서 pop을 하지 않고 데이터 처음부터 읽을 수 있음.
+
+```java
+import java.util.Iterator;
+
+class Main{
+  public static void main(String[] args){
+    public static Stack<Integer> st = new Stack<Integer>();
+    st.push(1);
+    st.push(2);
+    st.push(3);
+    
+    Iterator value = st.iterator();
+    while(value.hasNext()){
+      System.out.println(value.next());
+    }
+  }
+}
+```
+
+
+
+## 
