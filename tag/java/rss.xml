@@ -515,7 +515,87 @@
 <span class="o">}</span>
 </code></pre></div></div>
 
-<p>##</p>
+<p><br /></p>
+
+<h2 id="자바-2차원-배열-정렬하기">자바 2차원 배열 정렬하기</h2>
+
+<p>자바에서는 Arrays.sort() 함수를 통해서 손쉽게 배열을 정렬할 수 있다. 하지만 Comparator를 상속 받아서 배열을 정렬하는 이 메소드를 제대로 이해하기 위해서는 상속받은 Comparator 인터페이스의 성질과 override 하고 있는 메소드 들에 대해서 잘 이해하는 것이 좋다.</p>
+
+<p>다음을 자바에서 2원 배열을 먼저 1번째 원소에 대해서 정렬하고, 1번째 원소가 같을 때 2번째 원소의 값에 대해서 정렬하는 것에 대한 코드이다. 알고리즘 문제를 풀면서 다차원 배열을 정렬할 때 매우 유용하므로 기록한다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
+<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+
+<span class="kd">class</span> <span class="nc">Main</span><span class="o">{</span>
+  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+    <span class="kt">int</span><span class="o">[][]</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="mi">10</span><span class="o">][</span><span class="mi">2</span><span class="o">];</span>
+    
+    <span class="c1">//위의 2차원 배열 arr에 대해서 1번째 원소에 대해서 정렬하고, 같다면 2번째 원소에 대해서 정렬하기</span>
+    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">[]&gt;(){</span>
+      <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="kt">int</span><span class="o">[]</span> <span class="n">t1</span><span class="o">,</span> <span class="kt">int</span><span class="o">[]</span> <span class="n">t2</span><span class="o">){</span>
+        <span class="k">if</span><span class="o">(</span><span class="n">t1</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">==</span> <span class="n">t2</span><span class="o">[</span><span class="mi">0</span><span class="o">])</span>
+          <span class="k">return</span> <span class="n">t1</span><span class="o">[</span><span class="mi">1</span><span class="o">]</span> <span class="o">-</span> <span class="n">t2</span><span class="o">[</span><span class="mi">1</span><span class="o">];</span>
+        <span class="k">else</span>
+          <span class="k">return</span> <span class="n">t1</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">-</span> <span class="n">t2</span><span class="o">[</span><span class="mi">0</span><span class="o">];</span>
+      <span class="o">}</span>
+    <span class="o">});</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<h2 id="comparator-사용">Comparator 사용</h2>
+
+<p>위에서 2차원 배열을 정렬할 때 잠깐 언급하기는 했지만, 어떠한 클래스 변수등에 대해서 특별한(흔치 않은) 기준으로 정렬을 하고 싶을 때 사용하기 좋은 자바 문법이다.</p>
+
+<p>어떤 기준으로 더 작으면 음수, 같으면 0, 더 크다면 양수를 리턴하여 정렬을 할 수 있도록 해주는 역할을 한다.</p>
+
+<p>주로 객체를 정렬할 때 유용하게 사용된다.</p>
+
+<ol>
+  <li>Class 로 따로 만들어서 <code class="highlighter-rouge">new</code>를 통해서 생성하여 사용할 수 있다.</li>
+  <li>main 안에서 하나의 변수처럼 만들어서 적용할 수 있다.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
+
+<span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">){</span>
+  <span class="n">List</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">arr</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
+  <span class="n">Point</span> <span class="n">p1</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">);</span>
+  <span class="n">Point</span> <span class="n">p2</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="mi">2</span><span class="o">,</span> <span class="mi">1</span><span class="o">);</span>
+  
+  <span class="n">arr</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">p1</span><span class="o">);</span>
+  <span class="n">arr</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">p2</span><span class="o">);</span>
+  
+  <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="k">new</span> <span class="n">xComparator</span><span class="o">());</span> <span class="c1">//1번 경우</span>
+  
+  <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">yComparator</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;()</span> <span class="o">{</span>
+    <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span><span class="o">,</span> <span class="n">p2</span><span class="o">){</span>
+      <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">y</span><span class="o">;</span>
+    <span class="o">}</span>
+  <span class="o">};</span>
+  
+  <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">arr</span><span class="o">,</span> <span class="n">yComparator</span><span class="o">);</span> <span class="c1">//2번 경우</span>
+  
+  <span class="k">return</span><span class="o">;</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">xComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
+  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">){</span>
+    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+<span class="kd">class</span> <span class="nc">Point</span><span class="o">{</span>
+  <span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">;</span>
+  
+  <span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
+    <span class="k">this</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
+  <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
 
 	  ]]></description>
 	</item>
