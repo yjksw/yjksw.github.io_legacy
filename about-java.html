@@ -290,6 +290,43 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
 <p><br /></p>
 
+<h2 id="자바-배열-복사하기">자바 배열 복사하기</h2>
+
+<p>자바에서는 배열을 복사할 때 2가지로 나뉜다. 배열이 모두 주소값으로 지정이된다는 것은 모두 알 것이다. 그때 중요한 것은 배열을 다음 두가지 중 어떠한 복사를 할 것인지 이다.</p>
+
+<p>**1. Shallow copy (얕은 복사) **</p>
+
+<ul>
+  <li>복사를 했을 때 주소가 가리키는 것만 바꿈.</li>
+  <li>source의 배열이 변경되면 해당 배열 또한 같은 주소를 가지고 있으므로 함께 변경됨.</li>
+</ul>
+
+<h5 id="java-에서의-얕은-복사">JAVA 에서의 얕은 복사</h5>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/113480037-44e50b80-94cd-11eb-9660-d61e6222f44e.png" alt="image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">};</span>
+<span class="kt">int</span><span class="o">[]</span> <span class="n">b</span> <span class="o">=</span> <span class="n">a</span><span class="o">;</span>
+</code></pre></div></div>
+
+<p><strong>2. Deep copy (깊은 복사)</strong></p>
+
+<ul>
+  <li>복사를 했을 때, 새로운 배열이 생성되어 동일한 값 다른 주소를 가진 배열이 생성됨</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/113480050-4dd5dd00-94cd-11eb-810e-b3a34710a5c3.png" alt="image" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">int</span><span class="o">[]</span> <span class="n">a</span> <span class="o">=</span> <span class="o">{</span><span class="mi">1</span><span class="o">,</span> <span class="mi">2</span><span class="o">,</span> <span class="mi">3</span><span class="o">,</span> <span class="mi">4</span><span class="o">};</span>
+<span class="kt">int</span><span class="o">[]</span>  <span class="o">=</span> <span class="k">new</span> <span class="kt">int</span><span class="o">[</span><span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">];</span>
+
+<span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="o">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="n">a</span><span class="o">.</span><span class="na">length</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
+  <span class="n">b</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="n">a</span><span class="o">[</span><span class="n">i</span><span class="o">];</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
 <h2 id="comparator-사용">Comparator 사용</h2>
 
 <p>위에서 2차원 배열을 정렬할 때 잠깐 언급하기는 했지만, 어떠한 클래스 변수등에 대해서 특별한(흔치 않은) 기준으로 정렬을 하고 싶을 때 사용하기 좋은 자바 문법이다.</p>
