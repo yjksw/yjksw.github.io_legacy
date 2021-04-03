@@ -165,7 +165,7 @@ for(int i =0; i < a.length;i++){
 
 ###### JAVA에서 배열 복사를 위한 메서드
 
-1. Object.clone()
+1. `Object.clone()`
 
 ```java
 int[] a = {1, 2, 3, 4};
@@ -174,7 +174,7 @@ int[] b = a.clone();
 
 깊은 복사의 가장 보편적인 방법임. *하지만 객체나 2차원 배열에는 해당되지 않음.*
 
-2. Arrays.copyOf()
+2. `Arrays.copyOf()`
 
 ```java
 int[] a = {1, 2, 3, 4};
@@ -183,7 +183,7 @@ int[] b = Arrays.copyOf(a, a.length);
 
 배열의 시작점부터 원하는 length 까지 깊은 복사를 할 수 있음. 
 
-3. Arrays.copyOfRange()
+3. `Arrays.copyOfRange()`
 
 ```java
 int[] a = {1, 2, 3, 4};
@@ -192,7 +192,7 @@ int[] b = Arrays.copyOfRange(a, 1, 3);
 
 배열을 복사할 시작점 또한 정의할 수 있음. 
 
-4. System.arraycopy()
+4. `System.arraycopy()`
 
 ```java
 int[] a = {1, 2, 3, 4};
@@ -225,7 +225,7 @@ for(int i=0; i<a.length; i++) {
 
 
 
-2. System.arraycopy 
+2. `System.arraycopy`
 
 ```java
 int a[][] = {{1,2,3},{4,5,6},{7,8,9}};
