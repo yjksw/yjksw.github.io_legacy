@@ -204,23 +204,15 @@ System.arraycopy(a, 0, b, 0, a.length);
 
 <br>
 
-#### 2차원 배열의 깊은 복사
-
-1차원 배열은 위의 메소드를 사용할 수 있지만 2차원 배열의 경우 해당되지 않는다. 
-
-2차원 배열의 경우 y좌표를 가리키는 주소 값만 있는 a[x] 부분만 깊은 복사가 되므로 다음 2가지 방법을 사용해야 한다. 
-
-1. 이중 for문 
+2. `System.arraycopy`
 
 ```java
-int a[][] = {{1,2,3},{4,5,6,},{7,8,9}};
-int[][] b = new int[a.length][a[0].length];
+int a[][] = {{1,2,3},{4,5,6},{7,8,9}};
+int b[][] = new int[a.length][a[0].length];
 	    
-for(int i=0; i<a.length; i++) {
-  for(int j=0; j<a[i].length; j++) {
-    b[i][j] = a[i][j];  
-  }
-}
+for(int i=0; i<b.length; i++){
+  System.arraycopy(a[i], 0, b[i], 0, a[0].length);
+ }
 ```
 
 <br>
