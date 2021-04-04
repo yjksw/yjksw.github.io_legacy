@@ -5,7 +5,7 @@ navigation: True
 use_math: True
 title: "[GitHub] Commit Message Convetion"
 date: 2020-11-29 10:18:00
-tags: gitHub
+tags: github
 subclass: 'post tag-github'
 logo: 'assets/images/ghost.png'
 author: yj
