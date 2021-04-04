@@ -26,7 +26,7 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//page5/" />
+        <link rel="canonical" href="//tag/database/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
@@ -34,14 +34,14 @@
     <meta property="og:type" content="website" />
     <meta property="og:title" content="코딩만 잘하면 될까?" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//page5/" />
-    <meta property="og:image" content="/assets/images/cover1.jpg" />
+    <meta property="og:url" content="//tag/database/" />
+    <meta property="og:image" content="/assets/images/cover2.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="코딩만 잘하면 될까?" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//page5/" />
-    <meta name="twitter:image:src" content="/assets/images/cover1.jpg" />
+    <meta name="twitter:url" content="//tag/database/" />
+    <meta name="twitter:image:src" content="/assets/images/cover2.jpg" />
 
     <script type="application/ld+json">
 {
@@ -49,8 +49,8 @@
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
     "name": "코딩만 잘하면 될까?",
-    "url": "//page5/",
-    "image": "/assets/images/cover1.jpg",
+    "url": "//tag/database/",
+    "image": "/assets/images/cover2.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
     </script>
@@ -61,7 +61,7 @@
 
     
 </head>
-<body class="paged archive-template nav-closed">
+<body class="tag-template nav-closed">
 
     <!-- The blog navigation links -->
     <div class="nav">
@@ -70,7 +70,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
 	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
@@ -84,12 +84,14 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/cover1.jpg) ">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
     <nav class="main-nav overlay clearfix">
         <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
         
@@ -98,11 +100,14 @@
     </nav>
     <div class="vertical">
         <div class="main-header-content inner">
-            <h1 class="page-title">코딩만 잘하면 될까?</h1>
-            <h2 class="page-description">A beautiful narrative written with the world's most elegant publishing platform. The story begins here.</h2>
+            <h1 class="page-title">Database</h1>
+            <h2 class="page-description">
+            
+			    A 1-post collection
+            
+            </h2>
         </div>
     </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
 </header>
 
 <!-- The main content area on the homepage -->
@@ -114,103 +119,13 @@
         
             <nav class="pagination" role="pagination">
     
-        
-            <a class="newer-posts" href="/page4/" title="Previous Page">&laquo; Newer Posts</a>
-      
-    
-    <span class="page-number"> Page 5 of 5 </span>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
         
     </div>
 
     <!-- This is the post loop - each post will be output using this markup -->
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/java-wrapper-class">[Java] Wrapper Classes in Java</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>다음은 Java에 존재하는 아주 특이한 클래스인 Wrapper class에 대한 내용이다. JAVA wrapper class에 대해서 설명한 한 &lt;a href=https://www.baeldung.com/java-wrapper-classes&gt;사이트&lt;/a&gt;를 번역하는 겸 공부한 내용을 정리해 작성해놓았다. 1. 개요... <a class="read-more" href="/java-wrapper-class">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/martin.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/java'>Java</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-08-08">08 Aug 2020</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/about-java">[JAVA] 유용 문법 모음</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>Java를 사용해서 코딩 테스트 준비 겸 알고리즘 문제를 풀어보다 알아두면 유용한 자바 문법이나 코드 등등을 맥락없이 적어놓는 메모장 같은 페이지. StringBuilder &amp; StringBuffer 알고리즘은 맞지만 시간초과가... <a class="read-more" href="/about-java">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/martin.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/java'>Java</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-08-03">03 Aug 2020</time>
-        </footer>
-    </article>
     
     <article class="post">
         <header class="post-header">
@@ -255,102 +170,12 @@
         </footer>
     </article>
     
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/naivebayes">[머신러닝]나이브 베이즈 분류기(Naive Bayes Classifier)</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>강남의 어느 검색 솔루션 기업에서 인턴한지 어연 4주차가 지나간다. 중간 지점을 지나가면서 한 것을 정리할 겸 나이브베이즈 문서 분류기 구현과 이론에 대해서 정리해 보려고 한다. 최대한... <a class="read-more" href="/naivebayes">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/martin.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/machinelearning'>Machinelearning</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-07-24">24 Jul 2020</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/dac">[알고리즘]분할정복</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>다음은 분할정복 Divide and Conquer Algorithm에 대한 지식 블로그 번역 및 요약+추가정리 내용이다. 원문: https://www.geeksforgeeks.org/divide-and-conquer-algorithm-introduction/ 이 글에서는 분할정복이 유용한 경우와 분할정복으로 해결할 수 있는 문제의 접근방식에... <a class="read-more" href="/dac">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/martin.jpg" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/algorithms'>Algorithms</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-07-21">21 Jul 2020</time>
-        </footer>
-    </article>
-    
 
     <!-- Previous/next page links - displayed on every page -->
     
         <nav class="pagination" role="pagination">
     
-        
-            <a class="newer-posts" href="/page4/" title="Previous Page">&laquo; Newer Posts</a>
-      
-    
-    <span class="page-number"> Page 5 of 5 </span>
+    <span class="page-number"> Page 1 of 1 </span>
      
 </nav>
     
