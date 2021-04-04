@@ -7,6 +7,11 @@
         <li class="nav-home {% if page.current == 'home' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}">Home</a></li>
         <li class="nav-about {% if page.current == 'about' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}about">About</a></li>
         <li class="nav-algorithms {% if page.url contains 'algorithms' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}tag/algorithms">Algorithms</a></li>
+        <li class="nav-database {% if page.url contains 'database' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}tag/database">Database</a></li>
+	<li class="nav-github {% if page.url contains 'github' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}tag/github">Github</a></li>
+        <li class="nav-java {% if page.url contains 'java' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}tag/java">Java</a></li>	
+        <li class="nav-woowacourse {% if page.url contains 'woowacourse' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}tag/wooowacourse">우아한테크코스</a></li>
+	<li class="nav-daily {% if page.url contains 'daily' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}tag/daily">잡동사니</a></li>
 	<li class="nav-machinelearning {% if page.url contains 'machinelearning' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}tag/machinelearning">Machine Learning</a></li>
 	<li class="nav-author {% if page.url contains 'yj' %} nav-current{% endif %}" role="presentation"><a href="{{ site.baseurl }}author/yj">YJ</a></li>
     </ul>
