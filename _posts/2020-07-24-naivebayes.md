@@ -2,6 +2,7 @@
 layout: post
 cover: 'assets/images/cover6.jpg'
 navigation: True
+use_math: True
 title: "[머신러닝]나이브 베이즈 분류기(Naive Bayes Classifier)" 
 date: 2020-07-24 10:18:00
 tags: machinelearning
@@ -22,10 +23,10 @@ categories: yj
 
 * ***P(A)***: 사전확률(Prior). 사건 B가 발생하기 전 A가 가지고 있던 확률
 * ***P(B)***: 정규화 상수(normalizing constant). B가 일어날 확률
-* ***P(B|A)***: 가능도(likelihood). A가 발생한 경우 B가 일어날 확률
-* ***P(A|B)***: 사후확률(Posterior). B가 발생한 후 A가 일어날 확률
+* ***P(B | A)***: 가능도(likelihood). A가 발생한 경우 B가 일어날 확률
+* ***P(A | B)***: 사후확률(Posterior). B가 발생한 후 A가 일어날 확률
 
-이 때 ***P(A|B)***를 구하려면, 다음과 같은 수식을 사용한다.
+이 때 ***P(A | B)***를 구하려면, 다음과 같은 수식을 사용한다.
 
 
 $$
