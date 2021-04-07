@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>코딩만 잘하면 될까?</title>
+    <title>Author</title>
     <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
 
     <!-- Mobile Meta -->
@@ -26,31 +26,31 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//page6/" />
+        <link rel="canonical" href="//author/yj/page6/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="코딩만 잘하면 될까?" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="코딩만 잘하면 될까?" />
+    <meta property="og:title" content="Author" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//page6/" />
-    <meta property="og:image" content="/assets/images/home.jpg" />
+    <meta property="og:url" content="//author/yj/page6/" />
+    <meta property="og:image" content="/assets/images/cover4.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="코딩만 잘하면 될까?" />
+    <meta name="twitter:title" content="Author" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//page6/" />
-    <meta name="twitter:image:src" content="/assets/images/home.jpg" />
+    <meta name="twitter:url" content="//author/yj/page6/" />
+    <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
 
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
-    "name": "코딩만 잘하면 될까?",
-    "url": "//page6/",
-    "image": "/assets/images/home.jpg",
+    "name": "Author",
+    "url": "//author/yj/page6/",
+    "image": "/assets/images/cover4.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
     </script>
@@ -70,7 +70,7 @@
         <span class="hidden">Close</span>
     </a>
     <ul>
-        <li class="nav-home  nav-current" role="presentation"><a href="/">Home</a></li>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
         <li class="nav-about " role="presentation"><a href="/about">About</a></li>
         <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
         <li class="nav-database " role="presentation"><a href="/tag/database">Database</a></li>
@@ -79,7 +79,7 @@
         <li class="nav-woowacourse " role="presentation"><a href="/tag/wooowacourse">우아한테크코스</a></li>
 	<li class="nav-daily " role="presentation"><a href="/tag/daily">잡동사니</a></li>
 	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
-	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+	<li class="nav-author  nav-current" role="presentation"><a href="/author/yj">YJ</a></li>
     </ul>
     <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
 </div>
@@ -89,90 +89,80 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default -->
+        <!-- < default}} -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header  -->
-<header class="main-header "
-        style="background-image: url(/assets/images/home.jpg) ">
-    <nav class="main-nav overlay clearfix">
-        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+<!-- The big featured header -->
+
+<!-- Everything inside the #author tags pulls data from the author -->
+<!-- #author  -->
+    <header class="main-header author-head " style="background-image: url(/assets/images/cover4.jpg) ">
+        <nav class="main-nav overlay clearfix">
+            <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+            
+                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
+        </nav>
+    </header>
+
+    <section class="author-profile inner">
         
-            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+            
         
-    </nav>
-    <div class="vertical">
-        <div class="main-header-content inner">
-            <h1 class="page-title">코딩만 잘하면 될까?</h1>
-            <h2 class="page-description">A beautiful narrative written with the world's most elegant publishing platform. The story begins here.</h2>
-        </div>
-    </div>
-    <a class="scroll-down icon-arrow-left" href="#content" data-offset="-45"><span class="hidden">Scroll Down</span></a>
-</header>
+            
+        
+            
+        
+            
+        
+            
+        
+            
+        
+            
+                
+                <figure class="author-image">
+                    <div class="img" style="background-image: url(/assets/images/yj.png)"><span class="hidden">YJ's Dev Journals's Picture</span></div>
+                </figure>
+                
+                <h1 class="author-title">YJ's Dev Journals</h1>
+                
+                    <div style="display:inline; text-align: justify; text-justify: inter-word;">
+                        <h2 class="author-bio">개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</h2>
+                    </div>
+                
+                <div class="author-meta">
+                    <span class="author-location icon-location">개발개발, 개발</span>
+                    <span class="author-link icon-link"><a href="http://yjksw.github.io/">yjksw.github.io</a></span>
+                    <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
+                    <span class="author-stats"><i class="icon-stats"></i>26 posts</span>
+                </div>
+            
+        
+    </section>
+<!-- /author -->
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs -->
+    <!-- The tag below includes the post loop - partials/loop.hbs  -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         
             <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/page5/" title="Previous Page">&laquo; Newer Posts</a>
+            <a class="newer-posts" href="/author/yj/page5/" title="Previous Page">&laquo; Newer Posts</a>
       
     
     <span class="page-number"> Page 6 of 6 </span>
-     
+    
 </nav>
+
         
     </div>
 
     <!-- This is the post loop - each post will be output using this markup -->
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/dac">[알고리즘]분할정복</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>다음은 분할정복 Divide and Conquer Algorithm에 대한 지식 블로그 번역 및 요약+추가정리 내용이다. 원문: https://www.geeksforgeeks.org/divide-and-conquer-algorithm-introduction/ 이 글에서는 분할정복이 유용한 경우와 분할정복으로 해결할 수 있는 문제의 접근방식에... <a class="read-more" href="/dac">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/yj.png" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/algorithms'>Algorithms</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-07-21">21 Jul 2020</time>
-        </footer>
-    </article>
     
     <article class="post">
         <header class="post-header">
@@ -223,12 +213,13 @@
         <nav class="pagination" role="pagination">
     
         
-            <a class="newer-posts" href="/page5/" title="Previous Page">&laquo; Newer Posts</a>
+            <a class="newer-posts" href="/author/yj/page5/" title="Previous Page">&laquo; Newer Posts</a>
       
     
     <span class="page-number"> Page 6 of 6 </span>
-     
+    
 </nav>
+
     
 
 
