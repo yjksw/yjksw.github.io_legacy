@@ -118,11 +118,11 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 
 
 
-<img src="https://user-images.githubusercontent.com/63405904/113874560-e4b5d880-97f0-11eb-9128-09b7516f2a48.png" style="zoom:40%;" />
+<img src="https://user-images.githubusercontent.com/63405904/113874560-e4b5d880-97f0-11eb-9128-09b7516f2a48.png" style="zoom:20%;" />
 
 
 
-<img src="https://user-images.githubusercontent.com/63405904/113874646-f9926c00-97f0-11eb-8db4-143c02f89102.png" style="zoom:40%;" />
+<img src="https://user-images.githubusercontent.com/63405904/113874646-f9926c00-97f0-11eb-8db4-143c02f89102.png" style="zoom:20%;" />
 
 
 
