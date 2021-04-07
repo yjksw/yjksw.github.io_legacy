@@ -30,19 +30,19 @@ categories: yj
 
 다음은 Java API에서 찾은 String, StringBuffer, StringBuilder class 내용이다. 매우 방대한 내용을 담고 있으니 존재하고 있다는 것만 인증하고 넘어가보자. 
 
-<img src="https://user-images.githubusercontent.com/63405904/113874297-9dc7e300-97f0-11eb-9525-8538f6c91ff5.png" width=60%/>
+<img src="https://user-images.githubusercontent.com/63405904/113874297-9dc7e300-97f0-11eb-9525-8538f6c91ff5.png" style="zoom:80%;" />
 
 
 
+<br>
 
-
-<img src="https://user-images.githubusercontent.com/63405904/113874434-c18b2900-97f0-11eb-9d64-d2a9910dea23.png" alt=String Class width=40% />
-
-
+<img src="https://user-images.githubusercontent.com/63405904/113874434-c18b2900-97f0-11eb-9d64-d2a9910dea23.png" style="zoom:80%;" />
 
 
 
-<img src="https://user-images.githubusercontent.com/63405904/113874481-ccde5480-97f0-11eb-9546-d366c2923b2e.png" alt=String Class width=40% />
+<br>
+
+<img src="https://user-images.githubusercontent.com/63405904/113874481-ccde5480-97f0-11eb-9546-d366c2923b2e.png" style="zoom:80%;" />
 
 
 
@@ -118,11 +118,11 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 
 
 
-<img src="https://user-images.githubusercontent.com/63405904/113874560-e4b5d880-97f0-11eb-9128-09b7516f2a48.png" width=70% />
+<img src="https://user-images.githubusercontent.com/63405904/113874560-e4b5d880-97f0-11eb-9128-09b7516f2a48.png" style="zoom:80%;" />
 
 
 
-<img src="https://user-images.githubusercontent.com/63405904/113874646-f9926c00-97f0-11eb-8db4-143c02f89102.png" width=70% />
+<img src="https://user-images.githubusercontent.com/63405904/113874646-f9926c00-97f0-11eb-8db4-143c02f89102.png" style="zoom:80%;" />
 
 
 
@@ -130,13 +130,11 @@ public final class String implements java.io.Serializable, Comparable<String>, C
 
 단순히 성능만 비교한다면 실험을 통해 다음과 같은 결과를 참고할 수 있다. 
 
-<img src="https://user-images.githubusercontent.com/63405904/113874722-0c0ca580-97f1-11eb-9e31-3509d138eef9.png" width=70% />
+<img src="https://user-images.githubusercontent.com/63405904/113874722-0c0ca580-97f1-11eb-9e31-3509d138eef9.png" style="zoom:80%;" />
 
 
 
 위 표는 각각 StringBuffer와 StringBuilder를 사용하여서 append 를 여러번 반복했을 때 나온 수치이다. Single-thread를 사용했을 때도 StringBuilder의 시간적인 면에서의 성능이 StringBuffer보다 뛰어났다. 이것은 StringBuffer에서 행하는 동기화(Synchronization)에 의한 차이로 해석할 수 있다. 
-
-
 
 ---
 

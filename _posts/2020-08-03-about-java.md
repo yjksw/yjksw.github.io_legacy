@@ -137,7 +137,7 @@ class Main{
 
 ##### JAVA 에서의 얕은 복사
 
-<img src="https://user-images.githubusercontent.com/63405904/113480037-44e50b80-94cd-11eb-9660-d61e6222f44e.png" width=70% />
+<img src="https://user-images.githubusercontent.com/63405904/113480037-44e50b80-94cd-11eb-9660-d61e6222f44e.png" style="zoom:80%;" />
 
 ```java
 int[] a = {1, 2, 3, 4};
@@ -150,7 +150,7 @@ int[] b = a;
 
 * 복사를 했을 때, 새로운 배열이 생성되어 동일한 값 다른 주소를 가진 배열이 생성됨
 
-<img src="https://user-images.githubusercontent.com/63405904/113480050-4dd5dd00-94cd-11eb-810e-b3a34710a5c3.png" width=70% />
+<img src="https://user-images.githubusercontent.com/63405904/113480050-4dd5dd00-94cd-11eb-810e-b3a34710a5c3.png" style="zoom:80%;" />
 
 ```java
 int[] a = {1, 2, 3, 4};
