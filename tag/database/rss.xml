@@ -12,6 +12,120 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>[Database]MySQL_4</title>
+	  <link>//mysql-4</link>
+	  <author></author>
+	  <pubDate>2020-07-28T10:18:00+00:00</pubDate>
+	  <guid>//mysql-4</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+<h3 id="mysql_delete">MySQL_DELETE</h3>
+
+<p>다음은 <strong>생활코딩</strong>에서 Database를 공부하면서 요약 및 정리한 내용이다.</p>
+
+<p><mark>CRUD</mark> 에서 <strong>DELETE</strong> 부분에 해당하는 DELETE 문법이다.</p>
+
+<p><small>DELETE는 매우 간단하고 쉬운 논리이며 문법이지만 가장 조심해서 사용해야 한다. 잘못 쓰면.. (이하 생략)</small></p>
+
+<h6 id="기본-문법">기본 문법:</h6>
+
+<pre><code class="language-mysql">DELETE FROM 테이블_이름 WHERE 삭제_행_조건;
+</code></pre>
+
+<p>밑에서 MySQL사이트에서 제공하는 문법을 살펴보면 WHERE 문에 조건으로 나와 있다. WHERE문은 필수적으로 사용해야하는 사항은 아니지만 사용하지 않는다면 <strong>모든 행이 DELETE</strong> 되는 대참사가 발생할 수 있으니 WHERE 조건을 잘 서술해야한다.</p>
+
+<p><img src="/Users/yunjung/Desktop/MD/sql_delete.png" alt="sql delete" /></p>
+
+<h6 id="예시">예시:</h6>
+
+<pre><code class="language-mysql">DELETE FROM bookList WHERE id = 6; 
+</code></pre>
+
+<p>Id 6번에 입력되어 있는 책과 관련 정보가 모두 삭제될 것이다. (전체 행 삭제)</p>
+
+<p><strong><mark>* 주의사항: UPDATE와 마찬가지로 WHERE 문을 빠뜨리면 모든 행이 DELETE 되므로 매우 조심하여야 한다. 삭제하고 싶은 부분만 잘 선택하여 사용하자. </mark></strong></p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>[Database]MySQL_3</title>
+	  <link>//mysql-3</link>
+	  <author></author>
+	  <pubDate>2020-07-28T10:18:00+00:00</pubDate>
+	  <guid>//mysql-3</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+
+<h3 id="mysql_update">MySQL_UPDATE</h3>
+
+<p><mark>CRUD</mark> 에서 <strong>UPDATE</strong> 부분에 해당하는 UPDATE 문법이다.</p>
+
+<p><small>언제나 그렇듯 강의를 해주시는 egoing님께서는 UPDATE 문법에 관련한 검색하는 과정을 함께하셨다. </small></p>
+
+<h6 id="기본-문법">기본 문법:</h6>
+
+<pre><code class="language-my">UPDATE 테이블이름 SET 변경하고_싶은_헤더_타이틀=변경내용1,.. WHERE 변경할_항목의_primaryKEY_또는 조건; 
+</code></pre>
+
+<p>UPDATE의 기본 문법이다. 밑의 그림을 보면 mysql UPDATE 관련 문법을 검색하였을 때 나오는 MySQL 공식 사이트의 표현이다. 여기서 <strong>[]</strong> 구문으로 감싸여져 있는 것은 모두 선택사항이다. 필요한 기능이 있을 시에는 추가하거나 아닌 경우 필수로 적을 필요는 없다. Line 7-14에 <em>value, assignment, assignment_list</em> 등등은 위의 기본 문법에 해당사항을 어떻게 적어야 하는 지에 대한 상세설명이라고 할 수 있다.</p>
+
+<p><small> 이렇게 각 기술도구들의 공식 사이트를 참고하여 직접 해석하고 적용할 수 있는 능력이 앞으로 이 분야에서 일하고 공부하는데 매우 중요할 것 같다. (어쩌면 많이 외우고 아는 것보다..) </small></p>
+
+<p>&lt;img src=”sql_update.png” alt=”sql update” width=70% /&gt;</p>
+
+<h6 id="예시">예시:</h6>
+
+<pre><code class="language-my">UPDATE bookList SET title='I Love CS', author='yjkim' WHERE id=6; 
+</code></pre>
+
+<p>다음과 같이 실행했을 때, id 6번에 있는 데이터의 title과 author의 내용이 변경될 것이다. 물론 해당 데이터는 bookList 테이블에 있는 것들이다. 이것은 아주 <u>기본적인</u> UPDATE에 관련한 문법이고 더 정교하게 <em>LOW_PRIORITY, LIMIT</em> 등등의 응용이 가능하다.</p>
+
+<p><strong><mark>* 주의사항: WHERE 문을 빠뜨리면 모든 행이 update 되므로 매우 조심하여야 한다. 변경하고 싶은 부분만 잘 선택하여 사용하자. </mark></strong></p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>[Database]MySQL_2</title>
+	  <link>//mysql-2</link>
+	  <author></author>
+	  <pubDate>2020-07-28T10:18:00+00:00</pubDate>
+	  <guid>//mysql-2</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+
+<h3 id="mysql_select">MySQL_SELECT</h3>
+
+<p><mark>CRUD</mark> 에서 <strong>READ</strong> 부분에 해당하는 SELECT 문법이다.</p>
+
+<h6 id="기본-문법">기본 문법:</h6>
+
+<pre><code class="language-my">SELECT 읽고 싶은 헤더 title WHERE 조건 ORDER BY 정렬기준 LIMIT 제한숫자
+</code></pre>
+
+<p>이것이 SELECT의 기본문법은 아니지만 유용하게 쓰이는 SELECT의 필요 요소에 대해서 담아 놓았다. 위에서 SELECT 구문 바로 다음에 있는 ‘읽고 싶은 헤더 title’을 제외하고는 <em>모두 생략 가능한</em> 표현들이다.</p>
+
+<h6 id="예시">예시:</h6>
+
+<pre><code class="language-my">SELECT id, title, author FROM bookList WHERE author='yjkim' ORDER BY id DESC LIMIT 5;
+</code></pre>
+
+<p>다음과 같이 SELECT를 입력했을 때, ‘yjkim’ 작가에 의해 쓰여진 책이 id 값의 내림차순으로 총 5개 까지 출력 될 것이다.</p>
+
+<p><strong>LIMIT</strong>을 거는 이유는 실전에서 database가 사용이 될 때에 방대한 양의 데이터를 한번에 출력하게 되면서 나는 오류를 미리 예방하기 위함이다.</p>
+
+<blockquote>
+  <p>생활코딩에서 항상 강조하는 것은 이 모든 것을 바로 외우기 보다 상황에 따라서 필요한 것을 <strong>검색</strong>하고 찾아서 사용할 수 있는 능력을 길러야 한다는 것이다. 과연 컴퓨터공학 분야의 모든 기술은 날이 갈수록 새롭게 추가되고 업데이트 된다. 오픈 소스와 오픈 코드와 같은 것들은 마치 쓰레드를 사용하듯이 개인 성장 속도를 넘어서 기학적으로 발전하고 나아갈 수 있도록 한다. 지금도 변하고 발전하고 있는 컴퓨터 공학의 분야에서 무엇보다 중요한 것은 <strong>적응하는 능력, 새로운 것에 열광하는 열정</strong>이다. 그리고 이 모든 것은, 받아드리지 못할 것들을 꾸역꾸역 받아서 쌓아 놓으려 애쓰는 것보다 그때 그때 찾아서 쓸 수 있는 유연함을 갖는 것으로 가능하다.</p>
+</blockquote>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>[Database]MySQL_1</title>
 	  <link>//mysql-1</link>
 	  <author></author>

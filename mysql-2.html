@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>[Database]MySQL_1</title>
+    <title>[Database]MySQL_2</title>
     <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
 
     <!-- Mobile Meta -->
@@ -26,21 +26,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//mysql-1" />
+        <link rel="canonical" href="//mysql-2" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="코딩만 잘하면 될까?" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="[Database]MySQL_1" />
+    <meta property="og:title" content="[Database]MySQL_2" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//mysql-1" />
+    <meta property="og:url" content="//mysql-2" />
     <meta property="og:image" content="/assets/images/cover6.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[Database]MySQL_1" />
+    <meta name="twitter:title" content="[Database]MySQL_2" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//mysql-1" />
+    <meta name="twitter:url" content="//mysql-2" />
     <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
 
     <script type="application/ld+json">
@@ -48,8 +48,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
-    "name": "[Database]MySQL_1",
-    "url": "//mysql-1",
+    "name": "[Database]MySQL_2",
+    "url": "//mysql-2",
     "image": "/assets/images/cover6.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
@@ -136,7 +136,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post tag-database">
 
         <header class="post-header">
-            <h1 class="post-title">[Database]MySQL_1</h1>
+            <h1 class="post-title">[Database]MySQL_2</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -174,24 +174,28 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
             <p><br /></p>
 
-<h3 id="mysql_create">MySQL_CREATE</h3>
+<h3 id="mysql_select">MySQL_SELECT</h3>
 
-<p><mark>CRUD</mark> 에서 <strong>Create</strong> 부분에 해당하는 CREATE 문법이다.</p>
+<p><mark>CRUD</mark> 에서 <strong>READ</strong> 부분에 해당하는 SELECT 문법이다.</p>
 
 <h6 id="기본-문법">기본 문법:</h6>
 
-<pre><code class="language-my">INSERT INTO 테이블_이름 (col1, col2, ...) VALUES(value1, value2, ...)
+<pre><code class="language-my">SELECT 읽고 싶은 헤더 title WHERE 조건 ORDER BY 정렬기준 LIMIT 제한숫자
 </code></pre>
 
-<p>기존에 있는 테이블에 요소를 추가하는 메소드이다. 매우 간단하지마 데이터베이스의 시작이라고 할 수 있다. 원하는 테이블에 각 column에 특정한 값들을  입력시켜서 한꺼번에 넣어줄 수 있다. 이전에 테이블을 생성할 때 NOT NULL이라고 설정한 것들은 반드시 입력해야하며, id와 같은 경우 auto increment가 되어 있는 경우가 많기 때문에 따로 지정하지 않아도 될 때가 많다.</p>
+<p>이것이 SELECT의 기본문법은 아니지만 유용하게 쓰이는 SELECT의 필요 요소에 대해서 담아 놓았다. 위에서 SELECT 구문 바로 다음에 있는 ‘읽고 싶은 헤더 title’을 제외하고는 <em>모두 생략 가능한</em> 표현들이다.</p>
 
 <h6 id="예시">예시:</h6>
 
-<pre><code class="language-my">INSERT INTO bookList (title, description, ...) VALUES('MySQL', 'This book is..', ...)
+<pre><code class="language-my">SELECT id, title, author FROM bookList WHERE author='yjkim' ORDER BY id DESC LIMIT 5;
 </code></pre>
 
+<p>다음과 같이 SELECT를 입력했을 때, ‘yjkim’ 작가에 의해 쓰여진 책이 id 값의 내림차순으로 총 5개 까지 출력 될 것이다.</p>
+
+<p><strong>LIMIT</strong>을 거는 이유는 실전에서 database가 사용이 될 때에 방대한 양의 데이터를 한번에 출력하게 되면서 나는 오류를 미리 예방하기 위함이다.</p>
+
 <blockquote>
-  <p>SELECT와 INSERT는 매우 중요하다. 서로가 없으면 의미가 없는 데이터 베이스의 아주 중요한 첫 단추라고 할 수 있다.</p>
+  <p>생활코딩에서 항상 강조하는 것은 이 모든 것을 바로 외우기 보다 상황에 따라서 필요한 것을 <strong>검색</strong>하고 찾아서 사용할 수 있는 능력을 길러야 한다는 것이다. 과연 컴퓨터공학 분야의 모든 기술은 날이 갈수록 새롭게 추가되고 업데이트 된다. 오픈 소스와 오픈 코드와 같은 것들은 마치 쓰레드를 사용하듯이 개인 성장 속도를 넘어서 기학적으로 발전하고 나아갈 수 있도록 한다. 지금도 변하고 발전하고 있는 컴퓨터 공학의 분야에서 무엇보다 중요한 것은 <strong>적응하는 능력, 새로운 것에 열광하는 열정</strong>이다. 그리고 이 모든 것은, 받아드리지 못할 것들을 꾸역꾸역 받아서 쌓아 놓으려 애쓰는 것보다 그때 그때 찾아서 쓸 수 있는 유연함을 갖는 것으로 가능하다.</p>
 </blockquote>
 
 
@@ -238,15 +242,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=[Database]MySQL_1&amp;url=mysql-1"
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[Database]MySQL_2&amp;url=mysql-2"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=mysql-1"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=mysql-2"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=mysql-1"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=mysql-2"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -267,20 +271,20 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/mysql-2">
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/mysql-3">
             <section class="post">
-                <h2>[Database]MySQL_2</h2>
-                <p>### MySQL_SELECT CRUD 에서 **READ** 부분에 해당하는 SELECT 문법이다. ###### 기본 문법: ```my SELECT 읽고...</p>
+                <h2>[Database]MySQL_3</h2>
+                <p>### MySQL_UPDATE CRUD 에서 **UPDATE** 부분에 해당하는 UPDATE 문법이다. 언제나 그렇듯 강의를 해주시는 egoing님께서는 UPDATE...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/naivebayes">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/mysql-1">
             <section class="post">
-                <h2>[머신러닝]나이브 베이즈 분류기(Naive Bayes Classifier)</h2>
-                <p>강남의 어느 검색 솔루션 기업에서 인턴한지 어연 4주차가 지나간다. 중간 지점을 지나가면서 한 것을 정리할...</p>
+                <h2>[Database]MySQL_1</h2>
+                <p>MySQL_CREATE CRUD 에서 Create 부분에 해당하는 CREATE 문법이다. 기본 문법: INSERT INTO 테이블_이름 (col1, col2,...</p>
             </section>
         </a>
     
