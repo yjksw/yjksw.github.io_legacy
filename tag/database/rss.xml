@@ -12,6 +12,311 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>[Database]MySQL_6</title>
+	  <link>//mysql-6</link>
+	  <author></author>
+	  <pubDate>2020-07-28T10:18:00+00:00</pubDate>
+	  <guid>//mysql-6</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+<h3 id="관계형-데이터베이스_2">관계형 데이터베이스_2</h3>
+
+<p>다음은 <strong>생활코딩</strong>에서 Database를 공부하면서 요약 및 정리한 내용이다.</p>
+
+<h4 id="관계형-데이터베이스의-꽃-join">관계형 데이터베이스의 꽃 JOIN</h4>
+
+<p>테이블 JOIN을 대사로 만들어 본다면,</p>
+
+<blockquote>
+  <p>MySQL아, bookList 테이블을 읽을 때 author id 에 해당하는 author table의 데이터도 같이 읽어서 한꺼번에 보여줘</p>
+</blockquote>
+
+<p><small>모든 것에는 양면이 있다지만, 여기서는 내가 좋은 단물만 빨아서 좋은 것 + 좋은 것을 얻겠다는 것이다. </small></p>
+
+<h6 id="기본-문법">기본 문법:</h6>
+
+<pre><code class="language-mysql">SELECT * FROM 테이블_이름 LEFT JOIN 조인할_테이블_이름 ON 조인할_조건;
+</code></pre>
+
+<p>여기서 <strong>LEFT JOIN</strong> 부분은 가장 일반적인 JOIN 종류를 하나 쓴 것이고, 본래 RIGTH JOIN, CROSS JOIN, INNER JOIN… 등등 많은 종류의 JOIN 기법이 있다. 나중에 하나씩 예시를 보면서  필요한 것을 적용하면 될 듯 하다.</p>
+
+<h6 id="예시">예시:</h6>
+
+<pre><code class="language-mysql">SELECT * FROM bookList LEFT JOIN author ON bookList.author_id = author.id;
+</code></pre>
+
+<p>위와 같이 실행하면 본래 두개로 나누어져 있던 테이블을 JOIN 하여 다음과 같이 출력한다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>author_id</th>
+      <th>id</th>
+      <th>name</th>
+      <th>profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Harry Potter and the Sorcerer’s Stone</td>
+      <td>1</td>
+      <td>1</td>
+      <td>J.K Rowling</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Narnia</td>
+      <td>2</td>
+      <td>2</td>
+      <td>C.S. Lewis</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>I Love CS</td>
+      <td>3</td>
+      <td>3</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>How to Study Database</td>
+      <td>3</td>
+      <td>3</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>보면 author_id와 id 의 값이 같은 경우 합성하여 테이블을 출력한 것을 볼 수 있다.</p>
+
+<p>다음은 사용자에게 필요없는 author_id와 id를 생략하고 테이블을 출력해보자.</p>
+
+<pre><code class="language-mysql">SELECT id,title,name,profil FROM bookList LEFT JOIN author ON bookList.author_id = author.id;
+</code></pre>
+
+<p>위와 같이 실행하면 <strong>‘id’ is ambiguous</strong> 하다는 오류가 나타난다. 테이블을 자세히 보니 우리에게는 id 항목이 2개이다. 따라서 bookList의 id 만을 출력하기 위해 다음과 같이 작성하도록 한다.</p>
+
+<pre><code class="language-mysql">SELECT bookList.id,title,name,profil FROM bookList LEFT JOIN author ON bookList.author_id = author.id;
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>name</th>
+      <th>profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Harry Potter and the Sorcerer’s Stone</td>
+      <td>J.K. Rowling</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Narnia</td>
+      <td>C.S. Lewis</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>I Love CS</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>How to Study Database</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="join이-불러온-혁명">JOIN이 불러온 혁명</h4>
+
+<p>위의 예시와 같이 <em>author&amp;profile</em> 데이터가 쓰이는 테이블이 여러개라고 생각해보자.</p>
+
+<p>bookList 테이블 뿐만 아니라, essay, comments 등등의 여러 테이블의 데이터로 <em>author&amp;profile</em> 가 포함된다고 할 때, 이렇게 테이블을 분산시켜 놓으면 변경 및 보수가 매우 쉽다.</p>
+
+<p>하지만 테이블을 보고 싶을 때는 한눈에 볼 수 있다.</p>
+
+<blockquote>
+  <p>즉, 테이블을 분리한다는 것은 여러 테이블이 함께 데이터를 공유할 수 있게 된다는 것이다.</p>
+</blockquote>
+
+<hr />
+
+<p><small>생활코딩 강의하시는 egoing님이 투척하신 명언으로 데이터베이스 글을 마무리 하고자 한다. 수학자 <em>폰 노이만</em>이 말한 명언이다. <strong><em>“수학은 이해하는 것이 아니라 익숙해지는 것이다.”</em></strong> 오늘 배운 데이터베이스도, CS의 많은 분야들도 막막하고 어렵게 느껴지는 이유는 아직 낯을 가리고 있기 때문이다. 익숙해지는 것이 답이고 그 방법을 반복이다!!</small></p>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>[Database]MySQL_5</title>
+	  <link>//mysql-5</link>
+	  <author></author>
+	  <pubDate>2020-07-28T10:18:00+00:00</pubDate>
+	  <guid>//mysql-5</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+
+<h3 id="관계형-데이터베이스_1">관계형 데이터베이스_1</h3>
+
+<p>다음은 <strong>생활코딩</strong>에서 Database를 공부하면서 요약 및 정리한 내용이다.</p>
+
+<h4 id="관계형-데이터베이스의-필요성">관계형 데이터베이스의 필요성</h4>
+
+<p><small>어디선가 중복의 악취가 난다면… 그것은 개선할 필요가 있다는 신호이다!! <em>(우리는 효율을 중요시 하는 개발자)</em></small></p>
+
+<p><small>항상 극단적인 상황을 고려해보자. 데이터가 몇 십개가 아니라.. 몇 억개라고 오바해보자. <em>(오바는 해결책을 부른다)</em> </small></p>
+
+<h6 id="우리의-목표-중복-해결하기">우리의 목표: 중복 해결하기</h6>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>author</th>
+      <th>profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Harry Potter and the Sorcerer’s Stone</td>
+      <td>J.K Rowling</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Narnia</td>
+      <td>C.S. Lewis</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>I Love CS</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>How to Study Database</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><small>표1. previous_bookList</small></p>
+
+<p>이런 표가 있을 때, 우리 눈에 중복이 보인다. author에 yjkim과 profile에 developer 항목이다. 이런 중복을 오바해서 몇 억개가 있다고 했을 때, 해당 데이터 내용을 바꾸는 것은.. <em>불가능</em>하다.</p>
+
+<p>이러한 사항들을 개선하기 위해서 관계형 데이터베이스가 출현한 것이다.</p>
+
+<p>위의 표를 다음과 같이 나눠보자.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>author_id</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Harry Potter and the Sorcerer’s Stone</td>
+      <td>1</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Narnia</td>
+      <td>2</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>I Love CS</td>
+      <td>3</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>How to Study Database</td>
+      <td>3</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><small>표2.bookList</small></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>name</th>
+      <th>profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>J.K. Rowling</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>C.S. Lewis</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>yjkim</td>
+      <td>developer</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><small>표3. author</small></p>
+
+<h6 id="중복-제거의-효율성">중복 제거의 효율성:</h6>
+
+<ul>
+  <li>yjkim이라는 이름을 yunKim으로 변경하고 싶다면 <strong>표1</strong>처럼 중보되는 데이터에 모두 접근해서 일일히 변경할 필요가 없다. <strong>표3</strong>에서 name만 변경하면 <strong><em>한꺼번에 변경</em></strong>할 수 있다.</li>
+  <li>만약에 yjkim, developer가 2명이라면 각 사람은 다르지만 name과 profile이 같으므로 <strong>표1</strong>에서는 구분하기 어렵다. 그러한 동명이인의 경우 표3에서 id를 추가해 yjkim, developer를 입력하고 <strong>표2</strong>에서 id 값을 다르게 주면 다른 사람이라는 것을 확인할 수 있다.</li>
+</ul>
+
+<h6 id="위-방법의-단점">위 방법의 단점:</h6>
+
+<p><small>trade-off… 장점이 생기면 단점도 생긴다 :(</small></p>
+
+<ul>
+  <li>기존 <strong>표1</strong>은 하나의 테이블에 모두 포함되어 있기 때문에 매우 직관적이다. 하지만 중복의 비효율성을 가지고 있다.</li>
+  <li>따라서 <strong>표2, 표3</strong> 처럼 나누면 중복이 없어지지만 한눈에 볼 수 없고 별도의 표를 참조해야하지 때문에 직관성이 떨어진다.</li>
+</ul>
+
+<blockquote>
+  <p>Trade-off.. MySQL을 사용하면 극복할 수 있다!! (다음글 참고)</p>
+</blockquote>
+
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>[Database]MySQL_4</title>
 	  <link>//mysql-4</link>
 	  <author></author>
@@ -34,7 +339,7 @@
 
 <p>밑에서 MySQL사이트에서 제공하는 문법을 살펴보면 WHERE 문에 조건으로 나와 있다. WHERE문은 필수적으로 사용해야하는 사항은 아니지만 사용하지 않는다면 <strong>모든 행이 DELETE</strong> 되는 대참사가 발생할 수 있으니 WHERE 조건을 잘 서술해야한다.</p>
 
-<p><img src="/Users/yunjung/Desktop/MD/sql_delete.png" alt="sql delete" /></p>
+<p><img src="https://user-images.githubusercontent.com/63405904/114272351-cfd78000-9a50-11eb-842d-0ac4b2314b51.png" alt="image" style="zoom:70%;" /></p>
 
 <h6 id="예시">예시:</h6>
 
@@ -73,7 +378,7 @@
 
 <p><small> 이렇게 각 기술도구들의 공식 사이트를 참고하여 직접 해석하고 적용할 수 있는 능력이 앞으로 이 분야에서 일하고 공부하는데 매우 중요할 것 같다. (어쩌면 많이 외우고 아는 것보다..) </small></p>
 
-<p>&lt;img src=”sql_update.png” alt=”sql update” width=70% /&gt;</p>
+<p><img src="https://user-images.githubusercontent.com/63405904/114272372-e2ea5000-9a50-11eb-86f7-767c15182d47.png" alt="image" style="zoom:70%;" /></p>
 
 <h6 id="예시">예시:</h6>
 

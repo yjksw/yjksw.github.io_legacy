@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>[Database]MySQL_3</title>
+    <title>[Database]MySQL_6</title>
     <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
 
     <!-- Mobile Meta -->
@@ -26,21 +26,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//mysql-3" />
+        <link rel="canonical" href="//mysql-6" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="코딩만 잘하면 될까?" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="[Database]MySQL_3" />
+    <meta property="og:title" content="[Database]MySQL_6" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//mysql-3" />
+    <meta property="og:url" content="//mysql-6" />
     <meta property="og:image" content="/assets/images/cover6.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[Database]MySQL_3" />
+    <meta name="twitter:title" content="[Database]MySQL_6" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//mysql-3" />
+    <meta name="twitter:url" content="//mysql-6" />
     <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
 
     <script type="application/ld+json">
@@ -48,8 +48,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
-    "name": "[Database]MySQL_3",
-    "url": "//mysql-3",
+    "name": "[Database]MySQL_6",
+    "url": "//mysql-6",
     "image": "/assets/images/cover6.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
@@ -136,7 +136,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post tag-database">
 
         <header class="post-header">
-            <h1 class="post-title">[Database]MySQL_3</h1>
+            <h1 class="post-title">[Database]MySQL_6</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -173,32 +173,145 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         <section class="post-content">
 
             <p><br /></p>
+<h3 id="관계형-데이터베이스_2">관계형 데이터베이스_2</h3>
 
-<h3 id="mysql_update">MySQL_UPDATE</h3>
+<p>다음은 <strong>생활코딩</strong>에서 Database를 공부하면서 요약 및 정리한 내용이다.</p>
 
-<p><mark>CRUD</mark> 에서 <strong>UPDATE</strong> 부분에 해당하는 UPDATE 문법이다.</p>
+<h4 id="관계형-데이터베이스의-꽃-join">관계형 데이터베이스의 꽃 JOIN</h4>
 
-<p><small>언제나 그렇듯 강의를 해주시는 egoing님께서는 UPDATE 문법에 관련한 검색하는 과정을 함께하셨다. </small></p>
+<p>테이블 JOIN을 대사로 만들어 본다면,</p>
+
+<blockquote>
+  <p>MySQL아, bookList 테이블을 읽을 때 author id 에 해당하는 author table의 데이터도 같이 읽어서 한꺼번에 보여줘</p>
+</blockquote>
+
+<p><small>모든 것에는 양면이 있다지만, 여기서는 내가 좋은 단물만 빨아서 좋은 것 + 좋은 것을 얻겠다는 것이다. </small></p>
 
 <h6 id="기본-문법">기본 문법:</h6>
 
-<pre><code class="language-my">UPDATE 테이블이름 SET 변경하고_싶은_헤더_타이틀=변경내용1,.. WHERE 변경할_항목의_primaryKEY_또는 조건; 
+<pre><code class="language-mysql">SELECT * FROM 테이블_이름 LEFT JOIN 조인할_테이블_이름 ON 조인할_조건;
 </code></pre>
 
-<p>UPDATE의 기본 문법이다. 밑의 그림을 보면 mysql UPDATE 관련 문법을 검색하였을 때 나오는 MySQL 공식 사이트의 표현이다. 여기서 <strong>[]</strong> 구문으로 감싸여져 있는 것은 모두 선택사항이다. 필요한 기능이 있을 시에는 추가하거나 아닌 경우 필수로 적을 필요는 없다. Line 7-14에 <em>value, assignment, assignment_list</em> 등등은 위의 기본 문법에 해당사항을 어떻게 적어야 하는 지에 대한 상세설명이라고 할 수 있다.</p>
-
-<p><small> 이렇게 각 기술도구들의 공식 사이트를 참고하여 직접 해석하고 적용할 수 있는 능력이 앞으로 이 분야에서 일하고 공부하는데 매우 중요할 것 같다. (어쩌면 많이 외우고 아는 것보다..) </small></p>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/114272372-e2ea5000-9a50-11eb-86f7-767c15182d47.png" alt="image" style="zoom:70%;" /></p>
+<p>여기서 <strong>LEFT JOIN</strong> 부분은 가장 일반적인 JOIN 종류를 하나 쓴 것이고, 본래 RIGTH JOIN, CROSS JOIN, INNER JOIN… 등등 많은 종류의 JOIN 기법이 있다. 나중에 하나씩 예시를 보면서  필요한 것을 적용하면 될 듯 하다.</p>
 
 <h6 id="예시">예시:</h6>
 
-<pre><code class="language-my">UPDATE bookList SET title='I Love CS', author='yjkim' WHERE id=6; 
+<pre><code class="language-mysql">SELECT * FROM bookList LEFT JOIN author ON bookList.author_id = author.id;
 </code></pre>
 
-<p>다음과 같이 실행했을 때, id 6번에 있는 데이터의 title과 author의 내용이 변경될 것이다. 물론 해당 데이터는 bookList 테이블에 있는 것들이다. 이것은 아주 <u>기본적인</u> UPDATE에 관련한 문법이고 더 정교하게 <em>LOW_PRIORITY, LIMIT</em> 등등의 응용이 가능하다.</p>
+<p>위와 같이 실행하면 본래 두개로 나누어져 있던 테이블을 JOIN 하여 다음과 같이 출력한다.</p>
 
-<p><strong><mark>* 주의사항: WHERE 문을 빠뜨리면 모든 행이 update 되므로 매우 조심하여야 한다. 변경하고 싶은 부분만 잘 선택하여 사용하자. </mark></strong></p>
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>author_id</th>
+      <th>id</th>
+      <th>name</th>
+      <th>profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Harry Potter and the Sorcerer’s Stone</td>
+      <td>1</td>
+      <td>1</td>
+      <td>J.K Rowling</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Narnia</td>
+      <td>2</td>
+      <td>2</td>
+      <td>C.S. Lewis</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>I Love CS</td>
+      <td>3</td>
+      <td>3</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>How to Study Database</td>
+      <td>3</td>
+      <td>3</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>보면 author_id와 id 의 값이 같은 경우 합성하여 테이블을 출력한 것을 볼 수 있다.</p>
+
+<p>다음은 사용자에게 필요없는 author_id와 id를 생략하고 테이블을 출력해보자.</p>
+
+<pre><code class="language-mysql">SELECT id,title,name,profil FROM bookList LEFT JOIN author ON bookList.author_id = author.id;
+</code></pre>
+
+<p>위와 같이 실행하면 <strong>‘id’ is ambiguous</strong> 하다는 오류가 나타난다. 테이블을 자세히 보니 우리에게는 id 항목이 2개이다. 따라서 bookList의 id 만을 출력하기 위해 다음과 같이 작성하도록 한다.</p>
+
+<pre><code class="language-mysql">SELECT bookList.id,title,name,profil FROM bookList LEFT JOIN author ON bookList.author_id = author.id;
+</code></pre>
+
+<table>
+  <thead>
+    <tr>
+      <th>id</th>
+      <th>title</th>
+      <th>name</th>
+      <th>profile</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>1</td>
+      <td>Harry Potter and the Sorcerer’s Stone</td>
+      <td>J.K. Rowling</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td>Narnia</td>
+      <td>C.S. Lewis</td>
+      <td>author</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td>I Love CS</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td>How to Study Database</td>
+      <td>yjkim</td>
+      <td>Developer</td>
+    </tr>
+  </tbody>
+</table>
+
+<h4 id="join이-불러온-혁명">JOIN이 불러온 혁명</h4>
+
+<p>위의 예시와 같이 <em>author&amp;profile</em> 데이터가 쓰이는 테이블이 여러개라고 생각해보자.</p>
+
+<p>bookList 테이블 뿐만 아니라, essay, comments 등등의 여러 테이블의 데이터로 <em>author&amp;profile</em> 가 포함된다고 할 때, 이렇게 테이블을 분산시켜 놓으면 변경 및 보수가 매우 쉽다.</p>
+
+<p>하지만 테이블을 보고 싶을 때는 한눈에 볼 수 있다.</p>
+
+<blockquote>
+  <p>즉, 테이블을 분리한다는 것은 여러 테이블이 함께 데이터를 공유할 수 있게 된다는 것이다.</p>
+</blockquote>
+
+<hr />
+
+<p><small>생활코딩 강의하시는 egoing님이 투척하신 명언으로 데이터베이스 글을 마무리 하고자 한다. 수학자 <em>폰 노이만</em>이 말한 명언이다. <strong><em>“수학은 이해하는 것이 아니라 익숙해지는 것이다.”</em></strong> 오늘 배운 데이터베이스도, CS의 많은 분야들도 막막하고 어렵게 느껴지는 이유는 아직 낯을 가리고 있기 때문이다. 익숙해지는 것이 답이고 그 방법을 반복이다!!</small></p>
 
 
 
@@ -244,15 +357,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=[Database]MySQL_3&amp;url=mysql-3"
+                        <a class="icon-twitter" href="http://twitter.com/share?text=[Database]MySQL_6&amp;url=mysql-6"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=mysql-3"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=mysql-6"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=mysql-3"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=mysql-6"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -273,20 +386,20 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/mysql-4">
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/about-java">
             <section class="post">
-                <h2>[Database]MySQL_4</h2>
-                <p>### MySQL_DELETE 다음은 **생활코딩**에서 Database를 공부하면서 요약 및 정리한 내용이다. CRUD 에서 **DELETE** 부분에 해당하는...</p>
+                <h2>[JAVA] 유용 문법 모음</h2>
+                <p>> Java를 사용해서 코딩 테스트 준비 겸 알고리즘 문제를 풀어보다 알아두면 유용한 자바 문법이나 코드...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/mysql-2">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/mysql-5">
             <section class="post">
-                <h2>[Database]MySQL_2</h2>
-                <p>MySQL_SELECT CRUD 에서 READ 부분에 해당하는 SELECT 문법이다. 기본 문법: SELECT 읽고 싶은 헤더 title...</p>
+                <h2>[Database]MySQL_5</h2>
+                <p>관계형 데이터베이스_1 다음은 생활코딩에서 Database를 공부하면서 요약 및 정리한 내용이다. 관계형 데이터베이스의 필요성 어디선가 중복의...</p>
             </section>
         </a>
     
