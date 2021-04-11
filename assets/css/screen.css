@@ -261,7 +261,8 @@ p, ul, ol, dl {
     -webkit-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
     -moz-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
     -o-font-feature-settings: 'liga' 1, 'onum' 1, 'kern' 1;
-    margin: 0 0 1.75em 0;
+    /*margin: 0 0 1.75em 0; editedByYJ */
+    margin: 0 0 0.45em 0; 
     text-rendering: geometricPrecision;
 }
 
@@ -1135,7 +1136,8 @@ body.page-template .post-title {
 
 .post-template .post-header,
 .page-template .post-header {
-   margin-bottom: 3.4rem;
+   /*margin-bottom: 3.4rem; editedByYJ*/
+   margin-bottom: 6.4rem;
 }
 
 .post-template .post-title,
@@ -1160,7 +1162,8 @@ body.page-template .post-title {
    with browser width % calculations and rounding */
 .post-template .content,
 .page-template .content {
-    overflow: hidden;
+    /*overflow: hidden;*/
+    overflow-x: scroll;
 }
 
 /* Tweak the .post wrapper style */
@@ -1181,7 +1184,8 @@ body.page-template .post-title {
    text column to break out. */
 .post-content img {
     display: block;
-    max-width: 126%;
+    /*max-width: 126%; editedByYJ*/
+    max-width: 100%;
     height: auto;
     padding: 0.6em 0;
     /* Centers an image by (1) pushing its left edge to the

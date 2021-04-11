@@ -175,57 +175,70 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
             <p><br /></p>
 
-<h3 id="http---get-method">HTTP - GET Method</h3>
-
-<p>주소창에 parameter 노출</p>
-
-<p>브라우저에서 주소에 대한 캐시가 이루어지므로, 정보를 얻을 때 사용.</p>
+<h4 id="http---get-method">HTTP - GET Method</h4>
 
 <ul>
   <li>
-    <p>Get Method에서 parameter 받기</p>
-
-    <p>parameter로 각각 변수를 받아서 받아내면 됌.</p>
-
-    <p>여러가지로 변수가 늘어가는 상황:</p>
-
+    <p>주소창에 parameter 노출</p>
+  </li>
+  <li>브라우저에서 주소에 대한 캐시가 이루어지므로, 정보를 얻을 때 사용.
     <ul>
-      <li>너무 변수가 많다면 parameter를 모두 써서 받기 어려울 수 있다.</li>
-      <li>객체로 받을 수 있는 방법:
+      <li>
+        <p>Get Method에서 parameter 받기</p>
+
+        <p>parameter로 각각 변수를 받아서 받아내면 됌.</p>
+
+        <p>여러가지로 변수가 늘어가는 상황:</p>
+
         <ul>
-          <li>따로 변수를 받는 class를 생성함. (getter, setter 와 함께 하고, parameter를 클래스 객체로 받는다.)</li>
-          <li>jackson library 로 인해 객체를 리턴하면 자동적으로 json으로 변환이 되어서 return 이 됌.</li>
+          <li>너무 변수가 많다면 parameter를 모두 써서 받기 어려울 수 있다.</li>
+          <li>객체로 받을 수 있는 방법:
+            <ul>
+              <li>따로 변수를 받는 class를 생성함. (getter, setter 와 함께 하고, parameter를 클래스 객체로 받는다.)</li>
+              <li>jackson library 로 인해 객체를 리턴하면 자동적으로 json으로 변환이 되어서 return 이 됌.</li>
+            </ul>
+          </li>
         </ul>
       </li>
     </ul>
   </li>
+  <li>메소드에 대해서 두 주소가 같다면, spring boot는 실행을 시키지 못함.</li>
 </ul>
 
-<p>메소드에 대해서 두 주소가 같다면, spring boot는 실행을 시키지 못함.</p>
+<h4 id="http---post-method">HTTP - POST Method</h4>
 
-<h3 id="http---post-method">HTTP - POST Method</h3>
+<ul>
+  <li>
+    <p>주소창에 parameter 노출 없음.</p>
+  </li>
+  <li>
+    <p>브라우저가 주소 캐시를 하지 못하는 특성이 있음.</p>
+  </li>
+  <li>
+    <p>@PostingMapping을 통해서 postMethod를 구현할 수 있음.</p>
+  </li>
+  <li>
+    <p>객체에 json으로 mapping 시켜줄 수 있음.</p>
+  </li>
+</ul>
 
-<p>주소창에 parameter 노출 없음.</p>
+<h4 id="http---putpatch-method">HTTP - PUT/PATCH Method</h4>
 
-<p>브라우저가 주소 캐시를 하지 못하는 특성이 있음.</p>
+<ul>
+  <li>POST 와 마찬가지로 BODY에 데이터가 있으며, 주로 업데이트를 요청함.</li>
+</ul>
 
-<p>@PostingMapping을 통해서 postMethod를 구현할 수 있음.</p>
+<h4 id="http---delete-method">HTTP - DELETE Method</h4>
 
-<p>객체에 json으로 mapping 시켜줄 수 있음.</p>
-
-<h3 id="http---putpatch-method">HTTP - PUT/PATCH Method</h3>
-
-<p>POST 와 마찬가지로 BODY에 데이터가 있으며, 주로 업데이트를 요청함.</p>
-
-<h3 id="http---delete-method">HTTP - DELETE Method</h3>
-
-<p>GET 과 마찬가지로 parameter로 동작하며, 주로 삭제를 요청함.</p>
+<ul>
+  <li>GET 과 마찬가지로 parameter로 동작하며, 주로 삭제를 요청함.</li>
+</ul>
 
 <p><br /></p>
 
-<h2 id="그래서-rest-api-란">그래서, REST API 란?</h2>
+<h4 id="그래서-rest-api-란">그래서, REST API 란?</h4>
 
-<h3 id="rest의-개념">REST의 개념:</h3>
+<h5 id="rest의-개념">REST의 개념:</h5>
 
 <ul>
   <li>HTTP 프로토콜에 있는 Method를 활용한 아키텍처 스타일</li>
@@ -312,7 +325,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/jpa">
             <section class="post">
                 <h2>[백엔드] JPA 란?</h2>
-                <p>## JPA(Java Persistent API) - ORM(Object Relational Mapping)으로, RDB 데이터 베이스의 정보를 객체지향으로 활용할 수...</p>
+                <p>#### JPA(Java Persistent API) - ORM(Object Relational Mapping)으로, RDB 데이터 베이스의 정보를 객체지향으로 활용할 수...</p>
             </section>
         </a>
     
@@ -322,7 +335,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
         <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/entity-n-repository">
             <section class="post">
                 <h2>[백엔드] Entity 생성과 Repository</h2>
-                <p>Naming Convention Camel Case: 단어 첫 문자는 소문자, 띄어쓰기 대신 대문자로 구분함. JAVA 변수 선언...</p>
+                <p>Naming Convention Camel Case : 단어 첫 문자는 소문자, 띄어쓰기 대신 대문자로 구분함. JAVA 변수...</p>
             </section>
         </a>
     
