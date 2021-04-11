@@ -21,7 +21,7 @@ categories: yj
 다음은 [백준 블로그](https://www.acmicpc.net/blog/view/12)에 있는 문제 해설에서 가져온 그림이다. 위의 해결 방법을 이해하는데 도움이 된다. 
 
 
-![histogram](https://user-images.githubusercontent.com/63405904/109445062-10bb9c80-7a82-11eb-9887-9047f1485785.png)
+![histogram](https://user-images.githubusercontent.com/63405904/109445062-10bb9c80-7a82-11eb-9887-9047f1485785.png){: width="80%"}
 
 
 처음에 단순히 이 풀이방법을 배열과 재귀를 사용해서 구현하는 방법으로 시도를 했었다. 사이트에 나와있는 테스트 케이스가 통과하길래 바로 채점을 했더니 결과는 *시간초과* 였다.. 개인적으로 알고리즘을 할 때 가장 어려운 부분이 답을 출력이 되지만 시간초과가 나올 때 인 것 같다. 문제설명 밑에 해당 문제를 세그먼트 트리를 사용한 분할정복으로 풀 수 있다고 하길래 세그먼트 트리에 대해서 공부하면서 정리한 내용과 처음에 접근했던 방식에 대해서 쓰려고 한다. 
@@ -157,7 +157,7 @@ static void solve(int startIndex, int lastIndex){
 
 ###### Segment Tree 란?
 
-![histogram](https://user-images.githubusercontent.com/63405904/109445201-6e4fe900-7a82-11eb-8e6c-09edb7e236a4.png)
+<img src="https://user-images.githubusercontent.com/63405904/109445201-6e4fe900-7a82-11eb-8e6c-09edb7e236a4.png" alt="histogram" style="zoom:80%;" />
 
 히스토그램 문제에서는 위에서 말했듯 다음 두가지 풀이를 반복한다. 
 
