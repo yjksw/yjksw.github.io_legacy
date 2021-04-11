@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>Author</title>
+    <title>코딩만 잘하면 될까?</title>
     <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
 
     <!-- Mobile Meta -->
@@ -26,31 +26,31 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//author/yj/page6/" />
+        <link rel="canonical" href="//tag/backend/" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="코딩만 잘하면 될까?" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Author" />
+    <meta property="og:title" content="코딩만 잘하면 될까?" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//author/yj/page6/" />
-    <meta property="og:image" content="/assets/images/cover4.jpg" />
+    <meta property="og:url" content="//tag/backend/" />
+    <meta property="og:image" content="/assets/images/cover2.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Author" />
+    <meta name="twitter:title" content="코딩만 잘하면 될까?" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//author/yj/page6/" />
-    <meta name="twitter:image:src" content="/assets/images/cover4.jpg" />
+    <meta name="twitter:url" content="//tag/backend/" />
+    <meta name="twitter:image:src" content="/assets/images/cover2.jpg" />
 
     <script type="application/ld+json">
 {
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
-    "name": "Author",
-    "url": "//author/yj/page6/",
-    "image": "/assets/images/cover4.jpg",
+    "name": "코딩만 잘하면 될까?",
+    "url": "//tag/backend/",
+    "image": "/assets/images/cover2.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
     </script>
@@ -61,7 +61,7 @@
 
     
 </head>
-<body class="paged archive-template nav-closed">
+<body class="tag-template nav-closed">
 
     <!-- The blog navigation links -->
     <div class="nav">
@@ -76,11 +76,11 @@
         <li class="nav-database " role="presentation"><a href="/tag/database">Database</a></li>
 	<li class="nav-github " role="presentation"><a href="/tag/github">Github</a></li>
         <li class="nav-java " role="presentation"><a href="/tag/java">Java</a></li>	
-        <li class="nav-backend " role="presentation"><a href="/tag/backend">Back-end</a></li>
+        <li class="nav-backend  nav-current" role="presentation"><a href="/tag/backend">Back-end</a></li>
 	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
   	<li class="nav-woowacourse " role="presentation"><a href="/tag/wooowacourse">우아한테크코스</a></li>	
 	<li class="nav-daily " role="presentation"><a href="/tag/daily">그냥 쓰는 글</a></li>
-	<li class="nav-author  nav-current" role="presentation"><a href="/author/yj">YJ</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
     </ul>
     <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
 </div>
@@ -90,78 +90,44 @@
     <div class="site-wrapper">
 
         <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
-        <!-- < default}} -->
+        <!-- dynamically overriding backgrounds for tags as well as descriptions -->
+
+
+<!-- default -->
 <!-- The tag above means - insert everything in this file into the [body] of the default.hbs template -->
 
-<!-- The big featured header -->
-
-<!-- Everything inside the #author tags pulls data from the author -->
-<!-- #author  -->
-    <header class="main-header author-head " style="background-image: url(/assets/images/cover4.jpg) ">
-        <nav class="main-nav overlay clearfix">
-            <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
-            
-                <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
-            
-        </nav>
-    </header>
-
-    <section class="author-profile inner">
+<!-- If we have a tag cover, display that - else blog cover - else nothing -->
+<header class="main-header tag-head " style="background-image: url(/assets/images/cover2.jpg) ">
+    <nav class="main-nav overlay clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
         
-            
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
         
+    </nav>
+    <div class="vertical">
+        <div class="main-header-content inner">
+            <h1 class="page-title">Backend</h1>
+            <h2 class="page-description">
             
-        
+			    A 3-post collection
             
-        
-            
-        
-            
-        
-            
-        
-            
-                
-                <figure class="author-image">
-                    <div class="img" style="background-image: url(/assets/images/yj.png)"><span class="hidden">YJ's Dev Journals's Picture</span></div>
-                </figure>
-                
-                <h1 class="author-title">YJ's Dev Journals</h1>
-                
-                    <div style="display:inline; text-align: justify; text-justify: inter-word;">
-                        <h2 class="author-bio">개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</h2>
-                    </div>
-                
-                <div class="author-meta">
-                    <span class="author-location icon-location">개발개발, 개발</span>
-                    <span class="author-link icon-link"><a href="http://yjksw.github.io/">yjksw.github.io</a></span>
-                    <!-- <span class="author-stats"><i class="icon-stats"></i> [[plural ../pagination.total empty='No posts' singular='% post' plural='% posts']]</span> -->
-                    <span class="author-stats"><i class="icon-stats"></i>34 posts</span>
-                </div>
-            
-        
-    </section>
-<!-- /author -->
+            </h2>
+        </div>
+    </div>
+</header>
 
 <!-- The main content area on the homepage -->
 <main id="content" class="content" role="main">
 
-    <!-- The tag below includes the post loop - partials/loop.hbs  -->
+    <!-- The tag below includes the post loop - partials/loop.hbs -->
         <!-- Previous/next page links - only displayed on page 2+ -->
     <div class="extra-pagination inner">
         
             <nav class="pagination" role="pagination">
     
-        
-            <a class="newer-posts" href="/author/yj/page5/" title="Previous Page">&laquo; Newer Posts</a>
-      
-    
-    <span class="page-number"> Page 6 of 7 </span>
-    
-        <a class="older-posts" href="/author/yj/page7/" title="Next Page">Older Posts &raquo;</a>
-    
+    <span class="page-number"> Page 1 of 1 </span>
+     
 </nav>
-
         
     </div>
 
@@ -169,10 +135,10 @@
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/mysql-6">[Database]MySQL_6</a></h2>
+            <h2 class="post-title"><a href="/jpa">[백엔드] JPA 란?</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>관계형 데이터베이스_2 다음은 생활코딩에서 Database를 공부하면서 요약 및 정리한 내용이다. 관계형 데이터베이스의 꽃 JOIN 테이블 JOIN을 대사로 만들어 본다면, MySQL아, bookList 테이블을 읽을 때 author id... <a class="read-more" href="/mysql-6">&raquo;</a></p>
+            <p>JPA(Java Persistent API) ORM(Object Relational Mapping)으로, RDB 데이터 베이스의 정보를 객체지향으로 활용할 수 있도록 해주는 도구. Object(자바 객체)와 Relation(관계형 데이터베이스) 간의 맵핑을 통해서 손쉽게 기술을 적용할... <a class="read-more" href="/jpa">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -202,20 +168,20 @@
                 on
                 
                     
-                       <a href='/tag/database'>Database</a>
+                       <a href='/tag/backend'>Backend</a>
                     
                 
             
-            <time class="post-date" datetime="2020-07-28">28 Jul 2020</time>
+            <time class="post-date" datetime="2020-09-23">23 Sep 2020</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/mysql-5">[Database]MySQL_5</a></h2>
+            <h2 class="post-title"><a href="/rest-api">[백엔드] Rest API 란?</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>관계형 데이터베이스_1 다음은 생활코딩에서 Database를 공부하면서 요약 및 정리한 내용이다. 관계형 데이터베이스의 필요성 어디선가 중복의 악취가 난다면… 그것은 개선할 필요가 있다는 신호이다!! (우리는 효율을 중요시 하는... <a class="read-more" href="/mysql-5">&raquo;</a></p>
+            <p>HTTP - GET Method 주소창에 parameter 노출 브라우저에서 주소에 대한 캐시가 이루어지므로, 정보를 얻을 때 사용. Get Method에서 parameter 받기 parameter로 각각 변수를 받아서 받아내면 됌.... <a class="read-more" href="/rest-api">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -245,20 +211,20 @@
                 on
                 
                     
-                       <a href='/tag/database'>Database</a>
+                       <a href='/tag/backend'>Backend</a>
                     
                 
             
-            <time class="post-date" datetime="2020-07-28">28 Jul 2020</time>
+            <time class="post-date" datetime="2020-09-22">22 Sep 2020</time>
         </footer>
     </article>
     
     <article class="post">
         <header class="post-header">
-            <h2 class="post-title"><a href="/mysql-4">[Database]MySQL_4</a></h2>
+            <h2 class="post-title"><a href="/entity-n-repository">[백엔드] Entity 생성과 Repository</a></h2>
         </header>
         <section class="post-excerpt">
-            <p>MySQL_DELETE 다음은 생활코딩에서 Database를 공부하면서 요약 및 정리한 내용이다. CRUD 에서 DELETE 부분에 해당하는 DELETE 문법이다. DELETE는 매우 간단하고 쉬운 논리이며 문법이지만 가장 조심해서 사용해야 한다.... <a class="read-more" href="/mysql-4">&raquo;</a></p>
+            <p>Naming Convention Camel Case: 단어 첫 문자는 소문자, 띄어쓰기 대신 대문자로 구분함. JAVA 변수 선언 시 사용함. ex. phoneNumber Snake Case: 단어는 모두 소문자, 띄어쓰기 대신(_)로... <a class="read-more" href="/entity-n-repository">&raquo;</a></p>
         </section>
         <footer class="post-meta">
             
@@ -288,97 +254,11 @@
                 on
                 
                     
-                       <a href='/tag/database'>Database</a>
+                       <a href='/tag/backend'>Backend</a>
                     
                 
             
-            <time class="post-date" datetime="2020-07-28">28 Jul 2020</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/mysql-3">[Database]MySQL_3</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>MySQL_UPDATE CRUD 에서 UPDATE 부분에 해당하는 UPDATE 문법이다. 언제나 그렇듯 강의를 해주시는 egoing님께서는 UPDATE 문법에 관련한 검색하는 과정을 함께하셨다. 기본 문법: UPDATE 테이블이름 SET 변경하고_싶은_헤더_타이틀=변경내용1,.. WHERE... <a class="read-more" href="/mysql-3">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/yj.png" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/database'>Database</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-07-28">28 Jul 2020</time>
-        </footer>
-    </article>
-    
-    <article class="post">
-        <header class="post-header">
-            <h2 class="post-title"><a href="/mysql-2">[Database]MySQL_2</a></h2>
-        </header>
-        <section class="post-excerpt">
-            <p>MySQL_SELECT CRUD 에서 READ 부분에 해당하는 SELECT 문법이다. 기본 문법: SELECT 읽고 싶은 헤더 title WHERE 조건 ORDER BY 정렬기준 LIMIT 제한숫자 이것이 SELECT의 기본문법은 아니지만... <a class="read-more" href="/mysql-2">&raquo;</a></p>
-        </section>
-        <footer class="post-meta">
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-            
-                
-
-                <img class="author-thumb" src="/assets/images/yj.png" alt="Author image" nopin="nopin" />
-                <!-- author -->
-                <a href='/author/yj'>YJ's Dev Journals</a>
-
-                
-            
-
-            <!-- [[tags prefix=" on "]] -->
-            
-                on
-                
-                    
-                       <a href='/tag/database'>Database</a>
-                    
-                
-            
-            <time class="post-date" datetime="2020-07-28">28 Jul 2020</time>
+            <time class="post-date" datetime="2020-09-22">22 Sep 2020</time>
         </footer>
     </article>
     
@@ -387,16 +267,9 @@
     
         <nav class="pagination" role="pagination">
     
-        
-            <a class="newer-posts" href="/author/yj/page5/" title="Previous Page">&laquo; Newer Posts</a>
-      
-    
-    <span class="page-number"> Page 6 of 7 </span>
-    
-        <a class="older-posts" href="/author/yj/page7/" title="Next Page">Older Posts &raquo;</a>
-    
+    <span class="page-number"> Page 1 of 1 </span>
+     
 </nav>
-
     
 
 
