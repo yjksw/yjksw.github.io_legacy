@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>[백엔드] Rest API 란?</title>
+    <title>JPA의 연관관계 설정</title>
     <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
 
     <!-- Mobile Meta -->
@@ -26,21 +26,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//rest-api" />
+        <link rel="canonical" href="//jpa-relation" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="코딩만 잘하면 될까?" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="[백엔드] Rest API 란?" />
+    <meta property="og:title" content="JPA의 연관관계 설정" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//rest-api" />
+    <meta property="og:url" content="//jpa-relation" />
     <meta property="og:image" content="/assets/images/cover6.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[백엔드] Rest API 란?" />
+    <meta name="twitter:title" content="JPA의 연관관계 설정" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//rest-api" />
+    <meta name="twitter:url" content="//jpa-relation" />
     <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
 
     <script type="application/ld+json">
@@ -48,8 +48,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
-    "name": "[백엔드] Rest API 란?",
-    "url": "//rest-api",
+    "name": "JPA의 연관관계 설정",
+    "url": "//jpa-relation",
     "image": "/assets/images/cover6.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
@@ -137,7 +137,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post tag-backend">
 
         <header class="post-header">
-            <h1 class="post-title">[백엔드] Rest API 란?</h1>
+            <h1 class="post-title">JPA의 연관관계 설정</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -158,7 +158,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
                     <a href='/author/yj'>YJ's Dev Journals</a>
                 
             
-            <time class="post-date" datetime="2020-09-22">22 Sep 2020</time>
+            <time class="post-date" datetime="2020-09-24">24 Sep 2020</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
@@ -173,82 +173,77 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
         <section class="post-content">
 
-            <p><br /></p>
+            <p><br />
+<img src="https://user-images.githubusercontent.com/63405904/114411529-37273880-9be7-11eb-8acf-9af446138fe8.png" alt="image" /></p>
 
-<h4 id="http---get-method">HTTP - GET Method</h4>
+<h3 id="관계-예시">관계 예시</h3>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411303-02b37c80-9be7-11eb-937a-c8fd90afae89.png" alt="image" /></p>
 
 <ul>
+  <li>한명의 사람이 여러 아이템을 쇼핑할 때</li>
+  <li>1대다 관계</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411402-1b239700-9be7-11eb-8f48-141af4cfed11.png" alt="image" /></p>
+
+<ul>
+  <li>Item table에 user_id가 들어가면 한 아이템당 하나의 유저id 만 쓸 수 있으므로 불가하다.</li>
+  <li>User 테이블에 item_id가 들어가면 한 유저당 아이템을 1개밖에 못사기 때문에 불가하다.</li>
+</ul>
+
+<p><strong>해결 방법</strong></p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411426-1eb71e00-9be7-11eb-920a-f3319c9936da.png" alt="image" /></p>
+
+<ul>
+  <li>중간에 ‘주문내역’ 테이블을 생성하여 두 가지를 연결시켜 줄 수 있다.</li>
+  <li>유저 한명당 여러가지 주문 내역을 가질 수 있기 때문에 1대N 관계로 존재한다. 한 유저가 몇개의 아이템을 샀는지 확인할 수 있다.</li>
+  <li>아이템에 대해서도 1대N 관계를 가지면 해당 아이템을 몇명의 유저들이 주문했는지 등에 대한 정보를 알 수 있으므로 효율적이다.</li>
+</ul>
+
+<h4 id="mysql-workbench에서-erd-로-테이블-생성하기">MySQL Workbench에서 ERD 로 테이블 생성하기</h4>
+
+<p>상단에 Database → Reverse Engineer → Continue 누리고 Execute → ERD 할 수 있는 다이어그램 생성.</p>
+
+<ul>
+  <li>Reverse Engineer: 테이블 → ERD</li>
+  <li>Forward Engineer: ERD → 테이블</li>
+</ul>
+
+<h4 id="실습-user-와-item-테이블을-연결하는-주문내역-database-생성하기">실습: User 와 Item 테이블을 연결하는 주문내역 database 생성하기</h4>
+
+<ol>
   <li>
-    <p>주소창에 parameter 노출</p>
+    <p>Item 테이블과 order_detail 테이블을 필요한 columns 과 맞게 생성한다.</p>
   </li>
-  <li>브라우저에서 주소에 대한 캐시가 이루어지므로, 정보를 얻을 때 사용.
+  <li>
+    <p>order_detail에 user_id와 item_id 칼럼을 직접 생성해 줄 수 있지만 ERD 관계선을 사용해서 정의하도록 한다 ⇒ 점선 1:N 관계로 User:order_detail &amp; item:order_detail을 연결해준다.</p>
+
     <ul>
-      <li>
-        <p>Get Method에서 parameter 받기</p>
-
-        <p>parameter로 각각 변수를 받아서 받아내면 됌.</p>
-
-        <p>여러가지로 변수가 늘어가는 상황:</p>
-
-        <ul>
-          <li>너무 변수가 많다면 parameter를 모두 써서 받기 어려울 수 있다.</li>
-          <li>객체로 받을 수 있는 방법:
-            <ul>
-              <li>따로 변수를 받는 class를 생성함. (getter, setter 와 함께 하고, parameter를 클래스 객체로 받는다.)</li>
-              <li>jackson library 로 인해 객체를 리턴하면 자동적으로 json으로 변환이 되어서 return 이 됌.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
+      <li>실선(Identifying): 식별관계</li>
     </ul>
-  </li>
-  <li>메소드에 대해서 두 주소가 같다면, spring boot는 실행을 시키지 못함.</li>
-</ul>
 
-<h4 id="http---post-method">HTTP - POST Method</h4>
+    <p>부모 테이블의 PK가 자식 테이블의 FK/PK 가 되는 경우</p>
 
-<ul>
-  <li>
-    <p>주소창에 parameter 노출 없음.</p>
-  </li>
-  <li>
-    <p>브라우저가 주소 캐시를 하지 못하는 특성이 있음.</p>
-  </li>
-  <li>
-    <p>@PostingMapping을 통해서 postMethod를 구현할 수 있음.</p>
+    <p>부모가 있어야지 자식이 생기는 경우</p>
+
+    <ul>
+      <li>점선(Non-identifying): 비식별관계</li>
+    </ul>
+
+    <p>부모 테이블의 PK가 자식 테이블의 일반속성인 경우</p>
+
+    <p>부모가 없어도 자식이 생기는 경우</p>
   </li>
   <li>
-    <p>객체에 json으로 mapping 시켜줄 수 있음.</p>
+    <p>Forward Enginner를 통해서 ERD 다이아그램을 테이블로 생성한다.</p>
   </li>
-</ul>
+</ol>
 
-<h4 id="http---putpatch-method">HTTP - PUT/PATCH Method</h4>
-
-<ul>
-  <li>POST 와 마찬가지로 BODY에 데이터가 있으며, 주로 업데이트를 요청함.</li>
-</ul>
-
-<h4 id="http---delete-method">HTTP - DELETE Method</h4>
-
-<ul>
-  <li>GET 과 마찬가지로 parameter로 동작하며, 주로 삭제를 요청함.</li>
-</ul>
-
-<p><br /></p>
-
-<h4 id="그래서-rest-api-란">그래서, REST API 란?</h4>
-
-<h5 id="rest의-개념">REST의 개념:</h5>
-
-<ul>
-  <li>HTTP 프로토콜에 있는 Method를 활용한 아키텍처 스타일</li>
-  <li>HTTP method를 통해서 resource를 처리하는 것임.</li>
-  <li>CRUD를 통해서 resource를 조작할 때 사용함.</li>
-</ul>
-
-<p><a href="https://www.notion.so/36cea78138d54d4ba5eae244ffdb2d29">REST</a></p>
-
-<p>중요한 것은 어떻게 URL 에서 데이터를 꺼내올 것이며, 어떻게 다시 웹 사이트에 return 할 것인가 이다.</p>
+<blockquote>
+  <p>ERD를 통해서 데이터베이스를 생성하는 방법이고, 직접 테이블을 생성해도 가능하다!</p>
+</blockquote>
 
 
         </section>
@@ -293,15 +288,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=[백엔드] Rest API 란?&amp;url=rest-api"
+                        <a class="icon-twitter" href="http://twitter.com/share?text=JPA의 연관관계 설정&amp;url=jpa-relation"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=rest-api"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=jpa-relation"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=rest-api"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=jpa-relation"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -322,20 +317,20 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/jpa-crud">
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/bin-search-parametric-Search">
             <section class="post">
-                <h2>JPA를 통한 CRUD</h2>
-                <p>### Repository 생성 - Repository: 따로 쿼리문을 작성하지 않아도 객체에 대한 database 관리를 할 수...</p>
+                <h2>[알고리즘] 이분 탐색(Binary Search)응용 파라메트릭서치(Parametric Search)</h2>
+                <p>백준 이분탐색 알고리즘 [문제](https://www.acmicpc.net/problem/1654)를 풀다가 **Parametric Search**라는 새로운 개념을 접하게 되었다. 처음 이 랜선 자르기...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/entity-n-repository">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/jpa-relation-code-2">
             <section class="post">
-                <h2>[백엔드] Entity 생성과 Repository</h2>
-                <p>Naming Convention Camel Case : 단어 첫 문자는 소문자, 띄어쓰기 대신 대문자로 구분함. JAVA 변수...</p>
+                <h2>JPA 연관관계 설정 코딩하기-2</h2>
+                <p>Annotation으로 연관관계 설정하기 목표는 1:N 관계 설정이다. 현재 상태: User와 OrderDetail이라는 테이블이 1:N 관계가 설정되어...</p>
             </section>
         </a>
     

@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 
     <!-- Page Meta -->
-    <title>[백엔드] Rest API 란?</title>
+    <title>JPA 연관관계 설정 코딩하기-2</title>
     <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
 
     <!-- Mobile Meta -->
@@ -26,21 +26,21 @@
     <style>.hljs { background: none; }</style>
 
     <!-- Ghost outputs important style and meta data with this tag -->
-        <link rel="canonical" href="//rest-api" />
+        <link rel="canonical" href="//jpa-relation-code-2" />
     <meta name="referrer" content="origin" />
     <link rel="next" href="/page2/" />
 
     <meta property="og:site_name" content="코딩만 잘하면 될까?" />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="[백엔드] Rest API 란?" />
+    <meta property="og:title" content="JPA 연관관계 설정 코딩하기-2" />
     <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta property="og:url" content="//rest-api" />
+    <meta property="og:url" content="//jpa-relation-code-2" />
     <meta property="og:image" content="/assets/images/cover6.jpg" />
 
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="[백엔드] Rest API 란?" />
+    <meta name="twitter:title" content="JPA 연관관계 설정 코딩하기-2" />
     <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
-    <meta name="twitter:url" content="//rest-api" />
+    <meta name="twitter:url" content="//jpa-relation-code-2" />
     <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
 
     <script type="application/ld+json">
@@ -48,8 +48,8 @@
     "@context": "http://schema.org",
     "@type": "Website",
     "publisher": "코딩만 잘하면 될까?",
-    "name": "[백엔드] Rest API 란?",
-    "url": "//rest-api",
+    "name": "JPA 연관관계 설정 코딩하기-2",
+    "url": "//jpa-relation-code-2",
     "image": "/assets/images/cover6.jpg",
     "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
 }
@@ -137,7 +137,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
     <article class="post tag-backend">
 
         <header class="post-header">
-            <h1 class="post-title">[백엔드] Rest API 란?</h1>
+            <h1 class="post-title">JPA 연관관계 설정 코딩하기-2</h1>
             <section class="post-meta">
             <!-- <a href='/'></a> -->
 
@@ -158,7 +158,7 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
                     <a href='/author/yj'>YJ's Dev Journals</a>
                 
             
-            <time class="post-date" datetime="2020-09-22">22 Sep 2020</time>
+            <time class="post-date" datetime="2020-09-24">24 Sep 2020</time>
                 <!-- [[tags prefix=" on "]] -->
                 
                 on
@@ -175,80 +175,91 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
             <p><br /></p>
 
-<h4 id="http---get-method">HTTP - GET Method</h4>
+<h3 id="annotation으로-연관관계-설정하기">Annotation으로 연관관계 설정하기</h3>
 
 <ul>
-  <li>
-    <p>주소창에 parameter 노출</p>
+  <li>목표는 1:N 관계 설정이다.</li>
+  <li>현재 상태:
+    <ol>
+      <li>User와 OrderDetail이라는 테이블이 1:N 관계가 설정되어 있다.</li>
+    </ol>
   </li>
-  <li>브라우저에서 주소에 대한 캐시가 이루어지므로, 정보를 얻을 때 사용.
-    <ul>
-      <li>
-        <p>Get Method에서 parameter 받기</p>
-
-        <p>parameter로 각각 변수를 받아서 받아내면 됌.</p>
-
-        <p>여러가지로 변수가 늘어가는 상황:</p>
-
-        <ul>
-          <li>너무 변수가 많다면 parameter를 모두 써서 받기 어려울 수 있다.</li>
-          <li>객체로 받을 수 있는 방법:
-            <ul>
-              <li>따로 변수를 받는 class를 생성함. (getter, setter 와 함께 하고, parameter를 클래스 객체로 받는다.)</li>
-              <li>jackson library 로 인해 객체를 리턴하면 자동적으로 json으로 변환이 되어서 return 이 됌.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>메소드에 대해서 두 주소가 같다면, spring boot는 실행을 시키지 못함.</li>
-</ul>
-
-<h4 id="http---post-method">HTTP - POST Method</h4>
-
-<ul>
-  <li>
-    <p>주소창에 parameter 노출 없음.</p>
-  </li>
-  <li>
-    <p>브라우저가 주소 캐시를 하지 못하는 특성이 있음.</p>
-  </li>
-  <li>
-    <p>@PostingMapping을 통해서 postMethod를 구현할 수 있음.</p>
-  </li>
-  <li>
-    <p>객체에 json으로 mapping 시켜줄 수 있음.</p>
-  </li>
-</ul>
-
-<h4 id="http---putpatch-method">HTTP - PUT/PATCH Method</h4>
-
-<ul>
-  <li>POST 와 마찬가지로 BODY에 데이터가 있으며, 주로 업데이트를 요청함.</li>
-</ul>
-
-<h4 id="http---delete-method">HTTP - DELETE Method</h4>
-
-<ul>
-  <li>GET 과 마찬가지로 parameter로 동작하며, 주로 삭제를 요청함.</li>
 </ul>
 
 <p><br /></p>
 
-<h4 id="그래서-rest-api-란">그래서, REST API 란?</h4>
-
-<h5 id="rest의-개념">REST의 개념:</h5>
+<h4 id="user-table-과-orderdetail-table-1n-관계-설정하기">User Table 과 OrderDetail Table 1:N 관계 설정하기</h4>
 
 <ul>
-  <li>HTTP 프로토콜에 있는 Method를 활용한 아키텍처 스타일</li>
-  <li>HTTP method를 통해서 resource를 처리하는 것임.</li>
-  <li>CRUD를 통해서 resource를 조작할 때 사용함.</li>
+  <li>OrderDetail 테이블의 입장에서 ManyToOne 이므로,
+    <ol>
+      <li>OrderDetail 에 <strong>private Long UserId → private User user</strong> 로 변경.</li>
+      <li>해당 변수 위에 <strong>@ManyToOne</strong> 추가</li>
+    </ol>
+  </li>
+  <li>User 테이블의 입장에서 OneToMany 이므로,
+    <ol>
+      <li>User 클래스에 orderDetailList를 받을 List<OrderDetail> 변수를 생성.</OrderDetail></li>
+    </ol>
+
+    <p>private List<OrderDetail> orderDetailList;</OrderDetail></p>
+  </li>
 </ul>
 
-<p><a href="https://www.notion.so/36cea78138d54d4ba5eae244ffdb2d29">REST</a></p>
+<ol>
+  <li>
+    <p><strong>@OneToMany</strong>를 변수 위에 추가.</p>
 
-<p>중요한 것은 어떻게 URL 에서 데이터를 꺼내올 것이며, 어떻게 다시 웹 사이트에 return 할 것인가 이다.</p>
+    <p>@OneToMany(fetch = FetchType.LAZY, mappedBy = “user”)</p>
+
+    <p>OrderDetail이라는 클래스 안에 “user”라는 변수와 매칭시키겠다는 것.</p>
+  </li>
+</ol>
+
+<hr />
+
+<p><strong>연관관계 설정 간단 정리:</strong></p>
+
+<ol>
+  <li>먼저 변수가 있는 Class에 가서 현재 있는 Class 기준으로 어떤 관계인지 파악 후, 해당 변수 위에 annotation을 추가함.</li>
+  <li>이후 Long 등이 아니라, 객체로 연결해야 함.</li>
+  <li>One 입장인 Class에 가서 상대는 Many이기 때문에 List로 받는다는 변수를 추가함.</li>
+  <li>Annotation을 추가하고, fetch type, mapped by 등등을 추가함.</li>
+</ol>
+
+<p><br /></p>
+
+<h4 id="연관관계-설정-test-하기">연관관계 설정 Test 하기</h4>
+
+<ul>
+  <li>UserRepositoryTest에 가서 read() 함수에 대한 test를 작성해보자.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">read</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">4L</span><span class="o">);</span>
+
+        <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">selectUser</span><span class="o">.</span><span class="na">getOrderDetailList</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">detail</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="n">detail</span><span class="o">.</span><span class="na">getItem</span><span class="o">();</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+            <span class="o">});</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이렇게 하면, item에 대한 결과값이 String으로 나오게 됌</li>
+</ul>
+
+<blockquote>
+  <p>주의사항: Lombok을 사용할 때, 여기서 toString을 사용하게 되면, OrderDetail class에서 User, Item에 대한 객체에 대해서도 toString을 실행하기 때문에 overflow가 발생해서 상충하여 오류가 남.</p>
+</blockquote>
+
+<p><strong>OrderDetail</strong> 에서 다음을 추가해서 제외 시키는 제어문을 넣어주어야 함.</p>
+
+<p>@ToString(exclude={“user”, “item”);</p>
 
 
         </section>
@@ -293,15 +304,15 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
                     <section class="share">
                         <h4>Share this post</h4>
-                        <a class="icon-twitter" href="http://twitter.com/share?text=[백엔드] Rest API 란?&amp;url=rest-api"
+                        <a class="icon-twitter" href="http://twitter.com/share?text=JPA 연관관계 설정 코딩하기-2&amp;url=jpa-relation-code-2"
                             onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
                             <span class="hidden">Twitter</span>
                         </a>
-                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=rest-api"
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=jpa-relation-code-2"
                             onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
                             <span class="hidden">Facebook</span>
                         </a>
-                        <a class="icon-google-plus" href="https://plus.google.com/share?url=rest-api"
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=jpa-relation-code-2"
                            onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
                             <span class="hidden">Google+</span>
                         </a>
@@ -322,20 +333,20 @@ MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
 
     <!-- [[! next_post ]] -->
     
-        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/jpa-crud">
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/jpa-relation">
             <section class="post">
-                <h2>JPA를 통한 CRUD</h2>
-                <p>### Repository 생성 - Repository: 따로 쿼리문을 작성하지 않아도 객체에 대한 database 관리를 할 수...</p>
+                <h2>JPA의 연관관계 설정</h2>
+                <p>![image](https://user-images.githubusercontent.com/63405904/114411529-37273880-9be7-11eb-8acf-9af446138fe8.png) ### 관계 예시 ![image](https://user-images.githubusercontent.com/63405904/114411303-02b37c80-9be7-11eb-937a-c8fd90afae89.png) - 한명의 사람이 여러 아이템을 쇼핑할 때 - 1대다 관계...</p>
             </section>
         </a>
     
     <!-- [[! /next_post ]] -->
     <!-- [[! prev_post ]] -->
     
-        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/entity-n-repository">
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/jpa-relation-code-1">
             <section class="post">
-                <h2>[백엔드] Entity 생성과 Repository</h2>
-                <p>Naming Convention Camel Case : 단어 첫 문자는 소문자, 띄어쓰기 대신 대문자로 구분함. JAVA 변수...</p>
+                <h2>JPA 연관관계 설정 코딩하기-1</h2>
+                <p>실습을 통해서 JPA 연관관계 Intellij 프로젝트에 적용하기 테이블을 생성하게 되면 거기에 맞는 entity를 프로젝트에 추가해...</p>
             </section>
         </a>
     

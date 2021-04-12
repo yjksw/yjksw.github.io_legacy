@@ -98,6 +98,53 @@
     
       
       <item>
+        <title>JPA의 연관관계 설정</title>
+        
+          <description>&lt;p&gt;&lt;br /&gt;
+&lt;img src=&quot;https://user-images.githubusercontent.com/63405904/114411529-37273880-9be7-11eb-8acf-9af446138fe8.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 24 Sep 2020 10:18:00 +0000</pubDate>
+        <link>
+        /jpa-relation</link>
+        <guid isPermaLink="true">/jpa-relation</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>JPA 연관관계 설정 코딩하기-2</title>
+        
+          <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+</description>
+        
+        <pubDate>Thu, 24 Sep 2020 10:18:00 +0000</pubDate>
+        <link>
+        /jpa-relation-code-2</link>
+        <guid isPermaLink="true">/jpa-relation-code-2</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>JPA 연관관계 설정 코딩하기-1</title>
+        
+          <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;실습을-통해서-jpa-연관관계-intellij-프로젝트에-적용하기&quot;&gt;실습을 통해서 JPA 연관관계 Intellij 프로젝트에 적용하기&lt;/h3&gt;
+
+</description>
+        
+        <pubDate>Thu, 24 Sep 2020 10:18:00 +0000</pubDate>
+        <link>
+        /jpa-relation-code-1</link>
+        <guid isPermaLink="true">/jpa-relation-code-1</guid>
+      </item>
+      
+    
+      
+      <item>
         <title>[동적계획법] 이항계수</title>
         
           <description>&lt;p&gt;이런 말이 있다.&lt;/p&gt;
@@ -123,6 +170,22 @@
         <link>
         /jpa</link>
         <guid isPermaLink="true">/jpa</guid>
+      </item>
+      
+    
+      
+      <item>
+        <title>JPA를 통한 CRUD</title>
+        
+          <description>&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+&lt;h3 id=&quot;repository-생성&quot;&gt;Repository 생성&lt;/h3&gt;
+
+</description>
+        
+        <pubDate>Wed, 23 Sep 2020 10:18:00 +0000</pubDate>
+        <link>
+        /jpa-crud</link>
+        <guid isPermaLink="true">/jpa-crud</guid>
       </item>
       
     

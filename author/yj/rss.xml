@@ -850,6 +850,274 @@
 	</item>
 
 	<item>
+	  <title>JPA의 연관관계 설정</title>
+	  <link>//jpa-relation</link>
+	  <author></author>
+	  <pubDate>2020-09-24T10:18:00+00:00</pubDate>
+	  <guid>//jpa-relation</guid>
+	  <description><![CDATA[
+	     <p><br />
+<img src="https://user-images.githubusercontent.com/63405904/114411529-37273880-9be7-11eb-8acf-9af446138fe8.png" alt="image" /></p>
+
+<h3 id="관계-예시">관계 예시</h3>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411303-02b37c80-9be7-11eb-937a-c8fd90afae89.png" alt="image" /></p>
+
+<ul>
+  <li>한명의 사람이 여러 아이템을 쇼핑할 때</li>
+  <li>1대다 관계</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411402-1b239700-9be7-11eb-8f48-141af4cfed11.png" alt="image" /></p>
+
+<ul>
+  <li>Item table에 user_id가 들어가면 한 아이템당 하나의 유저id 만 쓸 수 있으므로 불가하다.</li>
+  <li>User 테이블에 item_id가 들어가면 한 유저당 아이템을 1개밖에 못사기 때문에 불가하다.</li>
+</ul>
+
+<p><strong>해결 방법</strong></p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411426-1eb71e00-9be7-11eb-920a-f3319c9936da.png" alt="image" /></p>
+
+<ul>
+  <li>중간에 ‘주문내역’ 테이블을 생성하여 두 가지를 연결시켜 줄 수 있다.</li>
+  <li>유저 한명당 여러가지 주문 내역을 가질 수 있기 때문에 1대N 관계로 존재한다. 한 유저가 몇개의 아이템을 샀는지 확인할 수 있다.</li>
+  <li>아이템에 대해서도 1대N 관계를 가지면 해당 아이템을 몇명의 유저들이 주문했는지 등에 대한 정보를 알 수 있으므로 효율적이다.</li>
+</ul>
+
+<h4 id="mysql-workbench에서-erd-로-테이블-생성하기">MySQL Workbench에서 ERD 로 테이블 생성하기</h4>
+
+<p>상단에 Database → Reverse Engineer → Continue 누리고 Execute → ERD 할 수 있는 다이어그램 생성.</p>
+
+<ul>
+  <li>Reverse Engineer: 테이블 → ERD</li>
+  <li>Forward Engineer: ERD → 테이블</li>
+</ul>
+
+<h4 id="실습-user-와-item-테이블을-연결하는-주문내역-database-생성하기">실습: User 와 Item 테이블을 연결하는 주문내역 database 생성하기</h4>
+
+<ol>
+  <li>
+    <p>Item 테이블과 order_detail 테이블을 필요한 columns 과 맞게 생성한다.</p>
+  </li>
+  <li>
+    <p>order_detail에 user_id와 item_id 칼럼을 직접 생성해 줄 수 있지만 ERD 관계선을 사용해서 정의하도록 한다 ⇒ 점선 1:N 관계로 User:order_detail &amp; item:order_detail을 연결해준다.</p>
+
+    <ul>
+      <li>실선(Identifying): 식별관계</li>
+    </ul>
+
+    <p>부모 테이블의 PK가 자식 테이블의 FK/PK 가 되는 경우</p>
+
+    <p>부모가 있어야지 자식이 생기는 경우</p>
+
+    <ul>
+      <li>점선(Non-identifying): 비식별관계</li>
+    </ul>
+
+    <p>부모 테이블의 PK가 자식 테이블의 일반속성인 경우</p>
+
+    <p>부모가 없어도 자식이 생기는 경우</p>
+  </li>
+  <li>
+    <p>Forward Enginner를 통해서 ERD 다이아그램을 테이블로 생성한다.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>ERD를 통해서 데이터베이스를 생성하는 방법이고, 직접 테이블을 생성해도 가능하다!</p>
+</blockquote>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>JPA 연관관계 설정 코딩하기-2</title>
+	  <link>//jpa-relation-code-2</link>
+	  <author></author>
+	  <pubDate>2020-09-24T10:18:00+00:00</pubDate>
+	  <guid>//jpa-relation-code-2</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+
+<h3 id="annotation으로-연관관계-설정하기">Annotation으로 연관관계 설정하기</h3>
+
+<ul>
+  <li>목표는 1:N 관계 설정이다.</li>
+  <li>현재 상태:
+    <ol>
+      <li>User와 OrderDetail이라는 테이블이 1:N 관계가 설정되어 있다.</li>
+    </ol>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h4 id="user-table-과-orderdetail-table-1n-관계-설정하기">User Table 과 OrderDetail Table 1:N 관계 설정하기</h4>
+
+<ul>
+  <li>OrderDetail 테이블의 입장에서 ManyToOne 이므로,
+    <ol>
+      <li>OrderDetail 에 <strong>private Long UserId → private User user</strong> 로 변경.</li>
+      <li>해당 변수 위에 <strong>@ManyToOne</strong> 추가</li>
+    </ol>
+  </li>
+  <li>User 테이블의 입장에서 OneToMany 이므로,
+    <ol>
+      <li>User 클래스에 orderDetailList를 받을 List<OrderDetail> 변수를 생성.</OrderDetail></li>
+    </ol>
+
+    <p>private List<OrderDetail> orderDetailList;</OrderDetail></p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong>@OneToMany</strong>를 변수 위에 추가.</p>
+
+    <p>@OneToMany(fetch = FetchType.LAZY, mappedBy = “user”)</p>
+
+    <p>OrderDetail이라는 클래스 안에 “user”라는 변수와 매칭시키겠다는 것.</p>
+  </li>
+</ol>
+
+<hr />
+
+<p><strong>연관관계 설정 간단 정리:</strong></p>
+
+<ol>
+  <li>먼저 변수가 있는 Class에 가서 현재 있는 Class 기준으로 어떤 관계인지 파악 후, 해당 변수 위에 annotation을 추가함.</li>
+  <li>이후 Long 등이 아니라, 객체로 연결해야 함.</li>
+  <li>One 입장인 Class에 가서 상대는 Many이기 때문에 List로 받는다는 변수를 추가함.</li>
+  <li>Annotation을 추가하고, fetch type, mapped by 등등을 추가함.</li>
+</ol>
+
+<p><br /></p>
+
+<h4 id="연관관계-설정-test-하기">연관관계 설정 Test 하기</h4>
+
+<ul>
+  <li>UserRepositoryTest에 가서 read() 함수에 대한 test를 작성해보자.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">read</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">4L</span><span class="o">);</span>
+
+        <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">selectUser</span><span class="o">.</span><span class="na">getOrderDetailList</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">detail</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="n">detail</span><span class="o">.</span><span class="na">getItem</span><span class="o">();</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+            <span class="o">});</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이렇게 하면, item에 대한 결과값이 String으로 나오게 됌</li>
+</ul>
+
+<blockquote>
+  <p>주의사항: Lombok을 사용할 때, 여기서 toString을 사용하게 되면, OrderDetail class에서 User, Item에 대한 객체에 대해서도 toString을 실행하기 때문에 overflow가 발생해서 상충하여 오류가 남.</p>
+</blockquote>
+
+<p><strong>OrderDetail</strong> 에서 다음을 추가해서 제외 시키는 제어문을 넣어주어야 함.</p>
+
+<p>@ToString(exclude={“user”, “item”);</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>JPA 연관관계 설정 코딩하기-1</title>
+	  <link>//jpa-relation-code-1</link>
+	  <author></author>
+	  <pubDate>2020-09-24T10:18:00+00:00</pubDate>
+	  <guid>//jpa-relation-code-1</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+<h3 id="실습을-통해서-jpa-연관관계-intellij-프로젝트에-적용하기">실습을 통해서 JPA 연관관계 Intellij 프로젝트에 적용하기</h3>
+
+<p>테이블을 생성하게 되면 거기에 맞는 entity를 프로젝트에 추가해 주어야 한다.</p>
+
+<p><br /></p>
+
+<h4 id="entity-생성">Entity 생성</h4>
+
+<ol>
+  <li>Java → model 패키지 → Entity 패키지 → 새로운 테이블에 대한 Class 생성</li>
+  <li><strong>@Data</strong> 와 <strong>@Entity annotation</strong>을 추가</li>
+  <li>테이블에 있는 컬럼들과 같은 이름을 가진 변수들 생성.</li>
+  <li>Primary 키(Id)에 대해서 <strong>@Id</strong> 와 <strong>@GeneratedValue(strategy=GenerationType.IDENTITY)</strong> 를 추가</li>
+  <li>
+    <p>모든 생성자, 기본 생성자에 대한 annotation을 추가:</p>
+
+    <p>@AllArgsConstructor @NoArgsConstructor</p>
+  </li>
+</ol>
+
+<h4 id="repository-생성">Repository 생성</h4>
+
+<ul>
+  <li>각 Entity 당 repository 가 있어야 한다.</li>
+</ul>
+
+<ol>
+  <li>Java → model 패키지 → Repository 패키지 → ItemRepository,,등등 이름을 가진 Interface 생성</li>
+  <li><strong>@Repository</strong> 추가</li>
+  <li>아래 JpaRepository extend.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ItemRepository</span> <span class="kd">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">idType</span><span class="o">&gt;</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="entity와-repository-동작확인">Entity와 Repository 동작확인</h4>
+
+<ol>
+  <li>test → java → repository → ItemRepositoryTest/OrderDetailRepositoryTest 생성</li>
+  <li><strong>extends StudyApplicationTests</strong> 상속 받기</li>
+  <li>test 할 repository 변수 생성하고, <strong>@Autowired</strong> 추가</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">ItemRepository</span> <span class="n">itemRepository</span><span class="o">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>test 할 메소드들 만들고, @Test annotation 반드시 달기.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ex</span><span class="o">.</span> <span class="n">create</span> <span class="err">일</span> <span class="err">경우</span><span class="o">,</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">();</span>
+	<span class="n">item</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"노트북"</span><span class="o">);</span>
+	<span class="n">item</span><span class="o">.</span><span class="na">setPrice</span><span class="o">(</span><span class="mi">100000</span><span class="o">);</span>
+	<span class="n">item</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="s">"삼성 노트북"</span><span class="o">);</span>
+
+	<span class="n">Item</span> <span class="n">newItem</span> <span class="o">=</span> <span class="n">itemRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+	<span class="n">Assert</span><span class="o">.</span><span class="na">assertNotNull</span><span class="o">(</span><span class="n">newItem</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<ul>
+  <li><strong>참고</strong>: Intellij 에서 Junit 클래스 Assert를 사용하기 위해서는 Gradle에 다음 dependency를 추가해야 한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testImplementation</span> <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">:</span><span class="n">junit</span><span class="o">-</span><span class="n">jupiter</span><span class="o">-</span><span class="nl">api:</span><span class="mf">5.6</span><span class="o">.</span><span class="mi">0</span><span class="err">'</span>
+<span class="n">testRuntimeOnly</span> <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">:</span><span class="n">junit</span><span class="o">-</span><span class="n">jupiter</span><span class="o">-</span><span class="n">engine</span><span class="err">'</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>[동적계획법] 이항계수</title>
 	  <link>//binomial-coefficient</link>
 	  <author></author>
@@ -1002,403 +1270,6 @@
   <li>Resource &gt; <a href="http://application.properties">application.properties</a> &gt; db source url, response name, response password 입력(yjsql)</li>
   <li>다시 실행해서 실행되는 것 확인함.</li>
 </ol>
-
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>[백엔드] Rest API 란?</title>
-	  <link>//rest-api</link>
-	  <author></author>
-	  <pubDate>2020-09-22T10:18:00+00:00</pubDate>
-	  <guid>//rest-api</guid>
-	  <description><![CDATA[
-	     <p><br /></p>
-
-<h4 id="http---get-method">HTTP - GET Method</h4>
-
-<ul>
-  <li>
-    <p>주소창에 parameter 노출</p>
-  </li>
-  <li>브라우저에서 주소에 대한 캐시가 이루어지므로, 정보를 얻을 때 사용.
-    <ul>
-      <li>
-        <p>Get Method에서 parameter 받기</p>
-
-        <p>parameter로 각각 변수를 받아서 받아내면 됌.</p>
-
-        <p>여러가지로 변수가 늘어가는 상황:</p>
-
-        <ul>
-          <li>너무 변수가 많다면 parameter를 모두 써서 받기 어려울 수 있다.</li>
-          <li>객체로 받을 수 있는 방법:
-            <ul>
-              <li>따로 변수를 받는 class를 생성함. (getter, setter 와 함께 하고, parameter를 클래스 객체로 받는다.)</li>
-              <li>jackson library 로 인해 객체를 리턴하면 자동적으로 json으로 변환이 되어서 return 이 됌.</li>
-            </ul>
-          </li>
-        </ul>
-      </li>
-    </ul>
-  </li>
-  <li>메소드에 대해서 두 주소가 같다면, spring boot는 실행을 시키지 못함.</li>
-</ul>
-
-<h4 id="http---post-method">HTTP - POST Method</h4>
-
-<ul>
-  <li>
-    <p>주소창에 parameter 노출 없음.</p>
-  </li>
-  <li>
-    <p>브라우저가 주소 캐시를 하지 못하는 특성이 있음.</p>
-  </li>
-  <li>
-    <p>@PostingMapping을 통해서 postMethod를 구현할 수 있음.</p>
-  </li>
-  <li>
-    <p>객체에 json으로 mapping 시켜줄 수 있음.</p>
-  </li>
-</ul>
-
-<h4 id="http---putpatch-method">HTTP - PUT/PATCH Method</h4>
-
-<ul>
-  <li>POST 와 마찬가지로 BODY에 데이터가 있으며, 주로 업데이트를 요청함.</li>
-</ul>
-
-<h4 id="http---delete-method">HTTP - DELETE Method</h4>
-
-<ul>
-  <li>GET 과 마찬가지로 parameter로 동작하며, 주로 삭제를 요청함.</li>
-</ul>
-
-<p><br /></p>
-
-<h4 id="그래서-rest-api-란">그래서, REST API 란?</h4>
-
-<h5 id="rest의-개념">REST의 개념:</h5>
-
-<ul>
-  <li>HTTP 프로토콜에 있는 Method를 활용한 아키텍처 스타일</li>
-  <li>HTTP method를 통해서 resource를 처리하는 것임.</li>
-  <li>CRUD를 통해서 resource를 조작할 때 사용함.</li>
-</ul>
-
-<p><a href="https://www.notion.so/36cea78138d54d4ba5eae244ffdb2d29">REST</a></p>
-
-<p>중요한 것은 어떻게 URL 에서 데이터를 꺼내올 것이며, 어떻게 다시 웹 사이트에 return 할 것인가 이다.</p>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>[백엔드] Entity 생성과 Repository</title>
-	  <link>//entity-n-repository</link>
-	  <author></author>
-	  <pubDate>2020-09-22T10:18:00+00:00</pubDate>
-	  <guid>//entity-n-repository</guid>
-	  <description><![CDATA[
-	     <p><br /></p>
-
-<h4 id="naming-convention">Naming Convention</h4>
-
-<p><strong>Camel Case</strong> : 단어 첫 문자는 소문자, 띄어쓰기 대신 대문자로 구분함. JAVA 변수 선언 시 사용함.</p>
-
-<ul>
-  <li>ex. phoneNumber</li>
-</ul>
-
-<p><strong>Snake Case</strong> : 단어는 모두 소문자, 띄어쓰기 대신(_)로 구분함. DB 칼럼에 사용.</p>
-
-<ul>
-  <li>ex. phone_number, created_at</li>
-</ul>
-
-<p>API 정의하기에 따라 다르지만, 주로 API 통신 규격에는 구간에서는 Snake Case를 많이 사용함.</p>
-
-<h4 id="entity">Entity</h4>
-
-<p>JPA에서 entity는 DB의 테이블과 매우 유사하다. (DB Table == JPA Entity)</p>
-
-<ul>
-  <li>Entity: JPA에서 테이블을 자동으로 생성해주는 기능 존재.</li>
-</ul>
-
-<p><a href="https://www.notion.so/4a74e1bd924f484cace3700cc1d12605">Entity</a></p>
-
-<h4 id="entity-설정하기">Entity 설정하기</h4>
-
-<ol>
-  <li>이전에 SQL에서 만든 table 이름과 동일한 이름의 class 를 생성함.</li>
-  <li>@Entity annotation을 통해서 해당 클래스가 Entity임을 명시함.</li>
-  <li>DB table에 있는 변수과 같은 이름을 가진 변수를 선언함(변수-camelCase, 칼럼-snake_case)</li>
-  <li>@ID 와 @GeneratedValue를 통해서 primary key 설정을 해줌.</li>
-</ol>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/114304509-82214d00-9b0e-11eb-9949-81d6094e631f.png" alt="image" width="80%" /></p>
-
-<p><br /></p>
-
-<h4 id="repository">Repository</h4>
-
-<p>따로 쿼리문을 작성하지 않아도 기본적인 인터페이스로 CRUD를 작성할 수 있다.</p>
-
-<ul>
-  <li>사용 방법: 매우 간단함. 아래와 같이 인터페이스에 @Repository annotation을 달아 주고, JpaRepository&lt;T, ID&gt; 을 달아 주면 된다.</li>
-</ul>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Repository</span>
-<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">UserRepository</span> <span class="kd">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">User</span><span class="o">,</span><span class="n">Long</span><span class="o">&gt;</span> <span class="o">{</span>
-	<span class="c1">//여기서 &lt;T, ID&gt; =&gt; T는 어떤 타입의 Entity 인지 / ID 는 식별자의 type에 대해서 적음. </span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-	  ]]></description>
-	</item>
-
-	<item>
-	  <title>[알고리즘]분할정복 - 백준 2261 가장 가까운 두 점</title>
-	  <link>//dac-closestPoint</link>
-	  <author></author>
-	  <pubDate>2020-09-17T10:18:00+00:00</pubDate>
-	  <guid>//dac-closestPoint</guid>
-	  <description><![CDATA[
-	     <p>분할정복 알고리즘을 배울 때 나오는 유명한 문제 중 하나이다. 하지만 난이도가 굉장히 높기 때문에 쉽게 접근하기 어려웠는데, 분할 정복에 남은 마지막 문제를 그냥 안풀고 넘어가기엔 마음에 걸려서 마음먹고 공부해보기로 했다.</p>
-
-<p>백준 사이트에서도 검색을 추천하여 알고리즘을 공부하기를 권하기 때문에 검색을 통해 <a href="https://octorbirth.tistory.com/274">좋은 글</a>을 발견했다. 그리고 해당 문제의 솔루션을 이해하는데만 집중했다.</p>
-
-<p>분할정복 문제를 반복해서 풀어보니 분할정복은 DP 만큼이나 여러가지 형태의 문제가 있으니 최대한 많은 문제들을 풀어보는 것이 중요하다는 것을 알 수 있었다. 그리고 여러 문제를 풀어 본 결과 다음을 깨달을 수 있었다.</p>
-
-<ul>
-  <li>분할정복에서 분할을 하는 이유 중 하나는 <strong>굳이 필요 없는 연산/비교 등을 하지 않기 위해서</strong>이다.</li>
-</ul>
-
-<p>다르게 이야기하면 <strong>쓸데없는 것을 쳐내기 위해서</strong> 특정 기준에 따라서 계속 분할을 하는 것이다. <a href="https://www.acmicpc.net/problem/2261">백준 2261</a> 문제를 보면 어떤 의미인지 알 수 있다. 이 사실이 나로 하여금 더 구현을 잘하게 해주지는 못하지만 <em>개발자 마인드</em>를 갖추는데 어느 정도 일조했다고 생각한다. 알고리즘 문제들을 풀면 풀수록 쌓이는 <em>개발자 마인드</em> 룰을 통해서 새로운 문제를 바라보더라도 개발자스럽게 생각해야지 적합한 알고리즘을 찾을 수 있다.</p>
-
-<p>이렇게 지나지게 많은 비교 연산을 해야할 때 필요 없는 것이 무엇인지부터 접근해야 한다.</p>
-
-<h2 id="문제-해결">문제 해결</h2>
-
-<p>가장 가까운 두 점 문제의 솔루션을 요약하면 다음과 같다.</p>
-
-<ol>
-  <li>x값 기준으로 정렬.</li>
-  <li>중간을 기준으로 왼쪽과 오른쪽을 나눔.</li>
-  <li>왼쪽 가장 가까운 거리 d1, 오른쪽 가장 가까운 거리 d2 찾아냄.</li>
-  <li>d1과 d2 중 더 최소값을 d 에다가 저장함.</li>
-  <li>중간으로 가로지르는 점들 중 중앙과 d 이상 차이나는 점들을 제외함.</li>
-  <li>해당 점들을 y 기준으로 정렬해서 위의 점과 높이가 d 이상 차이나는 점들을 제외하여 비교하여 d3을 구함.</li>
-</ol>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/111621456-5c649900-882b-11eb-9fc0-3f1dbdaca71e.png" alt="image" /></p>
-
-<p>위의 그림을 보면 보다 직관적으로 이해할 수 있다. 위 과정을 반복하면서 최소값을 지속적으로 업데이트하면 최종적으로 최소값을 찾을 수 있다.</p>
-
-<p>이렇게 x 값을 기준으로 정렬해서 제외한 후에, 아래 사진과 같이 y 값을 기준으로 또 정렬하여 제외시키면 된다.</p>
-
-<p><img src="https://user-images.githubusercontent.com/63405904/111621504-69818800-882b-11eb-9fb4-7be3a658c7b8.png" alt="image" /></p>
-
-<h2 id="솔루션-구현">솔루션 구현</h2>
-
-<p>다음 솔루션을 구현하기 위해서 이해하거나 응용하면 좋을 개념들은 다음과 같다.</p>
-
-<ol>
-  <li>JAVA comparator</li>
-  <li>재귀</li>
-  <li>객체 생성</li>
-</ol>
-
-<p>“완전히 모르는 건 아닌데?” 라고 생각하기 쉽지만 제대로 생각해보면 나는 잘 활용하지 않았던 개념들이 있었다. 예를 들어, comparator를 생성하여 정렬하기 보다 조금 돌아가지만 이전에 하던 방식으로 일일이 정렬하는 방법을 주로 사용하고, 객체를 생성하여 코드가 직관적이게 되기 보다 배열에 나만 아는 규칙으로 끼워 넣는 경우가 많았던 것 같다. 한번 이 모든 개념들을 제대로 응용해서 좋은 코드를 짜보자.</p>
-
-<p>아래의 대부분의 코드는 <a href="https://octorbirth.tistory.com/274">사이트</a>에서 참고하고 내가 조금의 업그레이드를 시킨 정도이다.</p>
-
-<h4 id="java-comparator">JAVA Comparator</h4>
-
-<p>JAVA Comparator는 배열이나 객체 등을 sorting 하기 위해서 매우 유용한 인터페이스이다. 숫자가 아닌 무언가, 또는 조금 다른 기준을 통해서 정렬을 하기 원할 때, 이 comparator를 정의하여 사용하면 매우 유용하다.</p>
-
-<p>기본적인 사용방법은 다음과 같다.</p>
-
-<ol>
-  <li>Comparator를 implement 한 class 정의</li>
-  <li><code class="highlighter-rouge">Arrays.sort</code>나, <code class="highlighter-rouge">Collections.sort</code>에서 내부 정렬 기준을 구현 하면됨.</li>
-</ol>
-
-<p>비슷한 기능을 하는 인터페이스로는 Comparable이 있다. 이것은 어떠한 클래스에서 implement 하여 내부에 있는 compareTo 함수를 통해 클래스 기본 정렬 기준을 설정하는 것이다.</p>
-
-<table>
-  <thead>
-    <tr>
-      <th>Comparable</th>
-      <th>클래스의 기본 정렬 기준을 설정하는 인터페이스</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>Comparator</td>
-      <td>기본 정렬 기준과는 다르게 정렬하고 싶을 때 이용하는 클래스</td>
-    </tr>
-  </tbody>
-</table>
-
-<p>이번에 <strong>가장 가까운 두 점</strong> 문제에서는 Comparator를 사용하여 sort 메소드를 통해서 사용할 예정이다. 우선 점들을 x좌표 기준으로 정렬하고, 이후에 y 기준으로 정렬하는 2가지 기준으로 정렬하는 클래스를 생성한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">xComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">){</span>
-    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">class</span> <span class="nc">yComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">y</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="재귀-recursion">재귀 Recursion</h4>
-
-<p>거의 모든 알고리즘 문제의 일부분이 되는 재귀이지만 이번 문제에서 재귀를 활용하면서 재귀에 대해서 한층 더 이해할 수 있었다. 재귀에도 tail-recursion과 head-recursion이 나누어져 있고, 코드가 복잡해 질수록 더더욱 어느 타이밍에 재귀를 호출하는지가 매우 중요하다.</p>
-
-<p>이번 풀이에서는 앞서 소개한 문제해결 방식을 재귀적으로 반복하여 매번 왼쪽, 오른쪽, 중간 가로지르는 부분으로 분할해 최소 거리를 찾도록 하였다. 이렇게 head-recursion으로 호출한 후에 return 된 최소 거리를 저장하고 이후에 처리해야 할 코드를 수행한다.</p>
-
-<h4 id="객체-생성">객체 생성</h4>
-
-<p>매번 이런 두 점과 같은 문제가 나올 때, 2차원 배열을 생성해서 수행했었다. 물론 그래도 아무 문제가 없고 이런 경우가 메모리나 속도 측면에서 더욱 효율적인 경우가 많다. 하지만 객체를 생성해서 데이터를 저장해야만 할 때가 있는데, 객체 생성을 해서 저장하는게 익숙하지 못해서 하지 못하는 경우가 많기 때문에 이번 문제에서 점의 좌표를 클래스 객체에 한번 담에 보았다. 생각보다 매우 간단하지만 첫 걸음이 어려워서 자주 사용하지 못했다고 생각한다.</p>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">class</span> <span class="nc">Point</span> <span class="o">{</span>
-  <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
-  <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>
-  
-  <span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
-
-<h4 id="전체-코드">전체 코드</h4>
-
-<p>다음과 같은 구성을 가지고 있다.</p>
-
-<ol>
-  <li>점들 사이의 최소값을 분할정복으로 찾는 minDistance()</li>
-  <li>특정 기준 이하의 점들 사이의 최소값을 brute-force로 찾는 searchMin()</li>
-  <li>점들 사이의 거리를 계산하는 distance()</li>
-  <li>xComparator와 yComparator</li>
-  <li>Point 클래스 객체</li>
-</ol>
-
-<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.io.BufferedReader</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.IOException</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.io.InputStreamReader</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.ArrayList</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Comparator</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.StringTokenizer</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Arrays</span><span class="o">;</span>
-<span class="kn">import</span> <span class="nn">java.util.Collections</span><span class="o">;</span>
-
-<span class="kd">class</span> <span class="nc">Main</span> <span class="o">{</span>
-  <span class="kd">static</span> <span class="n">Point</span><span class="o">[]</span> <span class="n">value</span><span class="o">;</span>
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">void</span> <span class="nf">main</span><span class="o">(</span><span class="n">String</span><span class="o">[]</span> <span class="n">args</span><span class="o">)</span> <span class="kd">throws</span> <span class="n">IOException</span> <span class="o">{</span>
-    <span class="n">BufferedReader</span> <span class="n">br</span> <span class="o">=</span> <span class="k">new</span> <span class="n">BufferedReader</span><span class="o">(</span><span class="k">new</span> <span class="n">InputStreamReader</span><span class="o">(</span><span class="n">System</span><span class="o">.</span><span class="na">in</span><span class="o">));</span>
-    <span class="n">StringTokenizer</span> <span class="n">st</span> <span class="o">=</span> <span class="kc">null</span><span class="o">;</span>
-    
-    <span class="kt">int</span> <span class="n">n</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
-    <span class="n">value</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">[</span><span class="n">n</span><span class="o">];</span>
-    
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">n</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
-      <span class="n">st</span> <span class="o">=</span> <span class="k">new</span> <span class="n">StringTokenizer</span><span class="o">(</span><span class="n">br</span><span class="o">.</span><span class="na">readLine</span><span class="o">());</span>
-      <span class="kt">int</span> <span class="n">x</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
-      <span class="kt">int</span> <span class="n">y</span> <span class="o">=</span> <span class="n">Integer</span><span class="o">.</span><span class="na">parseInt</span><span class="o">(</span><span class="n">st</span><span class="o">.</span><span class="na">nextToken</span><span class="o">());</span>
-      <span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">]</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Point</span><span class="o">(</span><span class="n">x</span><span class="o">,</span> <span class="n">y</span><span class="o">);</span>
-    <span class="o">}</span>
-    
-    <span class="n">Arrays</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">value</span><span class="o">,</span> <span class="k">new</span> <span class="n">xComparator</span><span class="o">());</span>
-    
-    <span class="kt">int</span> <span class="n">answer</span> <span class="o">=</span> <span class="n">minDistance</span><span class="o">(</span><span class="mi">0</span><span class="o">,</span> <span class="n">n</span><span class="o">-</span><span class="mi">1</span><span class="o">);</span>
-    <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">answer</span><span class="o">);</span>
-    <span class="n">br</span><span class="o">.</span><span class="na">close</span><span class="o">();</span>
-    
-    <span class="k">return</span><span class="o">;</span>
-  <span class="o">}</span>
-  
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">minDistance</span><span class="o">(</span><span class="kt">int</span> <span class="n">begin</span><span class="o">,</span> <span class="kt">int</span> <span class="n">end</span><span class="o">){</span>
-    <span class="kt">int</span> <span class="n">size</span> <span class="o">=</span> <span class="n">end</span><span class="o">-</span><span class="n">begin</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span>
-    <span class="k">if</span><span class="o">(</span><span class="n">size</span><span class="o">&lt;=</span><span class="mi">3</span><span class="o">)</span> <span class="o">{</span>
-      <span class="k">return</span> <span class="nf">searchMin</span><span class="o">(</span><span class="n">begin</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
-    <span class="o">}</span>
-    
-    <span class="kt">int</span> <span class="n">mid</span> <span class="o">=</span> <span class="o">(</span><span class="n">begin</span><span class="o">+</span><span class="n">end</span><span class="o">)/</span><span class="mi">2</span><span class="o">;</span>
-    <span class="kt">int</span> <span class="n">d1</span> <span class="o">=</span> <span class="n">minDistance</span><span class="o">(</span><span class="n">begin</span><span class="o">,</span> <span class="n">mid</span><span class="o">);</span>
-    <span class="kt">int</span> <span class="n">d2</span> <span class="o">=</span> <span class="n">minDistance</span><span class="o">(</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="o">,</span> <span class="n">end</span><span class="o">);</span>
-    
-    <span class="kt">int</span> <span class="n">result</span> <span class="o">=</span> <span class="n">Math</span><span class="o">.</span><span class="na">min</span><span class="o">(</span><span class="n">d1</span><span class="o">,</span> <span class="n">d2</span><span class="o">);</span>
-    
-    <span class="n">ArrayList</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="n">mid_list</span> <span class="o">=</span> <span class="k">new</span> <span class="n">ArrayList</span><span class="o">&lt;&gt;();</span>
-    
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">mid</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&gt;=</span><span class="n">begin</span><span class="o">;</span><span class="n">i</span><span class="o">--)</span> <span class="o">{</span>
-      <span class="kt">int</span> <span class="n">xDist</span> <span class="o">=</span> <span class="n">value</span><span class="o">[</span><span class="n">mid</span><span class="o">].</span><span class="na">x</span> <span class="o">-</span> <span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">x</span><span class="o">;</span>
-      <span class="k">if</span><span class="o">((</span><span class="n">xDist</span><span class="o">*</span><span class="n">xDist</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mid_list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-      <span class="o">}</span> <span class="k">else</span>
-        <span class="k">break</span><span class="o">;</span>
-    <span class="o">}</span>
-    
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="n">mid</span><span class="o">+</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">end</span><span class="o">;</span><span class="n">i</span><span class="o">++)</span> <span class="o">{</span>
-      <span class="kt">int</span> <span class="n">xDist</span> <span class="o">=</span> <span class="n">value</span><span class="o">[</span><span class="n">mid</span><span class="o">].</span><span class="na">x</span> <span class="o">-</span> <span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">].</span><span class="na">x</span><span class="o">;</span>
-      <span class="k">if</span><span class="o">((</span><span class="n">xDist</span><span class="o">*</span><span class="n">xDist</span><span class="o">)</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-        <span class="n">mid_list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span><span class="n">value</span><span class="o">[</span><span class="n">i</span><span class="o">]);</span>
-      <span class="o">}</span> <span class="k">else</span>
-        <span class="k">break</span><span class="o">;</span>
-    <span class="o">}</span>
-    
-    <span class="n">Collections</span><span class="o">.</span><span class="na">sort</span><span class="o">(</span><span class="n">mid_list</span><span class="o">,</span> <span class="k">new</span> <span class="n">yComparator</span><span class="o">());</span>
-    <span class="kt">int</span> <span class="n">mlist_size</span> <span class="o">=</span> <span class="n">mid_list</span><span class="o">.</span><span class="na">size</span><span class="o">();</span>
-    
-    <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">i</span><span class="o">&lt;</span><span class="n">mlist_size</span><span class="o">-</span><span class="mi">1</span><span class="o">;</span><span class="n">i</span><span class="o">++){</span>
-      <span class="k">for</span><span class="o">(</span><span class="kt">int</span> <span class="n">j</span><span class="o">=</span><span class="mi">0</span><span class="o">;</span><span class="n">j</span><span class="o">&lt;</span><span class="n">mlist_size</span><span class="o">;</span><span class="n">j</span><span class="o">++){</span>
-        <span class="kt">int</span> <span class="n">yDist</span> <span class="o">=</span> <span class="n">mid_list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">).</span><span class="na">y</span> <span class="o">-</span> <span class="n">mid_list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">).</span><span class="na">y</span><span class="o">;</span>
-        <span class="k">if</span><span class="o">(</span><span class="n">yDist</span><span class="o">*</span><span class="n">yDist</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">)</span> <span class="o">{</span>
-          <span class="kt">int</span> <span class="n">dist</span> <span class="o">=</span> <span class="n">distance</span><span class="o">(</span><span class="n">mid_list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">i</span><span class="o">),</span> <span class="n">mid_list</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">j</span><span class="o">));</span>
-          <span class="k">if</span><span class="o">(</span><span class="n">dist</span> <span class="o">&lt;</span> <span class="n">result</span><span class="o">)</span>
-            <span class="n">result</span> <span class="o">=</span> <span class="n">dist</span><span class="o">;</span>
-        <span class="o">}</span> <span class="k">else</span>
-          <span class="k">break</span><span class="o">;</span>
-      <span class="o">}</span>
-    <span class="o">}</span>
-    <span class="k">return</span> <span class="n">result</span><span class="o">;</span>
-  <span class="o">}</span>
-  
-  <span class="kd">public</span> <span class="kd">static</span> <span class="kt">int</span> <span class="nf">distance</span><span class="o">(</span><span class="n">Point</span> <span class="n">a</span><span class="o">,</span> <span class="n">Point</span> <span class="n">b</span><span class="o">){</span>
-    <span class="k">return</span><span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">x</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="na">x</span><span class="o">)*(</span><span class="n">a</span><span class="o">.</span><span class="na">x</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="na">x</span><span class="o">)</span> <span class="o">+</span> <span class="o">(</span><span class="n">a</span><span class="o">.</span><span class="na">y</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="na">y</span><span class="o">)*(</span><span class="n">a</span><span class="o">.</span><span class="na">y</span><span class="o">-</span><span class="n">b</span><span class="o">.</span><span class="na">y</span><span class="o">);</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-  
-<span class="kd">class</span> <span class="nc">xComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">){</span>
-    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">x</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">x</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">class</span> <span class="nc">yComparator</span> <span class="kd">implements</span> <span class="n">Comparator</span><span class="o">&lt;</span><span class="n">Point</span><span class="o">&gt;</span> <span class="o">{</span>
-  <span class="kd">public</span> <span class="kt">int</span> <span class="nf">compare</span><span class="o">(</span><span class="n">Point</span> <span class="n">p1</span><span class="o">,</span> <span class="n">Point</span> <span class="n">p2</span><span class="o">)</span> <span class="o">{</span>
-    <span class="k">return</span> <span class="n">p1</span><span class="o">.</span><span class="na">y</span> <span class="o">-</span> <span class="n">p2</span><span class="o">.</span><span class="na">y</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-
-<span class="kd">class</span> <span class="nc">Point</span> <span class="o">{</span>
-  <span class="kt">int</span> <span class="n">x</span><span class="o">;</span>
-  <span class="kt">int</span> <span class="n">y</span><span class="o">;</span>
-  
-  <span class="kd">public</span> <span class="nf">Point</span><span class="o">(</span><span class="kt">int</span> <span class="n">x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">y</span><span class="o">){</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">x</span> <span class="o">=</span> <span class="n">x</span><span class="o">;</span>
-    <span class="k">this</span><span class="o">.</span><span class="na">y</span> <span class="o">=</span> <span class="n">y</span><span class="o">;</span>
-  <span class="o">}</span>
-<span class="o">}</span>
-</code></pre></div></div>
 
 
 	  ]]></description>

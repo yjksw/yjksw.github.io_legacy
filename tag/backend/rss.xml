@@ -12,6 +12,274 @@
    <atom:link href="rss" rel="self" type="application/rss+xml" />
    
 	<item>
+	  <title>JPA의 연관관계 설정</title>
+	  <link>//jpa-relation</link>
+	  <author></author>
+	  <pubDate>2020-09-24T10:18:00+00:00</pubDate>
+	  <guid>//jpa-relation</guid>
+	  <description><![CDATA[
+	     <p><br />
+<img src="https://user-images.githubusercontent.com/63405904/114411529-37273880-9be7-11eb-8acf-9af446138fe8.png" alt="image" /></p>
+
+<h3 id="관계-예시">관계 예시</h3>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411303-02b37c80-9be7-11eb-937a-c8fd90afae89.png" alt="image" /></p>
+
+<ul>
+  <li>한명의 사람이 여러 아이템을 쇼핑할 때</li>
+  <li>1대다 관계</li>
+</ul>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411402-1b239700-9be7-11eb-8f48-141af4cfed11.png" alt="image" /></p>
+
+<ul>
+  <li>Item table에 user_id가 들어가면 한 아이템당 하나의 유저id 만 쓸 수 있으므로 불가하다.</li>
+  <li>User 테이블에 item_id가 들어가면 한 유저당 아이템을 1개밖에 못사기 때문에 불가하다.</li>
+</ul>
+
+<p><strong>해결 방법</strong></p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411426-1eb71e00-9be7-11eb-920a-f3319c9936da.png" alt="image" /></p>
+
+<ul>
+  <li>중간에 ‘주문내역’ 테이블을 생성하여 두 가지를 연결시켜 줄 수 있다.</li>
+  <li>유저 한명당 여러가지 주문 내역을 가질 수 있기 때문에 1대N 관계로 존재한다. 한 유저가 몇개의 아이템을 샀는지 확인할 수 있다.</li>
+  <li>아이템에 대해서도 1대N 관계를 가지면 해당 아이템을 몇명의 유저들이 주문했는지 등에 대한 정보를 알 수 있으므로 효율적이다.</li>
+</ul>
+
+<h4 id="mysql-workbench에서-erd-로-테이블-생성하기">MySQL Workbench에서 ERD 로 테이블 생성하기</h4>
+
+<p>상단에 Database → Reverse Engineer → Continue 누리고 Execute → ERD 할 수 있는 다이어그램 생성.</p>
+
+<ul>
+  <li>Reverse Engineer: 테이블 → ERD</li>
+  <li>Forward Engineer: ERD → 테이블</li>
+</ul>
+
+<h4 id="실습-user-와-item-테이블을-연결하는-주문내역-database-생성하기">실습: User 와 Item 테이블을 연결하는 주문내역 database 생성하기</h4>
+
+<ol>
+  <li>
+    <p>Item 테이블과 order_detail 테이블을 필요한 columns 과 맞게 생성한다.</p>
+  </li>
+  <li>
+    <p>order_detail에 user_id와 item_id 칼럼을 직접 생성해 줄 수 있지만 ERD 관계선을 사용해서 정의하도록 한다 ⇒ 점선 1:N 관계로 User:order_detail &amp; item:order_detail을 연결해준다.</p>
+
+    <ul>
+      <li>실선(Identifying): 식별관계</li>
+    </ul>
+
+    <p>부모 테이블의 PK가 자식 테이블의 FK/PK 가 되는 경우</p>
+
+    <p>부모가 있어야지 자식이 생기는 경우</p>
+
+    <ul>
+      <li>점선(Non-identifying): 비식별관계</li>
+    </ul>
+
+    <p>부모 테이블의 PK가 자식 테이블의 일반속성인 경우</p>
+
+    <p>부모가 없어도 자식이 생기는 경우</p>
+  </li>
+  <li>
+    <p>Forward Enginner를 통해서 ERD 다이아그램을 테이블로 생성한다.</p>
+  </li>
+</ol>
+
+<blockquote>
+  <p>ERD를 통해서 데이터베이스를 생성하는 방법이고, 직접 테이블을 생성해도 가능하다!</p>
+</blockquote>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>JPA 연관관계 설정 코딩하기-2</title>
+	  <link>//jpa-relation-code-2</link>
+	  <author></author>
+	  <pubDate>2020-09-24T10:18:00+00:00</pubDate>
+	  <guid>//jpa-relation-code-2</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+
+<h3 id="annotation으로-연관관계-설정하기">Annotation으로 연관관계 설정하기</h3>
+
+<ul>
+  <li>목표는 1:N 관계 설정이다.</li>
+  <li>현재 상태:
+    <ol>
+      <li>User와 OrderDetail이라는 테이블이 1:N 관계가 설정되어 있다.</li>
+    </ol>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h4 id="user-table-과-orderdetail-table-1n-관계-설정하기">User Table 과 OrderDetail Table 1:N 관계 설정하기</h4>
+
+<ul>
+  <li>OrderDetail 테이블의 입장에서 ManyToOne 이므로,
+    <ol>
+      <li>OrderDetail 에 <strong>private Long UserId → private User user</strong> 로 변경.</li>
+      <li>해당 변수 위에 <strong>@ManyToOne</strong> 추가</li>
+    </ol>
+  </li>
+  <li>User 테이블의 입장에서 OneToMany 이므로,
+    <ol>
+      <li>User 클래스에 orderDetailList를 받을 List<OrderDetail> 변수를 생성.</OrderDetail></li>
+    </ol>
+
+    <p>private List<OrderDetail> orderDetailList;</OrderDetail></p>
+  </li>
+</ul>
+
+<ol>
+  <li>
+    <p><strong>@OneToMany</strong>를 변수 위에 추가.</p>
+
+    <p>@OneToMany(fetch = FetchType.LAZY, mappedBy = “user”)</p>
+
+    <p>OrderDetail이라는 클래스 안에 “user”라는 변수와 매칭시키겠다는 것.</p>
+  </li>
+</ol>
+
+<hr />
+
+<p><strong>연관관계 설정 간단 정리:</strong></p>
+
+<ol>
+  <li>먼저 변수가 있는 Class에 가서 현재 있는 Class 기준으로 어떤 관계인지 파악 후, 해당 변수 위에 annotation을 추가함.</li>
+  <li>이후 Long 등이 아니라, 객체로 연결해야 함.</li>
+  <li>One 입장인 Class에 가서 상대는 Many이기 때문에 List로 받는다는 변수를 추가함.</li>
+  <li>Annotation을 추가하고, fetch type, mapped by 등등을 추가함.</li>
+</ol>
+
+<p><br /></p>
+
+<h4 id="연관관계-설정-test-하기">연관관계 설정 Test 하기</h4>
+
+<ul>
+  <li>UserRepositoryTest에 가서 read() 함수에 대한 test를 작성해보자.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+    <span class="nd">@Transactional</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">read</span><span class="o">()</span> <span class="o">{</span>
+        <span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">4L</span><span class="o">);</span>
+
+        <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span>
+            <span class="n">selectUser</span><span class="o">.</span><span class="na">getOrderDetailList</span><span class="o">().</span><span class="na">stream</span><span class="o">().</span><span class="na">forEach</span><span class="o">(</span><span class="n">detail</span> <span class="o">-&gt;</span> <span class="o">{</span>
+                <span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="n">detail</span><span class="o">.</span><span class="na">getItem</span><span class="o">();</span>
+                <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+            <span class="o">});</span>
+        <span class="o">});</span>
+    <span class="o">}</span>
+</code></pre></div></div>
+
+<ul>
+  <li>이렇게 하면, item에 대한 결과값이 String으로 나오게 됌</li>
+</ul>
+
+<blockquote>
+  <p>주의사항: Lombok을 사용할 때, 여기서 toString을 사용하게 되면, OrderDetail class에서 User, Item에 대한 객체에 대해서도 toString을 실행하기 때문에 overflow가 발생해서 상충하여 오류가 남.</p>
+</blockquote>
+
+<p><strong>OrderDetail</strong> 에서 다음을 추가해서 제외 시키는 제어문을 넣어주어야 함.</p>
+
+<p>@ToString(exclude={“user”, “item”);</p>
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>JPA 연관관계 설정 코딩하기-1</title>
+	  <link>//jpa-relation-code-1</link>
+	  <author></author>
+	  <pubDate>2020-09-24T10:18:00+00:00</pubDate>
+	  <guid>//jpa-relation-code-1</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+<h3 id="실습을-통해서-jpa-연관관계-intellij-프로젝트에-적용하기">실습을 통해서 JPA 연관관계 Intellij 프로젝트에 적용하기</h3>
+
+<p>테이블을 생성하게 되면 거기에 맞는 entity를 프로젝트에 추가해 주어야 한다.</p>
+
+<p><br /></p>
+
+<h4 id="entity-생성">Entity 생성</h4>
+
+<ol>
+  <li>Java → model 패키지 → Entity 패키지 → 새로운 테이블에 대한 Class 생성</li>
+  <li><strong>@Data</strong> 와 <strong>@Entity annotation</strong>을 추가</li>
+  <li>테이블에 있는 컬럼들과 같은 이름을 가진 변수들 생성.</li>
+  <li>Primary 키(Id)에 대해서 <strong>@Id</strong> 와 <strong>@GeneratedValue(strategy=GenerationType.IDENTITY)</strong> 를 추가</li>
+  <li>
+    <p>모든 생성자, 기본 생성자에 대한 annotation을 추가:</p>
+
+    <p>@AllArgsConstructor @NoArgsConstructor</p>
+  </li>
+</ol>
+
+<h4 id="repository-생성">Repository 생성</h4>
+
+<ul>
+  <li>각 Entity 당 repository 가 있어야 한다.</li>
+</ul>
+
+<ol>
+  <li>Java → model 패키지 → Repository 패키지 → ItemRepository,,등등 이름을 가진 Interface 생성</li>
+  <li><strong>@Repository</strong> 추가</li>
+  <li>아래 JpaRepository extend.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">ItemRepository</span> <span class="kd">extends</span> <span class="n">JpaRepository</span><span class="o">&lt;</span><span class="n">T</span><span class="o">,</span> <span class="n">idType</span><span class="o">&gt;</span> <span class="o">{}</span>
+</code></pre></div></div>
+
+<h4 id="entity와-repository-동작확인">Entity와 Repository 동작확인</h4>
+
+<ol>
+  <li>test → java → repository → ItemRepositoryTest/OrderDetailRepositoryTest 생성</li>
+  <li><strong>extends StudyApplicationTests</strong> 상속 받기</li>
+  <li>test 할 repository 변수 생성하고, <strong>@Autowired</strong> 추가</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Autowired</span>
+<span class="kd">private</span> <span class="n">ItemRepository</span> <span class="n">itemRepository</span><span class="o">;</span>
+</code></pre></div></div>
+
+<ol>
+  <li>test 할 메소드들 만들고, @Test annotation 반드시 달기.</li>
+</ol>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">ex</span><span class="o">.</span> <span class="n">create</span> <span class="err">일</span> <span class="err">경우</span><span class="o">,</span>
+
+<span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">Item</span> <span class="n">item</span> <span class="o">=</span> <span class="k">new</span> <span class="n">Item</span><span class="o">();</span>
+	<span class="n">item</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span><span class="s">"노트북"</span><span class="o">);</span>
+	<span class="n">item</span><span class="o">.</span><span class="na">setPrice</span><span class="o">(</span><span class="mi">100000</span><span class="o">);</span>
+	<span class="n">item</span><span class="o">.</span><span class="na">setContent</span><span class="o">(</span><span class="s">"삼성 노트북"</span><span class="o">);</span>
+
+	<span class="n">Item</span> <span class="n">newItem</span> <span class="o">=</span> <span class="n">itemRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">item</span><span class="o">);</span>
+	<span class="n">Assert</span><span class="o">.</span><span class="na">assertNotNull</span><span class="o">(</span><span class="n">newItem</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p><br /></p>
+
+<ul>
+  <li><strong>참고</strong>: Intellij 에서 Junit 클래스 Assert를 사용하기 위해서는 Gradle에 다음 dependency를 추가해야 한다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">testImplementation</span> <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">:</span><span class="n">junit</span><span class="o">-</span><span class="n">jupiter</span><span class="o">-</span><span class="nl">api:</span><span class="mf">5.6</span><span class="o">.</span><span class="mi">0</span><span class="err">'</span>
+<span class="n">testRuntimeOnly</span> <span class="err">'</span><span class="n">org</span><span class="o">.</span><span class="na">junit</span><span class="o">.</span><span class="na">jupiter</span><span class="o">:</span><span class="n">junit</span><span class="o">-</span><span class="n">jupiter</span><span class="o">-</span><span class="n">engine</span><span class="err">'</span>
+</code></pre></div></div>
+
+	  ]]></description>
+	</item>
+
+	<item>
 	  <title>[백엔드] JPA 란?</title>
 	  <link>//jpa</link>
 	  <author></author>
@@ -48,6 +316,177 @@
   <li>다시 실행해서 실행되는 것 확인함.</li>
 </ol>
 
+
+	  ]]></description>
+	</item>
+
+	<item>
+	  <title>JPA를 통한 CRUD</title>
+	  <link>//jpa-crud</link>
+	  <author></author>
+	  <pubDate>2020-09-23T10:18:00+00:00</pubDate>
+	  <guid>//jpa-crud</guid>
+	  <description><![CDATA[
+	     <p><br /></p>
+<h3 id="repository-생성">Repository 생성</h3>
+
+<ul>
+  <li>Repository: 따로 쿼리문을 작성하지 않아도 객체에 대한 database 관리를 할 수 있도록 해주는 것이다.</li>
+</ul>
+
+<p>@Autowired 라는 annotation 을 통해서 Dependency Injection (DI) 를 실행 한다.</p>
+
+<ul>
+  <li>Spring 에서 가장 큰 장점으로, 객체를 new 명령어를 써서 생성하지 않아도 @Autowired 라는 키워드를 찾아서 주입을 시켜주는 기능을 한다.</li>
+</ul>
+
+<p>본래는 create() 안에 다음과 같은 query문으로 실행을 시켜야 했을 것이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="n">insert</span> <span class="n">into</span> <span class="nf">user</span><span class="o">(%</span><span class="n">s</span><span class="o">,</span> <span class="o">%</span><span class="n">s</span><span class="o">,</span> <span class="o">%</span><span class="n">d</span><span class="o">)</span> <span class="n">value</span> <span class="o">(</span><span class="n">account</span><span class="o">,</span> <span class="n">email</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>하지만 JPA의 장점은 이러한 쿼리문이 아니라 object를 가지고 database를 관리할 수 있도록 해주는 것이다.</p>
+
+<h3 id="create-실습-user라는-객체를-database에-생성">[CREATE] 실습: User라는 객체를 Database에 생성</h3>
+
+<p>생성한 UserRepository Class 안에 <strong>CRUD</strong> 메소드가 각각 있다.</p>
+
+<p>create() 안에서 Repository 가 작동하도록 해보자.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span> 
+  <span class="c1">//user.setId(); Auto-Increment 이기 때문에 직접 set하지 않음. </span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">();</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setAccount</span><span class="o">();</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">();</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setCreateAt</span><span class="o">();</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setCreatedBy</span><span class="o">();</span>
+	<span class="c1">//괄호 안에 값들 넣어주기 </span>
+	<span class="c1">//NN 인 것들은 반드시 값을 지정해주어야 함. </span>
+
+	<span class="n">User</span> <span class="n">newUser</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+	<span class="c1">//save 메소드는 User를 Database에 넘기고 새로운 User 라는 객체를 return 함. </span>
+	<span class="c1">//이 newUser 에는 지정하지 않은 ID도 알아서 지정이 되어 있음.</span>
+	
+	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"newuser: "</span> <span class="o">+</span> <span class="n">newUser</span><span class="o">);</span>
+	<span class="c1">//깔끔하게 출력이 되는데, @Data에 의해 Lombok에서 toString이라는 메소드를 제공하기 때문. </span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>왜 User 객체에 대해서는 위에서처럼 DI 해주지 않을까 ?</p>
+
+<p>→ User 객체는 정보 마다 새롭게 생성이 되어야 하는 객체.</p>
+
+<p>→ 위에서 사용하는 UserRepository 와 같은 경우는 하나만 생성해서 모든 UserRepository에 대해서 모두 Autowired 시킬 것이기 때문이다.</p>
+
+<p><strong>이 Hibernate의 장점이 객체를 가지고 Database에 insert를 칠 수 있는 것!</strong></p>
+
+<h4 id="실제-sql문을-확인하고-싶을-때">실제 SQL문을 확인하고 싶을 때:</h4>
+
+<p>Resource &gt; <a href="http://application.properties">application.properties</a> &gt; 다음 문장을 추가</p>
+
+<p>spring.jpa.show-sql=true</p>
+
+<p>다음과 같이 위에 Hibernate 이후에 sql문이 함께 출력된다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411190-ee6f7f80-9be6-11eb-8833-34c671277434.png" alt="image" /></p>
+
+<h3 id="read-실습-database에서-정보를-읽기">[READ] 실습: Database에서 정보를 읽기</h3>
+
+<p>UserRepository를 통해서 READ를 할 것이다.</p>
+
+<p>기본적으로 JPA userRepository에서 READ 관련 기능 들을 제공함 → find … 등등</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">read</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span> 
+	<span class="c1">//return 타입이 optional임.</span>
+	<span class="c1">//ID 2 번에 대해서 타입이 Long 이므로 2L 이라고 작성함.</span>
+
+  <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span> <span class="c1">//Optional 타입 이므로 존재한다면, </span>
+	  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"user: "</span><span class="o">+</span><span class="n">selectUser</span><span class="o">);</span> <span class="c1">//출력하겠다 라는 의미.</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"email: "</span><span class="o">+</span><span class="n">selectUser</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+	<span class="o">});</span>
+
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>나중에 REST와 CRUD를 연결시켜주면, url 파라미터로 들어온 ID 값에 대한 정보를 받고 return 해줄 수 있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//예시</span>
+<span class="kd">public</span> <span class="n">User</span> <span class="nf">read</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span> 
+
+  <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span> <span class="c1">//Optional 타입 이므로 존재한다면, </span>
+	  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"user: "</span><span class="o">+</span><span class="n">selectUser</span><span class="o">);</span> <span class="c1">//출력하겠다 라는 의미.</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"email: "</span><span class="o">+</span><span class="n">selectUser</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+	<span class="o">});</span>
+
+	<span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<h3 id="update-실습-database에서-정보를-읽어서-업데이트하기">[UPDATE] 실습: Database에서 정보를 읽어서 업데이트하기</h3>
+
+<p>우선 특정 정보를 가지고 온 후에 → 업데이트 진행하는 순서.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span>
+
+  <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span>
+	  <span class="n">selectUser</span><span class="o">.</span><span class="na">setAccount</span><span class="o">(</span><span class="s">"pppp"</span><span class="o">);</span>
+    <span class="n">selectUser</span><span class="o">.</span><span class="na">setUpdatedAt</span><span class="o">(</span><span class="n">LocalDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
+    <span class="n">selectUser</span><span class="o">.</span><span class="na">setUpdatedBy</span><span class="o">(</span><span class="s">"update method()"</span><span class="o">);</span>
+			
+		<span class="c1">//여기서 다시한번 Select를 한다. </span>
+		<span class="c1">//sql문을 확인해보면 따라서 select를 총2번 진행한 후에, save 한다. </span>
+    <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">selectUser</span><span class="o">);</span> <span class="c1">//update 후에 반드시 save 해야 함.</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>** 이전에 CREATE 할 때는 save()를 했을 때, 새로운 user가 나왔는데 어떻게 JPA는 CREATE와 UPDATE를 구분할까?</p>
+
+<ul>
+  <li>이미 있는 id에 대해서 존재하는지 체크하고 존재 여부에 따라서 구분함.</li>
+  <li>JPA에서 동작할 때, 우선 select → update하는데 바꾸지 않은 값들도 기존의 값들도 다시 한번 업데이트를 진행함. (sql 문으로 확인 가능)</li>
+</ul>
+
+<h3 id="delete-실습-database에서-정보-삭제">[DELETE] 실습: Database에서 정보 삭제</h3>
+
+<p>DELETE 또한 마찬가지로, id 를 받아서 특정 정보에 대해서 지워야 하는 것이다.</p>
+
+<p>즉, 삭제 대상에 대한 정보가 들어와야 함.(REST와 연동 시 정보를 받아와야 함)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span>
+
+	<span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">isPresent</span><span class="o">());</span> <span class="c1">//반드시 true 임을 확인하는 Test 코드 </span>
+        
+  <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span>
+	  <span class="n">userRepository</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">selectUser</span><span class="o">);</span>
+  <span class="o">});</span>
+
+  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">deleteUser</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span>
+	
+	<span class="c1">//이 코드는 사용 가능하나, 적합한 test 코드는 아님. </span>
+	<span class="cm">/*if(deleteUser.isPresent()){
+		  System.out.println("데이터 존재: " + deleteUser.get());
+  } else {
+      System.out.println("데이터 삭제");
+  }*/</span>
+
+	<span class="n">Assert</span><span class="o">.</span><span class="na">assertFalse</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">isPresent</span><span class="o">());</span> <span class="c1">// 반드시 false 여야 한다는 것을 확인하는 Test 코드</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Test 를 실행할 때마다 데이터베이스의 요소들이 없어지면 안될 대는 @Transactional 이라는 annotation을 달아서 실행되는 것은 test 하지만 데이터베이스에서 값의 변화는 없도록 하자.</p>
 
 	  ]]></description>
 	</item>

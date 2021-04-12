@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- Document Settings -->
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+
+    <!-- Page Meta -->
+    <title>JPA를 통한 CRUD</title>
+    <meta name="description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+
+    <!-- Mobile Meta -->
+    <meta name="HandheldFriendly" content="True" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Brand icon -->
+    <link rel="shortcut icon" href="/assets/images/favicon.ico" >
+
+    <!-- Styles'n'Scripts -->
+    <link rel="stylesheet" type="text/css" href="/assets/css/screen.css" />
+    <link rel="stylesheet" type="text/css" href="//fonts.googleapis.com/css?family=Merriweather:300,700,700italic,300italic|Open+Sans:700,400" />
+    <link rel="stylesheet" type="text/css" href="/assets/css/syntax.css" />
+
+    <!-- highlight.js -->
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/styles/default.min.css">
+    <style>.hljs { background: none; }</style>
+
+    <!-- Ghost outputs important style and meta data with this tag -->
+        <link rel="canonical" href="//jpa-crud" />
+    <meta name="referrer" content="origin" />
+    <link rel="next" href="/page2/" />
+
+    <meta property="og:site_name" content="코딩만 잘하면 될까?" />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="JPA를 통한 CRUD" />
+    <meta property="og:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta property="og:url" content="//jpa-crud" />
+    <meta property="og:image" content="/assets/images/cover6.jpg" />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="JPA를 통한 CRUD" />
+    <meta name="twitter:description" content="A beautiful narrative written with the world's most elegant publishing platform. The story begins here." />
+    <meta name="twitter:url" content="//jpa-crud" />
+    <meta name="twitter:image:src" content="/assets/images/cover6.jpg" />
+
+    <script type="application/ld+json">
+{
+    "@context": "http://schema.org",
+    "@type": "Website",
+    "publisher": "코딩만 잘하면 될까?",
+    "name": "JPA를 통한 CRUD",
+    "url": "//jpa-crud",
+    "image": "/assets/images/cover6.jpg",
+    "description": "A beautiful narrative written with the world's most elegant publishing platform. The story begins here."
+}
+    </script>
+
+    <meta name="generator" content="Jekyll 3.0.0" />
+    <link rel="alternate" type="application/rss+xml" title="코딩만 잘하면 될까?" href="/feed.xml" />
+
+
+    
+      <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    TeX: {
+      equationNumbers: {
+        autoNumber: "AMS"
+      }
+    },
+    tex2jax: {
+    inlineMath: [ ['$', '$'] ],
+    displayMath: [ ['$$', '$$'] ],
+    processEscapes: true,
+  }
+});
+MathJax.Hub.Register.MessageHook("Math Processing Error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+MathJax.Hub.Register.MessageHook("TeX Jax - parse error",function (message) {
+	  alert("Math Processing Error: "+message[1]);
+	});
+</script>
+<script type="text/javascript" async
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+
+    
+</head>
+<body class="home-template nav-closed">
+
+    <!-- The blog navigation links -->
+    <div class="nav">
+    <h3 class="nav-title">Menu</h3>
+    <a href="#" class="nav-close">
+        <span class="hidden">Close</span>
+    </a>
+    <ul>
+        <li class="nav-home " role="presentation"><a href="/">Home</a></li>
+        <li class="nav-about " role="presentation"><a href="/about">About</a></li>
+        <li class="nav-algorithms " role="presentation"><a href="/tag/algorithms">Algorithms</a></li>
+        <li class="nav-database " role="presentation"><a href="/tag/database">Database</a></li>
+	<li class="nav-github " role="presentation"><a href="/tag/github">Github</a></li>
+        <li class="nav-java " role="presentation"><a href="/tag/java">Java</a></li>	
+        <li class="nav-backend " role="presentation"><a href="/tag/backend">Back-end</a></li>
+	<li class="nav-machinelearning " role="presentation"><a href="/tag/machinelearning">Machine Learning</a></li>
+  	<li class="nav-woowacourse " role="presentation"><a href="/tag/wooowacourse">우아한테크코스</a></li>	
+	<li class="nav-daily " role="presentation"><a href="/tag/daily">그냥 쓰는 글</a></li>
+	<li class="nav-author " role="presentation"><a href="/author/yj">YJ</a></li>
+    </ul>
+    <a class="subscribe-button icon-feed" href="/feed.xml">Subscribe</a>
+</div>
+<span class="nav-cover"></span>
+
+
+    <div class="site-wrapper">
+
+        <!-- All the main content gets inserted here, index.hbs, post.hbs, etc -->
+        <!-- default -->
+
+<!-- The comment above "< default" means - insert everything in this file into -->
+    <!-- the [body] of the default.hbs template, which contains our header/footer. -->
+
+<!-- Everything inside the #post tags pulls data from the post -->
+<!-- #post -->
+
+<header class="main-header post-head " style="background-image: url(/assets/images/cover6.jpg) ">
+    <nav class="main-nav  overlay  clearfix">
+        <a class="blog-logo" href="/"><img src="/assets/images/ghost.png" alt="Blog Logo" /></a>
+        
+            <a class="menu-button icon-menu" href="#"><span class="word">Menu</span></a>
+        
+    </nav>
+</header>
+
+<main class="content" role="main">
+
+    <article class="post tag-backend">
+
+        <header class="post-header">
+            <h1 class="post-title">JPA를 통한 CRUD</h1>
+            <section class="post-meta">
+            <!-- <a href='/'></a> -->
+
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    <a href='/author/yj'>YJ's Dev Journals</a>
+                
+            
+            <time class="post-date" datetime="2020-09-23">23 Sep 2020</time>
+                <!-- [[tags prefix=" on "]] -->
+                
+                on
+                
+                    
+                       <a href='/tag/backend'>Backend</a>
+                    
+                
+                
+            </section>
+        </header>
+
+        <section class="post-content">
+
+            <p><br /></p>
+<h3 id="repository-생성">Repository 생성</h3>
+
+<ul>
+  <li>Repository: 따로 쿼리문을 작성하지 않아도 객체에 대한 database 관리를 할 수 있도록 해주는 것이다.</li>
+</ul>
+
+<p>@Autowired 라는 annotation 을 통해서 Dependency Injection (DI) 를 실행 한다.</p>
+
+<ul>
+  <li>Spring 에서 가장 큰 장점으로, 객체를 new 명령어를 써서 생성하지 않아도 @Autowired 라는 키워드를 찾아서 주입을 시켜주는 기능을 한다.</li>
+</ul>
+
+<p>본래는 create() 안에 다음과 같은 query문으로 실행을 시켜야 했을 것이다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">String</span> <span class="n">sql</span> <span class="o">=</span> <span class="n">insert</span> <span class="n">into</span> <span class="nf">user</span><span class="o">(%</span><span class="n">s</span><span class="o">,</span> <span class="o">%</span><span class="n">s</span><span class="o">,</span> <span class="o">%</span><span class="n">d</span><span class="o">)</span> <span class="n">value</span> <span class="o">(</span><span class="n">account</span><span class="o">,</span> <span class="n">email</span><span class="o">,</span> <span class="n">age</span><span class="o">);</span>
+</code></pre></div></div>
+
+<p>하지만 JPA의 장점은 이러한 쿼리문이 아니라 object를 가지고 database를 관리할 수 있도록 해주는 것이다.</p>
+
+<h3 id="create-실습-user라는-객체를-database에-생성">[CREATE] 실습: User라는 객체를 Database에 생성</h3>
+
+<p>생성한 UserRepository Class 안에 <strong>CRUD</strong> 메소드가 각각 있다.</p>
+
+<p>create() 안에서 Repository 가 작동하도록 해보자.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">create</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">User</span> <span class="n">user</span> <span class="o">=</span> <span class="k">new</span> <span class="n">User</span><span class="o">();</span> 
+  <span class="c1">//user.setId(); Auto-Increment 이기 때문에 직접 set하지 않음. </span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setEmail</span><span class="o">();</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setAccount</span><span class="o">();</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">();</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setCreateAt</span><span class="o">();</span>
+  <span class="n">user</span><span class="o">.</span><span class="na">setCreatedBy</span><span class="o">();</span>
+	<span class="c1">//괄호 안에 값들 넣어주기 </span>
+	<span class="c1">//NN 인 것들은 반드시 값을 지정해주어야 함. </span>
+
+	<span class="n">User</span> <span class="n">newUser</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">user</span><span class="o">);</span>
+	<span class="c1">//save 메소드는 User를 Database에 넘기고 새로운 User 라는 객체를 return 함. </span>
+	<span class="c1">//이 newUser 에는 지정하지 않은 ID도 알아서 지정이 되어 있음.</span>
+	
+	<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"newuser: "</span> <span class="o">+</span> <span class="n">newUser</span><span class="o">);</span>
+	<span class="c1">//깔끔하게 출력이 되는데, @Data에 의해 Lombok에서 toString이라는 메소드를 제공하기 때문. </span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>왜 User 객체에 대해서는 위에서처럼 DI 해주지 않을까 ?</p>
+
+<p>→ User 객체는 정보 마다 새롭게 생성이 되어야 하는 객체.</p>
+
+<p>→ 위에서 사용하는 UserRepository 와 같은 경우는 하나만 생성해서 모든 UserRepository에 대해서 모두 Autowired 시킬 것이기 때문이다.</p>
+
+<p><strong>이 Hibernate의 장점이 객체를 가지고 Database에 insert를 칠 수 있는 것!</strong></p>
+
+<h4 id="실제-sql문을-확인하고-싶을-때">실제 SQL문을 확인하고 싶을 때:</h4>
+
+<p>Resource &gt; <a href="http://application.properties">application.properties</a> &gt; 다음 문장을 추가</p>
+
+<p>spring.jpa.show-sql=true</p>
+
+<p>다음과 같이 위에 Hibernate 이후에 sql문이 함께 출력된다.</p>
+
+<p><img src="https://user-images.githubusercontent.com/63405904/114411190-ee6f7f80-9be6-11eb-8833-34c671277434.png" alt="image" /></p>
+
+<h3 id="read-실습-database에서-정보를-읽기">[READ] 실습: Database에서 정보를 읽기</h3>
+
+<p>UserRepository를 통해서 READ를 할 것이다.</p>
+
+<p>기본적으로 JPA userRepository에서 READ 관련 기능 들을 제공함 → find … 등등</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">read</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span> 
+	<span class="c1">//return 타입이 optional임.</span>
+	<span class="c1">//ID 2 번에 대해서 타입이 Long 이므로 2L 이라고 작성함.</span>
+
+  <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span> <span class="c1">//Optional 타입 이므로 존재한다면, </span>
+	  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"user: "</span><span class="o">+</span><span class="n">selectUser</span><span class="o">);</span> <span class="c1">//출력하겠다 라는 의미.</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"email: "</span><span class="o">+</span><span class="n">selectUser</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+	<span class="o">});</span>
+
+<span class="o">}</span>
+
+</code></pre></div></div>
+
+<ul>
+  <li>나중에 REST와 CRUD를 연결시켜주면, url 파라미터로 들어온 ID 값에 대한 정보를 받고 return 해줄 수 있다.</li>
+</ul>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">//예시</span>
+<span class="kd">public</span> <span class="n">User</span> <span class="nf">read</span><span class="o">(</span><span class="nd">@RequestParam</span> <span class="n">Long</span> <span class="n">id</span><span class="o">)</span> <span class="o">{</span>
+	<span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="n">id</span><span class="o">);</span> 
+
+  <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span> <span class="c1">//Optional 타입 이므로 존재한다면, </span>
+	  <span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"user: "</span><span class="o">+</span><span class="n">selectUser</span><span class="o">);</span> <span class="c1">//출력하겠다 라는 의미.</span>
+		<span class="n">System</span><span class="o">.</span><span class="na">out</span><span class="o">.</span><span class="na">println</span><span class="o">(</span><span class="s">"email: "</span><span class="o">+</span><span class="n">selectUser</span><span class="o">.</span><span class="na">getEmail</span><span class="o">());</span>
+	<span class="o">});</span>
+
+	<span class="k">return</span> <span class="n">user</span><span class="o">.</span><span class="na">get</span><span class="o">();</span>
+<span class="o">}</span> 
+</code></pre></div></div>
+
+<h3 id="update-실습-database에서-정보를-읽어서-업데이트하기">[UPDATE] 실습: Database에서 정보를 읽어서 업데이트하기</h3>
+
+<p>우선 특정 정보를 가지고 온 후에 → 업데이트 진행하는 순서.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">update</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span>
+
+  <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span>
+	  <span class="n">selectUser</span><span class="o">.</span><span class="na">setAccount</span><span class="o">(</span><span class="s">"pppp"</span><span class="o">);</span>
+    <span class="n">selectUser</span><span class="o">.</span><span class="na">setUpdatedAt</span><span class="o">(</span><span class="n">LocalDateTime</span><span class="o">.</span><span class="na">now</span><span class="o">());</span>
+    <span class="n">selectUser</span><span class="o">.</span><span class="na">setUpdatedBy</span><span class="o">(</span><span class="s">"update method()"</span><span class="o">);</span>
+			
+		<span class="c1">//여기서 다시한번 Select를 한다. </span>
+		<span class="c1">//sql문을 확인해보면 따라서 select를 총2번 진행한 후에, save 한다. </span>
+    <span class="n">userRepository</span><span class="o">.</span><span class="na">save</span><span class="o">(</span><span class="n">selectUser</span><span class="o">);</span> <span class="c1">//update 후에 반드시 save 해야 함.</span>
+  <span class="o">});</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>** 이전에 CREATE 할 때는 save()를 했을 때, 새로운 user가 나왔는데 어떻게 JPA는 CREATE와 UPDATE를 구분할까?</p>
+
+<ul>
+  <li>이미 있는 id에 대해서 존재하는지 체크하고 존재 여부에 따라서 구분함.</li>
+  <li>JPA에서 동작할 때, 우선 select → update하는데 바꾸지 않은 값들도 기존의 값들도 다시 한번 업데이트를 진행함. (sql 문으로 확인 가능)</li>
+</ul>
+
+<h3 id="delete-실습-database에서-정보-삭제">[DELETE] 실습: Database에서 정보 삭제</h3>
+
+<p>DELETE 또한 마찬가지로, id 를 받아서 특정 정보에 대해서 지워야 하는 것이다.</p>
+
+<p>즉, 삭제 대상에 대한 정보가 들어와야 함.(REST와 연동 시 정보를 받아와야 함)</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="kd">public</span> <span class="kt">void</span> <span class="nf">delete</span><span class="o">()</span> <span class="o">{</span>
+	<span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">user</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span>
+
+	<span class="n">Assert</span><span class="o">.</span><span class="na">assertTrue</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">isPresent</span><span class="o">());</span> <span class="c1">//반드시 true 임을 확인하는 Test 코드 </span>
+        
+  <span class="n">user</span><span class="o">.</span><span class="na">ifPresent</span><span class="o">(</span><span class="n">selectUser</span><span class="o">-&gt;</span> <span class="o">{</span>
+	  <span class="n">userRepository</span><span class="o">.</span><span class="na">delete</span><span class="o">(</span><span class="n">selectUser</span><span class="o">);</span>
+  <span class="o">});</span>
+
+  <span class="n">Optional</span><span class="o">&lt;</span><span class="n">User</span><span class="o">&gt;</span> <span class="n">deleteUser</span> <span class="o">=</span> <span class="n">userRepository</span><span class="o">.</span><span class="na">findById</span><span class="o">(</span><span class="mi">2L</span><span class="o">);</span>
+	
+	<span class="c1">//이 코드는 사용 가능하나, 적합한 test 코드는 아님. </span>
+	<span class="cm">/*if(deleteUser.isPresent()){
+		  System.out.println("데이터 존재: " + deleteUser.get());
+  } else {
+      System.out.println("데이터 삭제");
+  }*/</span>
+
+	<span class="n">Assert</span><span class="o">.</span><span class="na">assertFalse</span><span class="o">(</span><span class="n">user</span><span class="o">.</span><span class="na">isPresent</span><span class="o">());</span> <span class="c1">// 반드시 false 여야 한다는 것을 확인하는 Test 코드</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Test 를 실행할 때마다 데이터베이스의 요소들이 없어지면 안될 대는 @Transactional 이라는 annotation을 달아서 실행되는 것은 test 하지만 데이터베이스에서 값의 변화는 없도록 하자.</p>
+
+
+        </section>
+
+        <footer class="post-footer">
+
+            <!-- Everything inside the #author tags pulls data from the author -->
+            <!-- #author-->
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+            
+                
+                    
+                        <figure class="author-image">
+                            <a class="img" href="/author/yj" style="background-image: url(/assets/images/yj.png)"><span class="hidden">yj's Picture</span></a>
+                        </figure>
+                    
+
+                    <section class="author">
+                        <h4><a href="/author/yj">YJ's Dev Journals</a></h4>
+
+                        
+                            <p> 개발자는 코딩만 잘하면 돼!! 를 탈피하기 위해 우선 코딩을 잘하고자 하는 예비 개발자</p>
+                        
+                        <div class="author-meta">
+                            <span class="author-location icon-location"> 개발개발, 개발</span>
+                            <span class="author-link icon-link"><a href="http://yjksw.github.io/"> yjksw.github.io</a></span>
+                        </div>
+                    </section>
+
+                    <!-- /author  -->
+
+                    <section class="share">
+                        <h4>Share this post</h4>
+                        <a class="icon-twitter" href="http://twitter.com/share?text=JPA를 통한 CRUD&amp;url=jpa-crud"
+                            onclick="window.open(this.href, 'twitter-share', 'width=550,height=235');return false;">
+                            <span class="hidden">Twitter</span>
+                        </a>
+                        <a class="icon-facebook" href="https://www.facebook.com/sharer/sharer.php?u=jpa-crud"
+                            onclick="window.open(this.href, 'facebook-share','width=580,height=296');return false;">
+                            <span class="hidden">Facebook</span>
+                        </a>
+                        <a class="icon-google-plus" href="https://plus.google.com/share?url=jpa-crud"
+                           onclick="window.open(this.href, 'google-plus-share', 'width=490,height=530');return false;">
+                            <span class="hidden">Google+</span>
+                        </a>
+                    </section>
+                
+            
+
+            <!-- Add Disqus Comments -->
+            
+
+        </footer>
+
+    </article>
+
+</main>
+
+<aside class="read-next">
+
+    <!-- [[! next_post ]] -->
+    
+        <a class="read-next-story " style="background-image: url(/assets/images/cover6.jpg)" href="/jpa">
+            <section class="post">
+                <h2>[백엔드] JPA 란?</h2>
+                <p>#### JPA(Java Persistent API) - ORM(Object Relational Mapping)으로, RDB 데이터 베이스의 정보를 객체지향으로 활용할 수...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /next_post ]] -->
+    <!-- [[! prev_post ]] -->
+    
+        <a class="read-next-story prev " style="background-image: url(/assets/images/cover6.jpg)" href="/rest-api">
+            <section class="post">
+                <h2>[백엔드] Rest API 란?</h2>
+                <p>HTTP - GET Method 주소창에 parameter 노출 브라우저에서 주소에 대한 캐시가 이루어지므로, 정보를 얻을 때...</p>
+            </section>
+        </a>
+    
+    <!-- [[! /prev_post ]] -->
+</aside>
+
+<!-- /post -->
+
+
+        <!-- The tiny footer at the very bottom -->
+        <footer class="site-footer clearfix">
+          <section class="copyright"><a href="/">코딩만 잘하면 될까?</a> &copy; 2021</section>
+          <section class="poweredby">Proudly published with <a href="https://jekyllrb.com/">Jekyll</a> using <a href="https://github.com/jekyller/jasper">Jasper</a></section>
+        </footer>
+    </div>
+    <!-- highlight.js -->
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.3.0/highlight.min.js"></script>
+    <script>hljs.initHighlightingOnLoad();</script>
+
+    <!-- jQuery needs to come before `` so that jQuery can be used in code injection -->
+    <script type="text/javascript" src="//code.jquery.com/jquery-1.12.0.min.js"></script>
+    <!-- Ghost outputs important scripts and data with this tag -->
+    <!--  -->
+    <!-- Add Google Analytics  -->
+        <!-- Google Analytics Tracking code -->
+     <script>
+	    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+	    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+	    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+	    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+	    ga('create', 'UA-69281367-1', 'auto');
+	    ga('send', 'pageview');
+
+     </script>
+    <!-- Fitvids makes video embeds responsive and awesome -->
+    <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+    <!-- The main JavaScript file for Casper -->
+    <script type="text/javascript" src="/assets/js/index.js"></script>
+
+</body>
+</html>
